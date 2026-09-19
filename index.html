@@ -1,693 +1,1120 @@
-Aquí tienes el plan de viaje estructurado en un único archivo HTML autocontenido. He diseñado una interfaz limpia, orientada a la lectura en movilidad (mobile-first), con navegación rápida, etiquetas visuales por tipo de actividad y un estilo elegante que no requiere conexión a internet para visualizar su estructura (sin librerías externas).
-
-Copia el siguiente código y guárdalo en un archivo llamado `viaje-alsacia.html`. Podrás abrirlo directamente en Chrome, Safari o cualquier navegador de tu móvil, iPad o PC.
-
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viaje a Alsacia | Alberto</title>
-    <style>
-        /* --- VARIABLES DE DISEÑO --- */
-        :root {
-            --primary: #1e3a5f;      /* Azul oscuro elegante */
-            --accent: #d64933;       /* Rojo cálido navideño */
-            --bg-color: #f8f9fa;     /* Fondo claro */
-            --card-bg: #ffffff;
-            --text-main: #2b2b2b;
-            --text-muted: #6c757d;
-            --border: #e9ecef;
-            
-            /* Colores de etiquetas */
-            --tag-transport: #e3f2fd;
-            --tag-transport-text: #0d47a1;
-            --tag-food: #fff3e0;
-            --tag-food-text: #e65100;
-            --tag-photo: #f3e5f5;
-            --tag-photo-text: #4a148c;
-            --tag-visit: #e8f5e9;
-            --tag-visit-text: #1b5e20;
-            --tag-hotel: #eeeeee;
-            --tag-hotel-text: #424242;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Alsacia en Navidad · Diciembre 2025</title>
+<style>
+/* ═══════════════════════════════════════════
+   VARIABLES & RESET — paleta noche de mercado
+═══════════════════════════════════════════ */
+:root{
+  --bl:#2c4f8a;--bld:#1B2A4A;--blm:#3d6ab5;--bll:#dde4f8;--blx:#f0f3fc;
+  --gr:#16a34a;--grl:#f0fdf4;--grd:#15803d;
+  --or:#9a6200;--orl:#fffbeb;
+  --sl:#111827;--slm:#374151;--sll:#6b7280;
+  --bg:#f1f3f9;--wh:#fff;--bd:#d1d5db;
+  --r:14px;--rs:10px;
+  --sh:0 2px 12px rgba(27,42,74,.10);
+  --sidebar-w:260px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#1B2A4A}
+body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;color:var(--sl);line-height:1.65;font-size:16px;background:var(--bg);-webkit-text-size-adjust:100%}
+button{background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;-webkit-appearance:none;appearance:none;text-align:left;display:block;width:100%}
+a{color:inherit;text-decoration:none}
+button:hover{opacity:.88}
 
-        /* --- ESTILOS GENERALES --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-        h1, h2, h3, h4 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        ul {
-            padding-left: 1.2rem;
-            margin-bottom: 1rem;
-        }
-        
-        /* --- LAYOUT PRINCIPAL --- */
-        .app-container {
-            display: flex;
-            flex-direction: column;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+/* ═══════════════════════════════════════════
+   PAGE SYSTEM
+═══════════════════════════════════════════ */
+.pg{display:none;min-height:100vh;background:var(--bg)}
+.pg.on{display:block}
 
-        /* --- NAVEGACIÓN --- */
-        .navbar {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .nav-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding-bottom: 0.5rem;
-            scrollbar-width: none; /* Firefox */
-        }
-        .nav-links::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
-        }
-        .nav-links a {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.1);
-        }
-        .nav-links a:hover, .nav-links a:active {
-            color: var(--primary);
-            background: white;
-        }
+/* ═══════════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════════ */
+.tb{background:var(--bld);color:#fff;display:flex;align-items:center;gap:8px;padding:12px 16px;min-height:56px;position:sticky;top:0;z-index:100}
+.tbb{width:42px;height:42px;flex-shrink:0;background:rgba(255,255,255,.18);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
+.tbt{flex:1;font-size:16px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
-        /* --- CONTENIDO --- */
-        .content {
-            padding: 1.5rem 1rem;
-            flex-grow: 1;
-        }
-        section {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid var(--border);
-            scroll-margin-top: 100px; /* Para los anclajes del menú */
-        }
+/* ═══════════════════════════════════════════
+   HOME HEADER — noche de mercado navideño alsaciano
+═══════════════════════════════════════════ */
+.hdr{
+  background:linear-gradient(160deg,#0b1320 0%,#1B2A4A 55%,#2a4070 100%);
+  color:#fff;padding:36px 20px 28px;position:relative;overflow:hidden;
+}
+.hdr::before{
+  content:'✦  ✦  ✦';position:absolute;top:14px;right:18px;
+  font-size:11px;letter-spacing:8px;color:rgba(200,170,80,.55);pointer-events:none;
+}
+.hdr::after{
+  content:'';position:absolute;bottom:-40px;right:-40px;width:180px;height:180px;
+  border-radius:50%;background:rgba(200,170,80,.06);pointer-events:none;
+}
+.hdr-ey{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(200,170,80,.9);margin-bottom:8px}
+.hdr-t{font-size:32px;font-weight:900;letter-spacing:-1px;line-height:1.05;margin-bottom:6px}
+.hdr-s{font-size:16px;color:rgba(255,255,255,.8);font-style:italic;margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:rgba(255,255,255,.12);border:1px solid rgba(200,170,80,.35);border-radius:20px;padding:5px 13px;font-size:13px;color:#fff}
 
-        /* --- PORTADA / RESUMEN --- */
-        .hero {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, #2a5298 100%);
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-        }
-        .hero h1 { color: white; font-size: 2rem; }
-        .hero p { opacity: 0.9; font-size: 1.1rem; }
-        .badge-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-        .badge {
-            background: rgba(255,255,255,0.2);
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            backdrop-filter: blur(5px);
-        }
+/* ═══════════════════════════════════════════
+   CONTENT WRAPPER
+═══════════════════════════════════════════ */
+.ct{padding:16px 14px calc(80px + env(safe-area-inset-bottom,0px))}
 
-        /* --- ITINERARIO (TIMELINE) --- */
-        .day-card {
-            margin-bottom: 2.5rem;
-        }
-        .day-header {
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .day-header h3 { font-size: 1.4rem; color: var(--accent); }
-        
-        .timeline-item {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 1.5rem;
-            border-left: 3px solid var(--border);
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 0;
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background: var(--primary);
-        }
-        .time-label {
-            font-weight: 700;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-            display: block;
-        }
-        
-        /* --- ETIQUETAS VISUALES --- */
-        .tag-group {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin: 0.5rem 0;
-        }
-        .tag {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.3rem 0.6rem;
-            border-radius: 6px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .tag-transport { background: var(--tag-transport); color: var(--tag-transport-text); }
-        .tag-food { background: var(--tag-food); color: var(--tag-food-text); }
-        .tag-photo { background: var(--tag-photo); color: var(--tag-photo-text); }
-        .tag-visit { background: var(--tag-visit); color: var(--tag-visit-text); }
-        .tag-hotel { background: var(--tag-hotel); color: var(--tag-hotel-text); }
+/* ═══════════════════════════════════════════
+   LABEL
+═══════════════════════════════════════════ */
+.lbl{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--slm);margin:22px 0 9px 2px}
+.lbl:first-child{margin-top:0}
 
-        /* --- TABLAS Y TARJETAS --- */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-        .info-card {
-            background: var(--bg-color);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-        .info-card h4 { margin-bottom: 0.5rem; font-size: 1.1rem; }
+/* ═══════════════════════════════════════════
+   SUMMARY TABLE (home days list)
+═══════════════════════════════════════════ */
+.stw{background:var(--wh);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.sr{display:flex;align-items:stretch;width:100%;border-bottom:2px solid var(--bg);background:var(--wh)}
+.sr:last-child{border-bottom:none}
+.sr:hover{background:var(--blx)}
+.sdb{width:62px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 4px;color:#fff}
+.sdb-n{font-size:22px;font-weight:800;line-height:1}
+.sdb-d{font-size:11px;font-weight:600;opacity:.85;text-transform:uppercase;margin-top:3px}
+.sdb-f{font-size:11px;opacity:.75;margin-top:2px}
+.srb{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:4px}
+.sr-t{font-size:15px;font-weight:700;color:var(--sl);line-height:1.25}
+.sr-s{font-size:13px;color:var(--slm);line-height:1.4}
+.sr-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.tag{font-size:12px;font-weight:600;padding:3px 9px;border-radius:10px;background:var(--bll);color:var(--bl)}
+.tag.g{background:#dcfce7;color:var(--grd)}.tag.o{background:#fef3c7;color:#92400e}
+.sa{color:var(--sll);font-size:20px;align-self:center;padding-right:14px;flex-shrink:0}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-        th, td {
-            text-align: left;
-            padding: 0.8rem;
-            border-bottom: 1px solid var(--border);
-        }
-        th { background: var(--bg-color); color: var(--primary); }
+/* ═══════════════════════════════════════════
+   ALERT (collapsible)
+═══════════════════════════════════════════ */
+.ac{border-radius:var(--rs);overflow:hidden;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.ach{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;font-size:15px;font-weight:700;color:#fff;width:100%}
+.ac.warn .ach{background:#b45309}.ac.info .ach{background:var(--bl)}.ac.ok .ach{background:var(--gr)}.ac.red .ach{background:#991b1b}
+.arr{font-size:20px;transition:transform .2s}.arr.open{transform:rotate(180deg)}
+.acb{display:none;padding:14px 16px;font-size:14px;line-height:1.65}
+.acb.open{display:block}
+.ac.warn .acb{background:#fffbeb;color:#78350f}
+.ac.info .acb{background:var(--blx);color:var(--slm)}
+.ac.ok .acb{background:var(--grl);color:#14532d}
+.ac.red .acb{background:#fff0f0;color:#7f1d1d}
+.acb ul{margin:8px 0 0 16px}.acb li{margin-bottom:7px}
 
-        /* --- CHECKLIST INTERACTIVO --- */
-        .checklist-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
-            border-radius: 6px;
-        }
-        .checklist-item:hover { background: var(--bg-color); }
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary);
-            cursor: pointer;
-        }
+/* ═══════════════════════════════════════════
+   RESERVAS LIST
+═══════════════════════════════════════════ */
+.rlc{background:var(--wh);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.rlh{background:var(--bl);color:#fff;padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.rr{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--bd)}
+.rr:last-child{border-bottom:none}.rr:nth-child(even){background:#f8fafc}
+.rdot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.rdot.d{background:var(--gr)}.rdot.p{background:#d97706}.rdot.n{background:var(--sll)}
+.ri{flex:1;min-width:0}
+.rw{font-size:12px;color:var(--sll);margin-bottom:2px}
+.rn{font-size:14px;font-weight:600;color:var(--sl)}
+.rb{font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;white-space:nowrap;flex-shrink:0;display:inline-block}
+.rb.d{background:#dcfce7;color:var(--grd)}.rb.p{background:#fef3c7;color:#92400e}.rb.n{background:#f1f5f9;color:var(--sll)}
+a.rb.w{background:var(--bll);color:var(--bl);border:1px solid #93c5fd}
 
-        /* --- ALERGIA AL TRIGO ALERT --- */
-        .alert {
-            background-color: #fff4f4;
-            border-left: 4px solid var(--accent);
-            padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
+/* ═══════════════════════════════════════════
+   DAY HERO CARD
+═══════════════════════════════════════════ */
+.dh{background:linear-gradient(135deg,var(--bld) 0%,var(--blm) 100%);border-radius:var(--r);padding:20px;color:#fff;margin-bottom:18px;box-shadow:var(--sh)}
+.dh-n{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:5px}
+.dh-t{font-size:20px;font-weight:900;letter-spacing:-.5px;line-height:1.15;margin-bottom:5px}
+.dh-s{font-size:13px;color:rgba(255,255,255,.78);font-style:italic;margin-bottom:14px}
+.dh-chips{display:flex;flex-wrap:wrap;gap:6px}
+.dh-chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:4px 11px;font-size:12px;color:#fff}
 
-        /* --- FLOTANTE --- */
-        .fab-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 1000;
-        }
-        .fab-top.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
+/* ═══════════════════════════════════════════
+   METEO BUTTON
+═══════════════════════════════════════════ */
+.mb{display:flex;align-items:center;gap:12px;background:#e0f2fe;border:1px solid #7dd3fc;border-radius:var(--rs);padding:12px 16px;font-size:14px;font-weight:600;color:#0c4a6e;margin-bottom:10px}
+.mb-i{font-size:20px;flex-shrink:0}.mb-t{flex:1}.mb-a{color:#0ea5e9;font-size:18px}
 
-        /* --- RESPONSIVE (PC / iPad) --- */
-        @media (min-width: 768px) {
-            .app-container {
-                flex-direction: row;
-            }
-            .navbar {
-                width: 250px;
-                height: 100vh;
-                position: sticky;
-                top: 0;
-                padding: 2rem 1.5rem;
-                display: flex;
-                flex-direction: column;
-            }
-            .nav-links {
-                flex-direction: column;
-                overflow: visible;
-                padding-bottom: 0;
-                margin-top: 2rem;
-            }
-            .nav-links a {
-                border-radius: 8px;
-                padding: 0.8rem 1rem;
-            }
-            .content {
-                padding: 2rem 3rem;
-            }
-            .info-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
+/* ═══════════════════════════════════════════
+   TRANSPORT TABLE
+═══════════════════════════════════════════ */
+.tc{background:var(--wh);border-radius:var(--rs);overflow:hidden;border:1px solid var(--bd);margin-bottom:10px}
+.tr{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:13px;line-height:1.4}
+.tr:last-child{border-bottom:none;background:#eef2f7;font-weight:700;color:var(--bl)}
+.tf{flex:1;color:var(--sl)}
+.tt{font-size:13px;color:var(--bl);font-weight:700;background:var(--blx);padding:3px 8px;border-radius:5px;white-space:nowrap}
+.tk{font-size:12px;color:var(--sll);white-space:nowrap}
+
+/* ═══════════════════════════════════════════
+   ACTION BUTTONS
+═══════════════════════════════════════════ */
+.ab{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:var(--rs);font-size:14px;font-weight:600;margin-bottom:10px;width:100%}
+.ab:active{opacity:.75}
+.ab-i{font-size:20px;flex-shrink:0}.ab-t{flex:1}.ab-a{font-size:16px;opacity:.6}
+.ab.maps{background:var(--grl);border:1px solid #86efac;color:#14532d}
+.ab.web{background:var(--blx);border:1px solid #93c5fd;color:#1e40af}
+.ab.red{background:#fff0f0;border:1px solid #fca5a5;color:#991b1b}
+
+/* ═══════════════════════════════════════════
+   SCHEDULE
+═══════════════════════════════════════════ */
+.sc{background:var(--wh);border-radius:var(--rs);overflow:hidden;border:1px solid var(--bd)}
+.si{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-bottom:1px solid #f3f4f6;font-size:14px;line-height:1.5}
+.si:last-child{border-bottom:none}
+.si.hi{background:#fffbeb}.si.br{background:#f0fdf4}.si.wa{background:#fff0f0}
+.st{font-size:12px;font-weight:700;color:var(--bl);min-width:50px;flex-shrink:0;padding-top:2px}
+.si-i{font-size:18px;flex-shrink:0;padding-top:1px}.si-t{flex:1;line-height:1.5;color:var(--sl)}
+
+/* ═══════════════════════════════════════════
+   RESTAURANT / INFO CARDS
+═══════════════════════════════════════════ */
+.rc{background:var(--wh);border-radius:var(--rs);border:1px solid var(--bd);overflow:hidden;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.rc.res{border-left:5px solid var(--gr)}.rc.pend{border-left:5px solid #d97706}.rc.neu{border-left:5px solid var(--bl)}.rc.danger{border-left:5px solid #b91c1c}
+.rct{padding:14px 16px 0}
+.rcs{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.rcs.g{color:var(--grd)}.rcs.o{color:#b45309}.rcs.b{color:var(--bl)}.rcs.r{color:#b91c1c}
+.rcn{font-size:16px;font-weight:800;color:var(--sl);margin-bottom:5px}
+.rcd{font-size:13px;color:var(--slm);line-height:1.6;padding:0 16px 14px}
+.rca{display:flex;gap:8px;padding:0 16px 14px;flex-wrap:wrap}
+.rab{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600}
+.rab.webr{background:var(--bll);color:#1e40af}.rab.gr{background:var(--gr);color:#fff}
+
+/* ═══════════════════════════════════════════
+   INFO BOXES
+═══════════════════════════════════════════ */
+.ib{border-radius:var(--rs);padding:14px 16px;font-size:14px;line-height:1.65;margin-bottom:12px}
+.ibt{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px}
+.ib.warn{background:#fffbeb;border:1px solid #fcd34d}.ib.warn .ibt{color:#92400e}
+.ib.info{background:var(--blx);border:1px solid #93c5fd}.ib.info .ibt{color:#1e40af}
+.ib.ok{background:var(--grl);border:1px solid #86efac}.ib.ok .ibt{color:#14532d}
+.ib.danger{background:#fff0f0;border:1px solid #fca5a5}.ib.danger .ibt{color:#991b1b}
+.ib ul{margin:8px 0 0 16px}.ib li{margin-bottom:6px}
+
+/* ═══════════════════════════════════════════
+   PHOTO BLOCK (dark)
+═══════════════════════════════════════════ */
+.pb{background:#1c1c2e;border-radius:var(--rs);padding:16px;font-size:13px;color:#d0e4f0;line-height:1.7}
+.pbt{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#7eb3d8;margin-bottom:10px}
+.pi{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.1)}
+.pi:last-child{margin:0;padding:0;border:none}
+.pio{font-weight:700;color:#90cbf0;font-size:13px}.pia{color:#94a3b8;font-size:12px;font-style:italic}
+
+/* ═══════════════════════════════════════════
+   CARD BLOCK (white info card)
+═══════════════════════════════════════════ */
+.cb{background:var(--wh);border-radius:var(--rs);border:1px solid var(--bd);padding:14px 16px;margin-bottom:10px;font-size:14px;line-height:1.65;color:var(--slm)}
+.cb strong{color:var(--sl)}
+
+/* ═══════════════════════════════════════════
+   CHECKLIST
+═══════════════════════════════════════════ */
+.chs{background:var(--wh);border-radius:var(--rs);border:1px solid var(--bd);padding:15px 16px;margin-bottom:12px}
+.chs h4{font-size:12px;font-weight:700;color:var(--bl);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--bd)}
+.chs ul{margin:0 0 0 16px}.chs li{font-size:14px;margin-bottom:7px;line-height:1.5}
+
+/* ═══════════════════════════════════════════
+   PHOTO ROW (summary page)
+═══════════════════════════════════════════ */
+.pr{background:var(--wh);border-radius:8px;border-left:4px solid var(--bl);padding:12px 14px;margin-bottom:10px}
+.pro{font-size:14px;font-weight:700;color:var(--bl)}.prs{font-size:13px;color:var(--slm);margin:3px 0;line-height:1.5}.pra{font-size:12px;color:var(--sll);font-style:italic}
+
+/* ═══════════════════════════════════════════
+   PREV / NEXT ROW
+═══════════════════════════════════════════ */
+.pnrow{display:flex;gap:10px;margin-top:24px}
+.pnrow .ab{flex:1;justify-content:center}
+
+/* ═══════════════════════════════════════════
+   BOTTOM NAV
+═══════════════════════════════════════════ */
+.bnav{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(27,42,74,.97);
+  display:flex;justify-content:space-around;align-items:center;
+  padding:8px 4px calc(8px + env(safe-area-inset-bottom,0px));
+  z-index:200;box-shadow:0 -2px 12px rgba(0,0,0,.25);
+}
+.nb{display:flex;flex-direction:column;align-items:center;gap:3px;color:rgba(255,255,255,.7);font-size:10px;font-weight:600;padding:5px 8px;border-radius:10px;min-width:44px}
+.nb span:first-child{font-size:20px}
+.nb.on{background:rgba(255,255,255,.2);color:#fff}
+
+/* ═══════════════════════════════════════════
+   TABLET (≥680px)
+═══════════════════════════════════════════ */
+@media(min-width:680px){
+  .pg{max-width:680px;margin:0 auto;box-shadow:0 0 40px rgba(0,0,0,.15)}
+  .hdr{padding:44px 28px 32px}
+  .hdr-t{font-size:42px}
+  .hdr-s{font-size:18px}
+  .ct{padding:22px 22px calc(88px + env(safe-area-inset-bottom,0px))}
+  .dh{padding:26px;margin-bottom:22px}
+  .dh-t{font-size:26px}
+  .stw{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--r)}
+  .sr{border-bottom:2px solid var(--bg)}
+  .sr:nth-child(odd){border-right:2px solid var(--bg)}
+  .si{padding:13px 18px}
+  .st{min-width:58px}
+  .tb{padding:14px 22px}
+  .tbt{font-size:17px}
+  .bnav{padding:10px 8px calc(10px + env(safe-area-inset-bottom,0px))}
+  .nb{min-width:60px;font-size:11px;padding:6px 10px}
+  .nb span:first-child{font-size:22px}
+}
+
+/* ═══════════════════════════════════════════
+   DESKTOP (≥1080px) — sidebar + main
+═══════════════════════════════════════════ */
+@media(min-width:1080px){
+  html{background:#dce3ee}
+  body{font-size:15px}
+  .pg{max-width:none;box-shadow:none;background:transparent;display:none}
+  .pg.on{display:flex;flex-direction:column;min-height:100vh}
+  .hdr{padding:52px 0 38px;display:flex;align-items:center}
+  .hdr-inner{max-width:1200px;margin:0 auto;width:100%;padding:0 40px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+  .hdr-text{flex:1}
+  .hdr-t{font-size:52px}
+  .tb{padding:0 40px;min-height:60px;justify-content:flex-start;gap:16px;position:sticky;top:0}
+  .tbt{font-size:18px}
+  .desktop-layout{display:flex;flex:1;max-width:1200px;margin:0 auto;width:100%;padding:28px 40px 40px;gap:28px;align-items:flex-start}
+  .desktop-sidebar{width:var(--sidebar-w);flex-shrink:0;position:sticky;top:88px;max-height:calc(100vh - 108px);overflow-y:auto;scrollbar-width:thin}
+  .desktop-sidebar::-webkit-scrollbar{width:4px}
+  .desktop-sidebar::-webkit-scrollbar-thumb{background:var(--bd);border-radius:4px}
+  .sidebar-section{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:14px;overflow:hidden}
+  .sidebar-title{background:var(--bld);color:#fff;padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+  .sidebar-link{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:13px;font-weight:600;color:var(--sl);cursor:pointer;transition:background .15s}
+  .sidebar-link:last-child{border-bottom:none}
+  .sidebar-link:hover{background:var(--blx)}
+  .sidebar-link.on{background:var(--bll);color:var(--bl)}
+  .sidebar-link .sl-num{width:26px;height:26px;border-radius:6px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--bl);flex-shrink:0}
+  .sidebar-link.on .sl-num{background:var(--bl);color:#fff}
+  .sidebar-link .sl-date{font-size:11px;color:var(--sll);margin-left:auto;flex-shrink:0}
+  .desktop-main{flex:1;min-width:0}
+  .ct{padding:0}
+  .bnav{display:none}
+  #pg-ph .desktop-layout{padding-top:0}
+  #pg-ph .desktop-main .stw{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--r)}
+  #pg-ph .desktop-main .sr{border-bottom:2px solid var(--bg)}
+  #pg-ph .desktop-main .sr:nth-child(odd){border-right:2px solid var(--bg)}
+  .dh{padding:28px 32px;margin-bottom:24px}
+  .dh-t{font-size:28px}
+  .si{padding:13px 20px;font-size:14px}
+  .st{min-width:60px}
+  .pnrow{justify-content:flex-start;gap:12px;margin-top:28px}
+  .pnrow .ab{flex:0 0 auto;width:200px}
+  .tbb{width:38px;height:38px;font-size:18px}
+  .lbl{font-size:11px;margin:20px 0 8px 2px}
+}
+@media(min-width:1400px){
+  :root{--sidebar-w:290px}
+  .desktop-layout{padding:32px 60px 60px}
+  .hdr-inner{padding:0 60px}
+  .tb{padding:0 60px}
+}
+</style>
 </head>
 <body>
 
-<div class="app-container">
-    <!-- NAVEGACIÓN LATERAL/SUPERIOR -->
-    <nav class="navbar">
-        <div class="nav-title">Alsacia 2026</div>
-        <div class="nav-links">
-            <a href="#resumen">Resumen</a>
-            <a href="#itinerario">Itinerario</a>
-            <a href="#logistica">Logística</a>
-            <a href="#gastronomia">Gastronomía</a>
-            <a href="#fotografia">Fotografía</a>
-            <a href="#checklist">Checklist</a>
-            <a href="#notas">Notas Rápidas</a>
-        </div>
-    </nav>
+<!-- ══════════════ PÁGINA: INICIO ══════════════ -->
+<div class="pg on" id="pg-ph">
+<div class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-text">
+      <div class="hdr-ey">Itinerario · Madrid → Entzheim → Mercados de Navidad</div>
+      <div class="hdr-t">ALSACIA<br>EN NAVIDAD</div>
+      <div class="hdr-s">Diciembre 2025 · 2 viajeros</div>
+      <div class="chips">
+        <span class="chip">✈ 2–6 Diciembre</span>
+        <span class="chip">📅 5 días</span>
+        <span class="chip">🚂 100% transporte público</span>
+        <span class="chip">🎄 Mercados navideños</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="desktop-layout">
+<aside class="desktop-sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Días del viaje</div>
+    <div class="sidebar-link on" data-go="pg-ph"><span class="sl-num">🏠</span>Inicio</div>
+    <div class="sidebar-link" data-go="pg-p1"><span class="sl-num">1</span>Llegada · Colmar <span class="sl-date">Mié 2</span></div>
+    <div class="sidebar-link" data-go="pg-p2"><span class="sl-num">2</span>Eguisheim <span class="sl-date">Jue 3</span></div>
+    <div class="sidebar-link" data-go="pg-p3"><span class="sl-num">3</span>Kaysersberg <span class="sl-date">Vie 4</span></div>
+    <div class="sidebar-link" data-go="pg-p4"><span class="sl-num">4</span>Estrasburgo <span class="sl-date">Sáb 5</span></div>
+    <div class="sidebar-link" data-go="pg-p5"><span class="sl-num">5</span>Regreso <span class="sl-date">Dom 6</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Extras</div>
+    <div class="sidebar-link" data-go="pg-pc"><span class="sl-num">✅</span>Checklist</div>
+    <div class="sidebar-link" data-go="pg-pf"><span class="sl-num">📷</span>Fotografía</div>
+    <div class="sidebar-link" data-go="pg-pa"><span class="sl-num">🌾</span>Sin trigo</div>
+  </div>
+</aside>
+<div class="desktop-main">
+<div class="ct">
+  <div class="lbl">⚠ Avisos importantes</div>
+  <div class="ac red">
+    <button class="ach" data-toggle="1">🌾 Alergia al trigo — leer antes de comer <span class="arr open">▾</span></button>
+    <div class="acb open"><ul>
+      <li><strong>Frase clave en francés:</strong> <em>"Je suis allergique au blé"</em> (soy alérgico al trigo).</li>
+      <li><strong>Pedir siempre:</strong> "Sans blé, s'il vous plaît" o "Sans gluten" (los restaurantes lo reconocen más fácil).</li>
+      <li><strong>EVITAR:</strong> Tarte Flambée (Flammekueche), Pain d'épices, Bredeles (galletas), Spätzle (pasta alsaciana).</li>
+      <li><strong>SEGURO:</strong> Roïgabrageldi (patatas asadas), carnes asadas, ensaladas con queso Munster, fondue de queso con patatas.</li>
+      <li>Consultar la sección "Sin trigo" para todos los restaurantes con notas de alergia día a día.</li>
+    </ul></div>
+  </div>
+  <div class="ac warn">
+    <button class="ach" data-toggle="2">🚌 Transporte — revisar antes de salir <span class="arr open">▾</span></button>
+    <div class="acb open"><ul>
+      <li><strong>Navettes de Noël</strong> (Colmar ↔ Eguisheim / Kaysersberg): funcionan principalmente <strong>viernes a domingo</strong>. El jueves (Día 2) habrá que usar el bus Fluo regular.</li>
+      <li><strong>Horarios de vuelta:</strong> el último bus de los pueblos suele salir entre las <strong>18:00–18:30h</strong>. ¡No quedarse tirado! Revisar en <strong>fluo.eu</strong> el día anterior.</li>
+      <li><strong>Trenes TER</strong> Aeropuerto Entzheim ↔ Estrasburgo: ~10 min. Estrasburgo ↔ Colmar: ~30 min. Muy frecuentes, billetes en máquina.</li>
+      <li><strong>Hora azul</strong> en diciembre: anochecer sobre las <strong>16:30h</strong>. El Día 2 (Eguisheim) la hora azul se vive <em>en el propio pueblo</em>; el bus de vuelta debe ser después de las 17:30h — verificar en fluo.eu.</li>
+    </ul></div>
+  </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="content">
+  <div class="lbl">Días del viaje</div>
+  <div class="stw">
+    <button class="sr" data-go="pg-p1">
+      <div class="sdb" style="background:#1B2A4A"><div class="sdb-n">1</div><div class="sdb-d">MIÉ</div><div class="sdb-f">2 Dic</div></div>
+      <div class="srb"><div class="sr-t">Llegada y magia nocturna ✈</div><div class="sr-s">Entzheim → Estrasburgo → Colmar · Petite Venise iluminada</div><div class="sr-tags"><span class="tag">IB2240 · 17:35</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p2">
+      <div class="sdb" style="background:#6b1a2a"><div class="sdb-n">2</div><div class="sdb-d">JUE</div><div class="sdb-f">3 Dic</div></div>
+      <div class="srb"><div class="sr-t">Los círculos de Eguisheim 🍷</div><div class="sr-s">Mañana libre en Colmar · Tarde en Eguisheim · Hora azul en el pueblo</div><div class="sr-tags"><span class="tag o">⚠ Bus Fluo (jue), no Navette</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p3">
+      <div class="sdb" style="background:#1a3d2a"><div class="sdb-n">3</div><div class="sdb-d">VIE</div><div class="sdb-f">4 Dic</div></div>
+      <div class="srb"><div class="sr-t">Las alturas de Kaysersberg 🏰</div><div class="sr-s">Navette desde Colmar · Castillo · Mercadillo auténtico</div><div class="sr-tags"><span class="tag g">✓ Navette operativa (vie)</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p4">
+      <div class="sdb" style="background:#2c4080"><div class="sdb-n">4</div><div class="sdb-d">SÁB</div><div class="sdb-f">5 Dic</div></div>
+      <div class="srb"><div class="sr-t">La capital de la Navidad 🎄</div><div class="sr-s">TER → Estrasburgo · Catedral · Barrage Vauban</div><div class="sr-tags"><span class="tag o">Hotel Estrasburgo pdte confirmar</span></div></div>
+      <div class="sa">›</div>
+    </button>
+    <button class="sr" data-go="pg-p5">
+      <div class="sdb" style="background:#1B2A4A"><div class="sdb-n">5</div><div class="sdb-d">DOM</div><div class="sdb-f">6 Dic</div></div>
+      <div class="srb"><div class="sr-t">Regreso a casa ✈</div><div class="sr-s">TER → Entzheim a las 08:30h · Vuelo IB2243 · 10:45h</div><div class="sr-tags"><span class="tag">IB2243 · 10:45</span></div></div>
+      <div class="sa">›</div>
+    </button>
+  </div>
 
-        <!-- 1. RESUMEN / PORTADA -->
-        <section id="resumen" class="hero">
-            <h1>Plan de Viaje: Alsacia</h1>
-            <p>Mercadillos, pueblos de cuento y fotografía tranquila</p>
-            <div class="badge-container">
-                <span class="badge">📅 2 al 6 de Diciembre</span>
-                <span class="badge">📍 Base: Colmar (3N) + Estrasburgo (1N)</span>
-                <span class="badge">👥 Pareja (Alberto y esposa)</span>
-                <span class="badge">🚆 Transporte Público</span>
-            </div>
-        </section>
+  <div class="lbl" style="margin-top:20px">Estado de reservas</div>
+  <div class="rlc">
+    <div class="rlh">Vuelos</div>
+    <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Llegada · Mié 2 Dic · 17:35</div><div class="rn">IB2240 → Aeropuerto Entzheim (Estrasburgo)</div></div><span class="rb d">✓ Confirmado</span></div>
+    <div class="rr"><div class="rdot d"></div><div class="ri"><div class="rw">Salida · Dom 6 Dic · 10:45</div><div class="rn">IB2243 ← Aeropuerto Entzheim (Estrasburgo)</div></div><span class="rb d">✓ Confirmado</span></div>
+  </div>
+  <div class="rlc" style="margin-top:12px">
+    <div class="rlh">Alojamiento</div>
+    <div class="rr"><div class="rdot n"></div><div class="ri"><div class="rw">Días 1–3 · 3 noches (2, 3, 4 Dic)</div><div class="rn">Hotel en Colmar — nombre no especificado</div></div><span class="rb n">Dato no especificado</span></div>
+    <div class="rr"><div class="rdot n"></div><div class="ri"><div class="rw">Día 4 · 1 noche (5 Dic)</div><div class="rn">Hotel en Estrasburgo — nombre no especificado</div></div><span class="rb n">Dato no especificado</span></div>
+  </div>
 
-        <!-- SECUENCIA VISUAL DEL VIAJE -->
-        <section>
-            <h2>🗺️ Flujo del Viaje</h2>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; text-align: center; font-size: 0.9rem; overflow-x: auto; padding-bottom: 10px;">
-                <div><b>Día 1</b><br>Llegada → Colmar</div>
-                <div>→</div>
-                <div><b>Día 2</b><br>Eguisheim</div>
-                <div>→</div>
-                <div><b>Día 3</b><br>Kaysersberg</div>
-                <div>→</div>
-                <div><b>Día 4</b><br>Estrasburgo</div>
-                <div>→</div>
-                <div><b>Día 5</b><br>Regreso Madrid</div>
-            </div>
-        </section>
-
-        <!-- 3. ITINERARIO DETALLADO -->
-        <section id="itinerario">
-            <h2>📅 Itinerario Día a Día</h2>
-            
-            <!-- DÍA 1 -->
-            <div class="day-card">
-                <div class="day-header">
-                    <h3>Día 1: Miércoles 2 dic – Llegada y Magia Nocturna</h3>
-                </div>
-                
-                <div class="timeline-item">
-                    <span class="time-label">Tarde (15:20 – 19:15)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-transport">✈️ Vuelo IB2240 (15:20 - 17:35)</span>
-                        <span class="tag tag-transport">🚆 TER Aeropuerto → Estrasburgo (10min)</span>
-                        <span class="tag tag-transport">🚆 TER Estrasburgo → Colmar (30min)</span>
-                    </div>
-                    <p>Llegada al aeropuerto de Estrasburgo. Transbordo rápido en tren a la estación central, y tren directo a Colmar. Llegada estimada sobre las 18:45 - 19:15.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-label">Noche (19:30 en adelante)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-hotel">🏨 Check-in Colmar</span>
-                        <span class="tag tag-visit">🚶 Petite Venise</span>
-                        <span class="tag tag-photo">📸 Solo obj. 18-50mm</span>
-                        <span class="tag tag-food">🍽️ Cena: Palma Colmar / Le Petit Bidon</span>
-                    </div>
-                    <p>Instalación en el hotel. Paseo relajado por el centro y la Petite Venise iluminada. Viajar ligero con la cámara y el objetivo más luminoso.</p>
-                </div>
-            </div>
-
-            <!-- DÍA 2 -->
-            <div class="day-card">
-                <div class="day-header">
-                    <h3>Día 2: Jueves 3 dic – Los Círculos de Eguisheim</h3>
-                </div>
-                
-                <div class="timeline-item">
-                    <span class="time-label">Mañana (09:30 – 13:00)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-transport">🚌 Bus Regional (Fluo)</span>
-                        <span class="tag tag-visit">🏰 Eguisheim</span>
-                        <span class="tag tag-photo">📸 Obj. 18-150mm</span>
-                    </div>
-                    <p>Trayecto a Eguisheim (20-30 min). <b>Importante:</b> Al ser jueves, confirmar horarios de línea regular. Recorrer la <i>Rue du Rempart</i> y el famoso <i>Pigeonnier</i>.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-label">Mediodía (13:00 – 14:30)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-food">🍽️ Comida: Caveau Heuhaus</span>
-                    </div>
-                    <p>Probar Baeckeoffe (guiso tradicional). Recordar confirmar: "Sans blé, s'il vous plaît".</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-label">Tarde/Noche (15:00 en adelante)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-transport">🚌 Bus vuelta a Colmar</span>
-                        <span class="tag tag-visit">🎄 Mercadillos Colmar</span>
-                        <span class="tag tag-photo">📸 Hora azul (16:30)</span>
-                        <span class="tag tag-food">🍽️ Cena: La Fleur de Sel</span>
-                    </div>
-                    <p>Paseo por Place des Dominicains y Koïfhus. Fotos de entramados al atardecer.</p>
-                </div>
-            </div>
-
-            <!-- DÍA 3 -->
-            <div class="day-card">
-                <div class="day-header">
-                    <h3>Día 3: Viernes 4 dic – Las Alturas de Kaysersberg</h3>
-                </div>
-                
-                <div class="timeline-item">
-                    <span class="time-label">Mañana (09:30 – 13:30)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-transport">🚌 Navette de Noël (Lanzadera)</span>
-                        <span class="tag tag-visit">🏰 Kaysersberg y Castillo</span>
-                        <span class="tag tag-photo">📸 Obj. 18-150mm y 100-400mm</span>
-                    </div>
-                    <p>Trayecto a Kaysersberg (30-40 min). Paseo céntrico y subida empinada a las ruinas del castillo para vistas panorámicas con el teleobjetivo.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-label">Mediodía (13:30 – 15:00)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-food">🍽️ Comida: L'Alchemille (Brasserie)</span>
-                    </div>
-                    <p>Buscar ensaladas con queso Munster o carnes. Evitar salsas ligadas.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-label">Tarde/Noche (15:30 en adelante)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-transport">🚌 Bus vuelta a Colmar</span>
-                        <span class="tag tag-visit">☕ Relax / Vin Chaud</span>
-                        <span class="tag tag-food">🍽️ Cena: L'Arpège</span>
-                    </div>
-                    <p>Tarde libre en Colmar. L'Arpège tiene enfoque orgánico, muy apto para adaptar platos sin trigo.</p>
-                </div>
-            </div>
-
-            <!-- DÍA 4 -->
-            <div class="day-card">
-                <div class="day-header">
-                    <h3>Día 4: Sábado 5 dic – La Capital de la Navidad</h3>
-                </div>
-                
-                <div class="timeline-item">
-                    <span class="time-label">Mañana (09:00 – 13:00)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-transport">🚆 TER Colmar → Estrasburgo (30min)</span>
-                        <span class="tag tag-hotel">🏨 Check-in Estrasburgo</span>
-                        <span class="tag tag-visit">⛪ Catedral y Pl. Kléber</span>
-                        <span class="tag tag-photo">📸 Obj. 18-50mm</span>
-                    </div>
-                    <p>Traslado matutino. Visita a Grande Île, reloj astronómico, Casa Kammerzell y el gran árbol.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-label">Mediodía (13:00 – 14:30)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-food">🍽️ Comida: Bistrot et Chocolat / Muensterstuewel</span>
-                    </div>
-                    <p>Bistrot et Chocolat domina las opciones sin gluten. Muensterstuewel es más tradicional.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-label">Tarde/Noche (15:00 – Cierre)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-visit">🌉 Petite France y Barrage Vauban</span>
-                        <span class="tag tag-photo">📸 Atardecer (16:00) 18-150 / 100-400</span>
-                        <span class="tag tag-food">🍽️ Cena: La Coccinelle</span>
-                    </div>
-                    <p>Subir al Barrage Vauban a las 16:00 para la foto clásica hacia los Puentes Cubiertos.</p>
-                </div>
-            </div>
-
-            <!-- DÍA 5 -->
-            <div class="day-card">
-                <div class="day-header">
-                    <h3>Día 5: Domingo 6 dic – Regreso</h3>
-                </div>
-                
-                <div class="timeline-item">
-                    <span class="time-label">Mañana (07:30 – 13:05)</span>
-                    <div class="tag-group">
-                        <span class="tag tag-food">☕ Desayuno temprano</span>
-                        <span class="tag tag-transport">🚆 TER Estrasburgo → Aeropuerto (08:30)</span>
-                        <span class="tag tag-transport">✈️ Vuelo IB2243 (10:45 - 13:05)</span>
-                    </div>
-                    <p>Desayuno en hotel/cafetería cercana (huevos/yogur). Tren al aeropuerto a las 08:30 para tener 2 horas de margen antes del vuelo a Madrid.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. ALOJAMIENTO Y LOGÍSTICA -->
-        <section id="logistica">
-            <h2>🧳 Alojamiento y Transporte</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>🏨 Base Colmar (3 noches)</h4>
-                    <p><b>Fechas:</b> 2 al 5 de diciembre</p>
-                    <p><b>Hotel:</b> <i>[Dato no especificado]</i></p>
-                </div>
-                <div class="info-card">
-                    <h4>🏨 Estrasburgo (1 noche)</h4>
-                    <p><b>Fechas:</b> 5 al 6 de diciembre</p>
-                    <p><b>Hotel:</b> <i>[Dato no especificado]</i></p>
-                </div>
-            </div>
-
-            <h4 style="margin-top: 1.5rem;">Guía de Transporte Público</h4>
-            <div style="overflow-x: auto;">
-                <table>
-                    <tr>
-                        <th>Transporte</th>
-                        <th>Ruta</th>
-                        <th>Nota Crítica</th>
-                    </tr>
-                    <tr>
-                        <td><b>Trenes TER</b></td>
-                        <td>Aero ↔ Strasb. ↔ Colmar</td>
-                        <td>Frecuentes (~30min). Compra en máquinas estación.</td>
-                    </tr>
-                    <tr>
-                        <td><b>Navettes de Noël</b></td>
-                        <td>Colmar ↔ Kaysersberg</td>
-                        <td>Especial navidad. Activas de Viernes a Domingo. Pago al conductor.</td>
-                    </tr>
-                    <tr>
-                        <td><b>Buses Fluo (Regionales)</b></td>
-                        <td>Colmar ↔ Eguisheim</td>
-                        <td>Usar el jueves. <b>¡Ojo al horario de vuelta!</b> (A veces terminan a las 18:00).</td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-
-        <!-- ALERGIA Y GASTRONOMÍA -->
-        <section id="gastronomia">
-            <h2>🍽️ Gastronomía y Alergia (Trigo)</h2>
-            <div class="alert">
-                <b>Vocabulario clave:</b><br>
-                "Je suis allergique au blé" (Soy alérgico al trigo)<br>
-                "Sans blé" (Sin trigo) / "Sans gluten" (Sin gluten)<br>
-                "Pas de farine dans la sauce, s'il vous plaît" (Sin harina en la salsa).
-            </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>🚫 Qué EVITAR</h4>
-                    <ul>
-                        <li>Tarte Flambée (Flammekueche)</li>
-                        <li>Pain d'épices (Pan de especias)</li>
-                        <li>Bredeles (Galletas navideñas)</li>
-                        <li>Spätzle (Pasta local)</li>
-                    </ul>
-                </div>
-                <div class="info-card">
-                    <h4>✅ Qué BUSCAR</h4>
-                    <ul>
-                        <li>Roïgabrageldi (Patatas asadas)</li>
-                        <li>Carnes sin salsa ligada</li>
-                        <li>Ensaladas con queso Munster</li>
-                        <li>Baeckeoffe (Guiso, conf. sin masa selladora)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. CONSEJOS DE FOTOGRAFÍA -->
-        <section id="fotografia">
-            <h2>📸 Guía Fotográfica (Canon R7)</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-muted);">
-                <i>Nota técnica: Sensor APS-C (Factor 1.6x). El 18mm equivale a 29mm.</i>
-            </p>
-            
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>🎒 Uso de Objetivos</h4>
-                    <ul style="font-size: 0.9rem;">
-                        <li><b>RF 18-50mm:</b> Ideal para noche por su luminosidad y para callejuelas muy estrechas (ej. Catedral de Estrasburgo, Petite Venise).</li>
-                        <li><b>RF 18-150mm:</b> El objetivo todoterreno de día. Úsalo montado casi siempre en Eguisheim.</li>
-                        <li><b>RF 100-400mm:</b> Usar solo en miradores elevados (Castillo Kaysersberg, Barrage Vauban) para comprimir tejados y aislar detalles.</li>
-                    </ul>
-                </div>
-                <div class="info-card">
-                    <h4>📍 Puntos y Momentos Clave</h4>
-                    <ul style="font-size: 0.9rem;">
-                        <li><b>Colmar:</b> Hora azul (~16:30) en las fachadas entramadas. Hacer panorámicas de 2-3 fotos si el 18mm queda largo.</li>
-                        <li><b>Eguisheim (Pigeonnier):</b> Retroceder desde la bifurcación de calles para enmarcar.</li>
-                        <li><b>Estrasburgo (Barrage Vauban):</b> Atardecer (~16:00) apuntando hacia los Ponts Couverts y la Catedral de fondo.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9. CHECKLIST -->
-        <section id="checklist">
-            <h2>✅ Checklist Final</h2>
-            <div class="info-grid">
-                <div>
-                    <h4>Documentación & Dinero</h4>
-                    <label class="checklist-item"><input type="checkbox"> DNI / Pasaporte</label>
-                    <label class="checklist-item"><input type="checkbox"> Tarjetas de embarque (Ida y Vuelta)</label>
-                    <label class="checklist-item"><input type="checkbox"> Tarjeta sanitaria europea</label>
-                    <label class="checklist-item"><input type="checkbox"> Tarjetas bancarias / Apple Pay</label>
-                </div>
-                <div>
-                    <h4>Fotografía</h4>
-                    <label class="checklist-item"><input type="checkbox"> Cuerpo Canon R7</label>
-                    <label class="checklist-item"><input type="checkbox"> Obj. 18-50, 18-150, 100-400</label>
-                    <label class="checklist-item"><input type="checkbox"> Baterías cargadas</label>
-                    <label class="checklist-item"><input type="checkbox"> Tarjetas SD vacías</label>
-                </div>
-                <div>
-                    <h4>Logística & Salud</h4>
-                    <label class="checklist-item"><input type="checkbox"> App de transporte (SNCF Connect / Fluo)</label>
-                    <label class="checklist-item"><input type="checkbox"> Adaptadores / Cargadores múltiples</label>
-                    <label class="checklist-item"><input type="checkbox"> Ropa térmica (capas, calzado cómodo)</label>
-                    <label class="checklist-item"><input type="checkbox"> Snacks sin trigo de emergencia</label>
-                </div>
-            </div>
-        </section>
-
-        <!-- 10. NOTAS RÁPIDAS -->
-        <section id="notas">
-            <h2>📌 Notas Rápidas / Recordatorios</h2>
-            <ul>
-                <li>Revisar los horarios de los buses de vuelta en <b>fluo.eu</b> para los días laborables (Jueves en Eguisheim).</li>
-                <li>Los mercadillos navideños suelen cerrar sobre las 20:00 (algunos a las 19:00). Planificar las cenas con antelación o reservar el mismo día.</li>
-                <li>Llevar siempre el billete de tren validado antes de subir o comprado digitalmente.</li>
-            </ul>
-        </section>
-
-    </main>
+  <div class="lbl" style="margin-top:20px">Accesos rápidos</div>
+  <button class="ab web" data-go="pg-pc"><span class="ab-i">✅</span><span class="ab-t">Checklist — antes de salir</span><span class="ab-a">›</span></button>
+  <button class="ab web" data-go="pg-pf"><span class="ab-i">📷</span><span class="ab-t">Resumen fotográfico por destino</span><span class="ab-a">›</span></button>
+  <button class="ab red" data-go="pg-pa"><span class="ab-i">🌾</span><span class="ab-t">Guía sin trigo — restaurantes y frases</span><span class="ab-a">›</span></button>
+  <a class="ab maps" href="https://www.meteoblue.com/es/tiempo/semana/colmar_francia_3025297" target="_blank"><span class="ab-i">🌨</span><span class="ab-t">Previsión del tiempo — Colmar / Alsacia</span><span class="ab-a">↗</span></a>
+  <a class="ab web" href="http://www.fluo.eu" target="_blank"><span class="ab-i">🚌</span><span class="ab-t">fluo.eu — horarios de autobús regional</span><span class="ab-a">↗</span></a>
+</div>
+</div>
+</div>
+<nav class="bnav">
+  <button class="nb on" data-go="pg-ph"><span>🏠</span><span>Inicio</span></button>
+  <button class="nb" data-go="pg-p1"><span>1</span><span>Llegada</span></button>
+  <button class="nb" data-go="pg-p2"><span>2</span><span>Eguish.</span></button>
+  <button class="nb" data-go="pg-p4"><span>4</span><span>Strasb.</span></button>
+  <button class="nb" data-go="pg-pc"><span>✅</span><span>Lista</span></button>
+  <button class="nb" data-go="pg-pa"><span>🌾</span><span>Sin trigo</span></button>
+</nav>
 </div>
 
-<!-- Botón Flotante Volver Arriba -->
-<div class="fab-top" id="fabTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+<!-- ══════════════ PÁGINA: DÍA 1 ══════════════ -->
+<div class="pg" id="pg-p1">
+<div class="tb"><button class="tbb" data-go="pg-ph">‹</button><span class="tbt">Día 1 · Llegada y magia nocturna</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="desktop-layout">
+<aside class="desktop-sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Días del viaje</div>
+    <div class="sidebar-link" data-go="pg-ph"><span class="sl-num">🏠</span>Inicio</div>
+    <div class="sidebar-link on" data-go="pg-p1"><span class="sl-num">1</span>Llegada · Colmar <span class="sl-date">Mié 2</span></div>
+    <div class="sidebar-link" data-go="pg-p2"><span class="sl-num">2</span>Eguisheim <span class="sl-date">Jue 3</span></div>
+    <div class="sidebar-link" data-go="pg-p3"><span class="sl-num">3</span>Kaysersberg <span class="sl-date">Vie 4</span></div>
+    <div class="sidebar-link" data-go="pg-p4"><span class="sl-num">4</span>Estrasburgo <span class="sl-date">Sáb 5</span></div>
+    <div class="sidebar-link" data-go="pg-p5"><span class="sl-num">5</span>Regreso <span class="sl-date">Dom 6</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Extras</div>
+    <div class="sidebar-link" data-go="pg-pc"><span class="sl-num">✅</span>Checklist</div>
+    <div class="sidebar-link" data-go="pg-pf"><span class="sl-num">📷</span>Fotografía</div>
+    <div class="sidebar-link" data-go="pg-pa"><span class="sl-num">🌾</span>Sin trigo</div>
+  </div>
+</aside>
+<div class="desktop-main">
+<div class="ct">
+  <div class="dh" style="background:linear-gradient(135deg,#0d1525 0%,#1B2A4A 60%,#2d4070 100%)">
+    <div class="dh-n">Día 1 · Miércoles, 2 de Diciembre 2025</div>
+    <div class="dh-t">LLEGADA Y MAGIA NOCTURNA ✨</div>
+    <div class="dh-s">Entzheim → Estrasburgo → Colmar · Primera impresión de los mercadillos</div>
+    <div class="dh-chips"><span class="dh-chip">✈ IB2240 · 17:35</span><span class="dh-chip">🚂 TER a Colmar</span><span class="dh-chip">🏨 Hotel Colmar (3 noches)</span></div>
+  </div>
+  <div class="ib warn"><div class="ibt">⚠ Antes de salir de casa</div><ul>
+    <li>Confirmar el horario del TER Entzheim → Estrasburgo → Colmar para esa tarde.</li>
+    <li>Descargar mapas offline de Alsacia (Google Maps / Maps.me).</li>
+    <li>Llevar confirmación del hotel Colmar offline o impresa.</li>
+    <li>Adaptador de enchufes tipo E/F (Francia) — igual que España, no hace falta adaptador especial.</li>
+  </ul></div>
 
-<!-- JAVASCRIPT EMBEBIDO -->
+  <div class="lbl">Conexión desde el aeropuerto</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Aeropuerto Entzheim → Gare de Strasbourg (TER lanzadera)</span><span class="tt">~10 min</span><span class="tk">Directísimo</span></div>
+    <div class="tr"><span class="tf">Gare de Strasbourg → Gare de Colmar (TER)</span><span class="tt">~30 min</span><span class="tk">Transbordo</span></div>
+    <div class="tr"><span class="tf">Llegada estimada a Colmar</span><span class="tt">18:45–19:15h</span><span class="tk">Dependiendo de la conexión</span></div>
+  </div>
+  <div class="cb"><strong>Billetes TER:</strong> Se pueden comprar en las máquinas de la estación. No hace falta reservar con mucha antelación. El tren lanzadera al aeropuerto y el TER a Colmar son servicios regulares y frecuentes.</div>
+
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">17:35h</span><span class="si-i">✈</span><span class="si-t">Llegada vuelo <strong>IB2240</strong> al Aeropuerto de Entzheim.</span></div>
+    <div class="si"><span class="st">~17:50h</span><span class="si-i">🚂</span><span class="si-t">TER lanzadera Entzheim → Gare de Strasbourg (~10 min). Transbordo rápido.</span></div>
+    <div class="si"><span class="st">~18:15h</span><span class="si-i">🚂</span><span class="si-t">TER Strasbourg → Colmar (~30 min).</span></div>
+    <div class="si hi"><span class="st">~18:50h</span><span class="si-i">🏨</span><span class="si-t"><strong>Llegada a Colmar. Check-in en el hotel. Dejar maletas.</strong></span></div>
+    <div class="si hi"><span class="st">19:30h</span><span class="si-i">🎄</span><span class="si-t"><strong>Paseo relajado a Petite Venise y Place de l'Ancienne Douane. Las luces ya están encendidas — ambiente mágico.</strong></span></div>
+    <div class="si"><span class="st">21:00h</span><span class="si-i">🍽</span><span class="si-t">Cena (ver opciones abajo).</span></div>
+  </div>
+
+  <div class="lbl" style="margin-top:18px">Cena en Colmar</div>
+  <div class="rc neu">
+    <div class="rct"><div class="rcs b">■ Opción 1 — llegar pronto</div><div class="rcn">Palma Colmar</div></div>
+    <div class="rcd">Cierra pronto. Bowls muy adaptables y saludables, ideales para evitar el trigo sin complicaciones. Perfecto si llegáis a tiempo.</div>
+  </div>
+  <div class="rc neu">
+    <div class="rct"><div class="rcs b">■ Opción 2 — más holgado de horario</div><div class="rcn">Le Petit Bidon</div></div>
+    <div class="rcd">Cocina francesa. Opciones de carnes y pescados excelentes. Son muy profesionales adaptando salsas para la alergia al trigo.</div>
+    <div class="rca"><span class="rab gr">🌾 Adaptable sin trigo</span></div>
+  </div>
+
+  <div class="lbl">Fotografía nocturna 📷</div>
+  <div class="pb">
+    <div class="pbt">📷 Primera noche en Colmar</div>
+    <div class="pi">
+      <div class="pio">Objetivo recomendado: solo el 18–50mm</div>
+      <div class="pia">Ve ligero. Su luminosidad es ideal para fotos nocturnas y reflejos en los canales de Petite Venise sin necesidad de trípode pesado. No cargues con el resto del equipo.</div>
+    </div>
+    <div class="pi">
+      <div class="pio">Reflejos en los canales</div>
+      <div class="pia">La luz de los farolillos navideños se refleja en el agua. Apunta desde los puentes hacia abajo para capturar farolillos + reflejo + adoquines. ISO 1600–3200, f/2, 1/30s.</div>
+    </div>
+    <div class="pi">
+      <div class="pio">Factor de recorte APS-C (×1.6)</div>
+      <div class="pia">Tu 18mm equivale a ~29mm. En callejuelas estrechas puede quedarse algo "largo" — haz panorámicas de 2–3 fotos en vertical para captar fachadas completas.</div>
+    </div>
+  </div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-ph"><span class="ab-i">⌂</span><span class="ab-t">Inicio</span></button><button class="ab maps" data-go="pg-p2"><span class="ab-t">Día 2 ›</span></button></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════════ PÁGINA: DÍA 2 ══════════════ -->
+<div class="pg" id="pg-p2">
+<div class="tb"><button class="tbb" data-go="pg-p1">‹</button><span class="tbt">Día 2 · Eguisheim</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="desktop-layout">
+<aside class="desktop-sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Días del viaje</div>
+    <div class="sidebar-link" data-go="pg-ph"><span class="sl-num">🏠</span>Inicio</div>
+    <div class="sidebar-link" data-go="pg-p1"><span class="sl-num">1</span>Llegada · Colmar <span class="sl-date">Mié 2</span></div>
+    <div class="sidebar-link on" data-go="pg-p2"><span class="sl-num">2</span>Eguisheim <span class="sl-date">Jue 3</span></div>
+    <div class="sidebar-link" data-go="pg-p3"><span class="sl-num">3</span>Kaysersberg <span class="sl-date">Vie 4</span></div>
+    <div class="sidebar-link" data-go="pg-p4"><span class="sl-num">4</span>Estrasburgo <span class="sl-date">Sáb 5</span></div>
+    <div class="sidebar-link" data-go="pg-p5"><span class="sl-num">5</span>Regreso <span class="sl-date">Dom 6</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Extras</div>
+    <div class="sidebar-link" data-go="pg-pc"><span class="sl-num">✅</span>Checklist</div>
+    <div class="sidebar-link" data-go="pg-pf"><span class="sl-num">📷</span>Fotografía</div>
+    <div class="sidebar-link" data-go="pg-pa"><span class="sl-num">🌾</span>Sin trigo</div>
+  </div>
+</aside>
+<div class="desktop-main">
+<div class="ct">
+  <div class="dh" style="background:linear-gradient(135deg,#6b1a2a 0%,#a13d2e 100%)">
+    <div class="dh-n">Día 2 · Jueves, 3 de Diciembre 2025</div>
+    <div class="dh-t">LOS CÍRCULOS DE EGUISHEIM 🍷</div>
+    <div class="dh-s">Mañana libre en Colmar · Tarde en Eguisheim · Hora azul en las calles del pueblo</div>
+    <div class="dh-chips"><span class="dh-chip">🚌 Bus Fluo ~12:30h</span><span class="dh-chip">🕓 Hora azul en Eguisheim</span><span class="dh-chip">🏨 Hotel Colmar</span></div>
+  </div>
+  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/colmar_francia_3025297" target="_blank"><span class="mb-i">🌨</span><span class="mb-t">Previsión del tiempo — Colmar / Alsacia</span><span class="mb-a">↗</span></a>
+  <div class="ib danger"><div class="ibt">⚠ Autobús — crucial hoy</div>Al ser jueves, las <strong>Navettes de Noël</strong> probablemente NO operan. Usar el <strong>bus Fluo Grand Est</strong> de línea regular.<br><br>El plan es ir a Eguisheim después de comer (~12:30h) y volver <strong>después</strong> de la hora azul (~17:45h). Para eso necesitas confirmar que existe un servicio de vuelta esa hora. Revisar en <strong>fluo.eu</strong> la noche anterior: busca el servicio de las 17:30–18:00h hacia Colmar. Si no existiera ninguno tan tarde, ajusta la llegada a Eguisheim a las 13:30h y vuelve a las 17:00h, que también da margen para el blue hour.</div>
+
+  <div class="lbl">Ruta del día</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Colmar → Eguisheim (bus Fluo)</span><span class="tt">~20–30 min</span><span class="tk">Salida ~12:30h (tras comer)</span></div>
+    <div class="tr"><span class="tf">Tiempo en Eguisheim</span><span class="tt">~4h</span><span class="tk">Comida + pueblo + hora azul</span></div>
+    <div class="tr"><span class="tf">Eguisheim → Colmar (bus Fluo)</span><span class="tt">~20–30 min</span><span class="tk">Verificar servicio ~17:45h en fluo.eu</span></div>
+  </div>
+  <a class="ab web" href="http://www.fluo.eu" target="_blank"><span class="ab-i">🚌</span><span class="ab-t">fluo.eu — confirmar horarios hoy</span><span class="ab-a">↗</span></a>
+
+  <div class="lbl">Lugares del día</div>
+  <div class="cb"><strong>Rue du Rempart</strong> — La calle circular exterior que sigue la forma de las antiguas murallas. La forma más bonita de rodear el pueblo entero.</div>
+  <div class="cb"><strong>Le Pigeonnier (Palomar)</strong> — El cruce de calles más fotografiado de Eguisheim. La mejor foto se toma caminando un poco hacia atrás desde la bifurcación. Usa el 18–150mm para flexibilidad.</div>
+  <div class="cb"><strong>Plaza central y mercadillo</strong> — Los puestos navideños de Eguisheim son más íntimos y artesanales que los de las ciudades grandes. Escala perfecta para disfrutar tranquilamente.</div>
+
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">09:30h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel. Revisar en fluo.eu el bus de vuelta desde Eguisheim a las ~17:45h.</span></div>
+    <div class="si"><span class="st">10:00h</span><span class="si-i">🎄</span><span class="si-t">Mañana libre en Colmar — mercadillos de la Place des Dominicains y Koïfhus, tiendas, ambiente tranquilo antes de que lleguen las hordas de fin de semana.</span></div>
+    <div class="si"><span class="st">12:00h</span><span class="si-i">🍽</span><span class="si-t">Comida en Colmar antes de salir. O bien un tentempié rápido y comer en Eguisheim al llegar.</span></div>
+    <div class="si hi"><span class="st">12:30h</span><span class="si-i">🚌</span><span class="si-t"><strong>Bus Fluo desde Colmar → Eguisheim (~20–30 min). Llegada al pueblo sobre las 13:00h.</strong></span></div>
+    <div class="si"><span class="st">13:00h</span><span class="si-i">🍽</span><span class="si-t">Comida en Caveau Heuhaus (si no se ha comido antes). Ver nota de alergia abajo.</span></div>
+    <div class="si"><span class="st">14:30h</span><span class="si-i">🏘</span><span class="si-t">Paseo por la Rue du Rempart, Le Pigeonnier y la plaza central. El pueblo en luz de tarde tiene una calidez distinta.</span></div>
+    <div class="si"><span class="st">15:30h</span><span class="si-i">🎄</span><span class="si-t">Los puestos del mercadillo empiezan a encender las luces. El ambiente se transforma.</span></div>
+    <div class="si hi"><span class="st">16:15h</span><span class="si-i">📷</span><span class="si-t"><strong>Las guirnaldas ya están encendidas, el cielo empieza a volverse azul cobalto. Posicionarse en la Rue du Rempart o frente al Pigeonnier.</strong></span></div>
+    <div class="si hi"><span class="st">16:30h</span><span class="si-i">✨</span><span class="si-t"><strong>HORA AZUL EN EGUISHEIM — las calles circulares del pueblo iluminadas con las luces navideñas y el cielo azul de fondo. La foto que no habría sido posible volviendo antes.</strong></span></div>
+    <div class="si wa"><span class="st">17:30h</span><span class="si-i">🚌</span><span class="si-t">Salida hacia la parada del bus. No perder el servicio de vuelta a Colmar.</span></div>
+    <div class="si"><span class="st">~18:15h</span><span class="si-i">🏨</span><span class="si-t">Vuelta al hotel. Tiempo de descansar antes de cenar.</span></div>
+    <div class="si"><span class="st">20:00h</span><span class="si-i">🍷</span><span class="si-t">Cena en La Fleur de Sel (Petite Venise).</span></div>
+  </div>
+
+  <div class="lbl" style="margin-top:18px">Comida en Eguisheim (~13:00h, al llegar)</div>
+  <div class="rc danger">
+    <div class="rct"><div class="rcs r">■ ⚠ Atención alergia al trigo</div><div class="rcn">Caveau Heuhaus — Eguisheim</div></div>
+    <div class="rcd">Lugar tradicional alsaciano. Comer al llegar (~13:00h) para tener toda la tarde libre para el pueblo y la hora azul. <strong>Pedir:</strong> Baeckeoffe (guiso de carne y patatas) o carne con patatas asadas. <strong>Evitar:</strong> la Tarte Flambée (la masa lleva trigo). Confirmar que el Baeckeoffe no usa harina para sellar la olla.</div>
+    <div class="rca"><span class="rab gr">🌾 Confirmar al pedir</span></div>
+  </div>
+
+  <div class="lbl">Cena en Colmar (de vuelta del pueblo)</div>
+  <div class="rc neu">
+    <div class="rct"><div class="rcs b">■ Cena romántica · Petite Venise</div><div class="rcn">La Fleur de Sel</div></div>
+    <div class="rcd">Ambiente romántico y precio moderado. Ensaladas contundentes y carnes. Pedir "Sans blé, s'il vous plaît" al llegar.</div>
+  </div>
+
+  <div class="lbl">Fotografía 📷</div>
+  <div class="pb">
+    <div class="pbt">📷 Hora azul EN Eguisheim — la gran diferencia del plan</div>
+    <div class="pi">
+      <div class="pio">Objetivo: 18–150mm todo el día</div>
+      <div class="pia">Versatilidad en el pueblo. Por la noche al volver a Colmar cambia al 18-50mm si quieres pasear ligero. El 18-150mm sirve para ambas situaciones.</div>
+    </div>
+    <div class="pi">
+      <div class="pio">Le Pigeonnier · 14:30–15:30h (luz de tarde)</div>
+      <div class="pia">Retrocede desde la bifurcación hasta que las casas se encuadren simétricamente. La luz de tarde (no de mediodía) da una calidez lateral que la mañana no da. A las 15:30h ya hay menos turistas que a mediodía. f/5.6, ISO 400.</div>
+    </div>
+    <div class="pi">
+      <div class="pio">Hora azul en Eguisheim · 16:15–16:45h</div>
+      <div class="pia">La ventaja de estar aquí a esta hora: las calles circulares del pueblo son estrechas y las guirnaldas se cruzan entre fachadas de ambos lados. Con el cielo azul cobalto de fondo es una foto imposible en una ciudad grande. 18-150mm a ~35mm, f/4, ISO 1600, 1/30s. Busca el Pigeonnier con las luces encendidas: ese es el plano.</div>
+    </div>
+    <div class="pi">
+      <div class="pio">Mercadillo iluminado · 16:00–17:30h</div>
+      <div class="pia">Los puestos de madera con velas y farolillos se fotografían bien con exposición manual. Expón para las luces del puesto, no para el cielo. ISO 800, f/2.8, 1/60s. El vapor del Vin Chaud con las luces de fondo es otro plano.</div>
+    </div>
+  </div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-p1"><span class="ab-t">‹ Día 1</span></button><button class="ab maps" data-go="pg-p3"><span class="ab-t">Día 3 ›</span></button></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════════ PÁGINA: DÍA 3 ══════════════ -->
+<div class="pg" id="pg-p3">
+<div class="tb"><button class="tbb" data-go="pg-p2">‹</button><span class="tbt">Día 3 · Kaysersberg</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="desktop-layout">
+<aside class="desktop-sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Días del viaje</div>
+    <div class="sidebar-link" data-go="pg-ph"><span class="sl-num">🏠</span>Inicio</div>
+    <div class="sidebar-link" data-go="pg-p1"><span class="sl-num">1</span>Llegada · Colmar <span class="sl-date">Mié 2</span></div>
+    <div class="sidebar-link" data-go="pg-p2"><span class="sl-num">2</span>Eguisheim <span class="sl-date">Jue 3</span></div>
+    <div class="sidebar-link on" data-go="pg-p3"><span class="sl-num">3</span>Kaysersberg <span class="sl-date">Vie 4</span></div>
+    <div class="sidebar-link" data-go="pg-p4"><span class="sl-num">4</span>Estrasburgo <span class="sl-date">Sáb 5</span></div>
+    <div class="sidebar-link" data-go="pg-p5"><span class="sl-num">5</span>Regreso <span class="sl-date">Dom 6</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Extras</div>
+    <div class="sidebar-link" data-go="pg-pc"><span class="sl-num">✅</span>Checklist</div>
+    <div class="sidebar-link" data-go="pg-pf"><span class="sl-num">📷</span>Fotografía</div>
+    <div class="sidebar-link" data-go="pg-pa"><span class="sl-num">🌾</span>Sin trigo</div>
+  </div>
+</aside>
+<div class="desktop-main">
+<div class="ct">
+  <div class="dh" style="background:linear-gradient(135deg,#1a3d2a 0%,#2d6b45 100%)">
+    <div class="dh-n">Día 3 · Viernes, 4 de Diciembre 2025</div>
+    <div class="dh-t">LAS ALTURAS DE KAYSERSBERG 🏰</div>
+    <div class="dh-s">Puente fortificado · Castillo con vistas · Mercadillo auténtico · Tarde libre en Colmar</div>
+    <div class="dh-chips"><span class="dh-chip">🎄 Navette operativa (viernes)</span><span class="dh-chip">🏰 Subida al castillo</span><span class="dh-chip">📷 100–400mm hoy</span></div>
+  </div>
+  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/colmar_francia_3025297" target="_blank"><span class="mb-i">🌨</span><span class="mb-t">Previsión del tiempo — Alsacia</span><span class="mb-a">↗</span></a>
+  <div class="ib ok"><div class="ibt">✓ Navette de Noël operativa hoy</div>Al ser viernes, ya suelen funcionar las Navettes de Noël con alta frecuencia. Comprar el billete al conductor directamente en el autobús. Confirmar horario de vuelta igualmente.</div>
+
+  <div class="lbl">Ruta del día</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Colmar → Kaysersberg (Navette de Noël)</span><span class="tt">~30–40 min</span><span class="tk">Billete al conductor</span></div>
+    <div class="tr"><span class="tf">Subida al castillo (caminata)</span><span class="tt">Corta, empinada</span><span class="tk">Vistas panorámicas</span></div>
+    <div class="tr"><span class="tf">Kaysersberg → Colmar (Navette)</span><span class="tt">~30–40 min</span><span class="tk">Tarde</span></div>
+  </div>
+
+  <div class="lbl">Lugares del día</div>
+  <div class="cb"><strong>Centro histórico y puente fortificado</strong> — Kaysersberg tiene el punto de vista del río rápido + casas de entramado + puente medieval todo en uno. Un clásico de la fotografía alsaciana.</div>
+  <div class="cb"><strong>Ruinas del Castillo de Kaysersberg</strong> — Caminata corta pero empinada desde el pueblo. Las vistas panorámicas de los tejados nevados/invernales del pueblo y el valle de los Vosgos merecen el esfuerzo. Llevar el 100–400mm para comprimir la perspectiva desde arriba.</div>
+  <div class="cb"><strong>Mercadillo de Kaysersberg</strong> — Considerado uno de los más auténticos de Alsacia. Mucho más íntimo que el de Estrasburgo. Artesanía local, Vin Chaud (confirmar que no llevan espesantes).</div>
+
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">09:30h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel. Verificar horario de la Navette de vuelta.</span></div>
+    <div class="si"><span class="st">~10:00h</span><span class="si-i">🎄</span><span class="si-t">Navette de Noël desde Colmar a Kaysersberg (~30–40 min).</span></div>
+    <div class="si hi"><span class="st">10:30h</span><span class="si-i">🏰</span><span class="si-t"><strong>Kaysersberg — puente fortificado, centro histórico.</strong></span></div>
+    <div class="si"><span class="st">11:30h</span><span class="si-i">🥾</span><span class="si-t">Subida al Castillo de Kaysersberg (caminata empinada, ~20 min). Vistas desde arriba con el 100–400mm.</span></div>
+    <div class="si"><span class="st">13:30h</span><span class="si-i">🍽</span><span class="si-t">Comida en L'Alchemille o restaurantes de la zona céntrica.</span></div>
+    <div class="si hi"><span class="st">15:00h</span><span class="si-i">🎄</span><span class="si-t"><strong>Navette de vuelta a Colmar. Tarde libre: souvenirs, Vin Chaud, descanso.</strong></span></div>
+    <div class="si"><span class="st">20:00h</span><span class="si-i">🍷</span><span class="si-t">Cena en L'Arpège (Colmar) — muy adaptable para la alergia.</span></div>
+  </div>
+
+  <div class="lbl" style="margin-top:18px">Comida en Kaysersberg</div>
+  <div class="rc danger">
+    <div class="rct"><div class="rcs r">■ ⚠ Atención alergia al trigo</div><div class="rcn">Restaurant Brasserie L'Alchemille</div></div>
+    <div class="rcd">Buscar <strong>Choucroute</strong> (las salchichas normalmente no llevan aglutinantes de trigo, pero hay que preguntar) o ensaladas con queso <strong>Munster</strong> (seguro). "Sans blé, s'il vous plaît" al llegar.</div>
+    <div class="rca"><span class="rab gr">🌾 Confirmar choucroute sin aglutinantes</span></div>
+  </div>
+
+  <div class="lbl">Cena en Colmar</div>
+  <div class="rc res">
+    <div class="rct"><div class="rcs g">■ Muy recomendado para alergia</div><div class="rcn">L'Arpège — Colmar</div></div>
+    <div class="rcd">Enfoque muy natural y orgánico. Muy acostumbrados a gestionar alergias y adaptar platos. Opciones de verduras de temporada y carnes muy limpias. Una de las mejores elecciones del viaje para cenar sin preocupaciones.</div>
+    <div class="rca"><span class="rab gr">🌾 Adaptable sin trigo — fiable</span></div>
+  </div>
+
+  <div class="lbl">Fotografía 📷</div>
+  <div class="pb">
+    <div class="pbt">📷 Kaysersberg — día para el teleobjetivo</div>
+    <div class="pi">
+      <div class="pio">Objetivos del día: 18–150mm + 100–400mm</div>
+      <div class="pia">El 100–400mm se queda en el hotel los otros días. Hoy es cuando más sentido tiene: desde las ruinas del castillo, el tele comprime perspectiva y saca tejados y chimeneas humeantes del pueblo.</div>
+    </div>
+    <div class="pi">
+      <div class="pio">Puente fortificado · Mañana</div>
+      <div class="pia">Encuadrar con el río en primer plano, el puente en medio y las casas entramadas al fondo. 18–50mm o 18–150mm desde la orilla. La luz de mañana cae bien en esta orientación.</div>
+    </div>
+    <div class="pi">
+      <div class="pio">Desde el castillo · 11:30–12:30h</div>
+      <div class="pia">100–400mm para comprimir tejados, chimeneas y el valle nevado. En vez de panorámicas, aprovecha el tele para fotos "de detalle" de chimeneas humeantes. ISO Auto, f/6.3, TV 1/500s mínimo si hay viento.</div>
+    </div>
+  </div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-p2"><span class="ab-t">‹ Día 2</span></button><button class="ab maps" data-go="pg-p4"><span class="ab-t">Día 4 ›</span></button></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════════ PÁGINA: DÍA 4 ══════════════ -->
+<div class="pg" id="pg-p4">
+<div class="tb"><button class="tbb" data-go="pg-p3">‹</button><span class="tbt">Día 4 · Estrasburgo</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="desktop-layout">
+<aside class="desktop-sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Días del viaje</div>
+    <div class="sidebar-link" data-go="pg-ph"><span class="sl-num">🏠</span>Inicio</div>
+    <div class="sidebar-link" data-go="pg-p1"><span class="sl-num">1</span>Llegada · Colmar <span class="sl-date">Mié 2</span></div>
+    <div class="sidebar-link" data-go="pg-p2"><span class="sl-num">2</span>Eguisheim <span class="sl-date">Jue 3</span></div>
+    <div class="sidebar-link" data-go="pg-p3"><span class="sl-num">3</span>Kaysersberg <span class="sl-date">Vie 4</span></div>
+    <div class="sidebar-link on" data-go="pg-p4"><span class="sl-num">4</span>Estrasburgo <span class="sl-date">Sáb 5</span></div>
+    <div class="sidebar-link" data-go="pg-p5"><span class="sl-num">5</span>Regreso <span class="sl-date">Dom 6</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Extras</div>
+    <div class="sidebar-link" data-go="pg-pc"><span class="sl-num">✅</span>Checklist</div>
+    <div class="sidebar-link" data-go="pg-pf"><span class="sl-num">📷</span>Fotografía</div>
+    <div class="sidebar-link" data-go="pg-pa"><span class="sl-num">🌾</span>Sin trigo</div>
+  </div>
+</aside>
+<div class="desktop-main">
+<div class="ct">
+  <div class="dh" style="background:linear-gradient(135deg,#1e2d6e 0%,#2c4080 60%,#3d5fb5 100%)">
+    <div class="dh-n">Día 4 · Sábado, 5 de Diciembre 2025</div>
+    <div class="dh-t">LA CAPITAL DE LA NAVIDAD 🎄</div>
+    <div class="dh-s">TER desde Colmar · Catedral · Place Kléber · Petite France · Barrage Vauban</div>
+    <div class="dh-chips"><span class="dh-chip">🚂 TER desde Colmar</span><span class="dh-chip">🏨 Hotel Estrasburgo</span><span class="dh-chip">📷 16:00h Barrage Vauban</span></div>
+  </div>
+  <a class="mb" href="https://www.meteoblue.com/es/tiempo/semana/estrasburgo_francia_2973783" target="_blank"><span class="mb-i">🌨</span><span class="mb-t">Previsión del tiempo — Estrasburgo</span><span class="mb-a">↗</span></a>
+  <div class="ib warn"><div class="ibt">⚠ Sábado = mucha gente</div>El mercado de Estrasburgo en sábado estará lleno. La catedral y la Place Kléber serán un hervidero por la tarde. Aprovecha la mañana temprano para visitar con más calma. El Barrage Vauban antes del atardecer es la foto del viaje.</div>
+
+  <div class="lbl">Ruta del día</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Colmar → Estrasburgo (TER)</span><span class="tt">~30 min</span><span class="tk">Salida ~09:00h</span></div>
+    <div class="tr"><span class="tf">Barrage Vauban · mejor momento</span><span class="tt">16:00h</span><span class="tk">Antes del atardecer</span></div>
+  </div>
+  <a class="ab maps" href="https://maps.google.com/maps?q=Barrage+Vauban+Strasbourg" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Barrage Vauban — ver en Maps</span><span class="ab-a">↗</span></a>
+  <a class="ab maps" href="https://maps.google.com/maps?q=Cathedrale+Notre+Dame+Strasbourg" target="_blank"><span class="ab-i">🗺</span><span class="ab-t">Catedral Notre-Dame — ver en Maps</span><span class="ab-a">↗</span></a>
+
+  <div class="lbl">Lugares del día</div>
+  <div class="cb"><strong>Catedral Notre-Dame de Estrasburgo</strong> — El reloj astronómico del siglo XVI es una maravilla de ingeniería medieval. La fachada gótica es la foto "obvia" — usa el 18-50mm, las callejuelas son estrechas y no cabrá la catedral entera con una sola foto desde muy cerca.</div>
+  <div class="cb"><strong>Casa Kammerzell</strong> — La mansión más decorada de Alsacia, justo delante de la catedral. Fachada de entramado con tallas de madera del siglo XV.</div>
+  <div class="cb"><strong>Place Kléber</strong> — El epicentro navideño de Estrasburgo. El árbol de Navidad gigante y el gran mercado están aquí. Ambiente vibrante en sábado.</div>
+  <div class="cb"><strong>Barrage Vauban (terraza)</strong> — Subir antes de las 16:00h. Desde aquí está <strong>la foto de Estrasburgo</strong>: los Ponts Couverts con la catedral al fondo. Usa el 18-150mm o el 100-400mm para aislar la catedral entre los tejados.</div>
+
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">09:00h</span><span class="si-i">🚂</span><span class="si-t">TER desde Colmar a Estrasburgo (~30 min). Salida temprana para evitar aglomeraciones.</span></div>
+    <div class="si"><span class="st">09:45h</span><span class="si-i">🏨</span><span class="si-t">Check-in en el hotel o dejar maletas en consigna si es muy temprano.</span></div>
+    <div class="si hi"><span class="st">10:00h</span><span class="si-i">⛪</span><span class="si-t"><strong>Catedral Notre-Dame (reloj astronómico) + Casa Kammerzell. Antes de que se llene.</strong></span></div>
+    <div class="si"><span class="st">12:00h</span><span class="si-i">🎄</span><span class="si-t">Place Kléber — árbol gigante y gran mercadillo navideño.</span></div>
+    <div class="si"><span class="st">13:00h</span><span class="si-i">🍽</span><span class="si-t">Comida (ver opciones abajo).</span></div>
+    <div class="si"><span class="st">15:00h</span><span class="si-i">🏘</span><span class="si-t">Paseo por el barrio de Petite France — el más fotogénico de Estrasburgo.</span></div>
+    <div class="si hi"><span class="st">16:00h</span><span class="si-i">📷</span><span class="si-t"><strong>Terraza del Barrage Vauban — LA FOTO: Ponts Couverts + Catedral al fondo.</strong></span></div>
+    <div class="si"><span class="st">17:00h</span><span class="si-i">🎄</span><span class="si-t">Paseo nocturno por los mercadillos y luces navideñas de Estrasburgo.</span></div>
+    <div class="si"><span class="st">20:00h</span><span class="si-i">🍷</span><span class="si-t">Cena en La Coccinelle.</span></div>
+  </div>
+
+  <div class="lbl" style="margin-top:18px">Comida en Estrasburgo</div>
+  <div class="rc res">
+    <div class="rct"><div class="rcs g">■ Mejor para la alergia — muy seguro</div><div class="rcn">Bistrot et Chocolat</div></div>
+    <div class="rcd">Restaurante vegetariano/vegano, experto en opciones sin gluten y sin trigo. Brunches y comidas deliciosas y seguras. La opción más tranquila del viaje para quien tiene alergia.</div>
+    <div class="rca"><span class="rab gr">🌾 Sin trigo — expertos en ello</span></div>
+  </div>
+  <div class="rc neu">
+    <div class="rct"><div class="rcs b">■ Alternativa con carne</div><div class="rcn">Muensterstuewel</div></div>
+    <div class="rcd">Cerca de la catedral. Platos tradicionales alsacianos adaptables. Precio algo más alto pero asumen bien las alergias. Confirmar al pedir: "Sans blé, s'il vous plaît".</div>
+  </div>
+
+  <div class="lbl">Cena en Estrasburgo</div>
+  <div class="rc neu">
+    <div class="rct"><div class="rcs b">■ Cena de cierre</div><div class="rcn">La Coccinelle</div></div>
+    <div class="rcd">Comida casera, ambiente de bistró, precios razonables. Siempre dispuestos a adaptar una carne con verduras o patatas salteadas sin usar harinas.</div>
+    <div class="rca"><span class="rab gr">🌾 Confirmar salsas sin harina</span></div>
+  </div>
+
+  <div class="lbl">Fotografía 📷</div>
+  <div class="pb">
+    <div class="pbt">📷 Estrasburgo — dos objetivos, dos momentos</div>
+    <div class="pi">
+      <div class="pio">Catedral · Mañana · 18–50mm</div>
+      <div class="pia">Las callejuelas medievales son muy estrechas. El 18mm (29mm equivalente APS-C) se queda corto para la fachada completa. Panorámicas de 2–3 fotos en vertical. Mañana temprano: menos turistas y luz lateral en la fachada.</div>
+    </div>
+    <div class="pi">
+      <div class="pio">Barrage Vauban · 16:00h · 18–150mm o 100–400mm</div>
+      <div class="pia">Con el 18–150mm capturas toda la escena (Ponts Couverts + catedral). Con el 100–400mm puedes aislar la catedral entre tejados. Cielo azul cobalto post-atardecer de fondo. Lleva trípode si tienes — la luz a esa hora ya flojea.</div>
+    </div>
+    <div class="pi">
+      <div class="pio">Petite France · Tarde</div>
+      <div class="pia">Los canales, los tejados de entramado y la niebla baja dan fotos muy cinematográficas. 18–150mm, f/4, ISO 1600 con la luz ya reducida de las 15–16h.</div>
+    </div>
+  </div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-p3"><span class="ab-t">‹ Día 3</span></button><button class="ab maps" data-go="pg-p5"><span class="ab-t">Día 5 ›</span></button></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════════ PÁGINA: DÍA 5 ══════════════ -->
+<div class="pg" id="pg-p5">
+<div class="tb"><button class="tbb" data-go="pg-p4">‹</button><span class="tbt">Día 5 · Regreso</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="desktop-layout">
+<aside class="desktop-sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Días del viaje</div>
+    <div class="sidebar-link" data-go="pg-ph"><span class="sl-num">🏠</span>Inicio</div>
+    <div class="sidebar-link" data-go="pg-p1"><span class="sl-num">1</span>Llegada · Colmar <span class="sl-date">Mié 2</span></div>
+    <div class="sidebar-link" data-go="pg-p2"><span class="sl-num">2</span>Eguisheim <span class="sl-date">Jue 3</span></div>
+    <div class="sidebar-link" data-go="pg-p3"><span class="sl-num">3</span>Kaysersberg <span class="sl-date">Vie 4</span></div>
+    <div class="sidebar-link" data-go="pg-p4"><span class="sl-num">4</span>Estrasburgo <span class="sl-date">Sáb 5</span></div>
+    <div class="sidebar-link on" data-go="pg-p5"><span class="sl-num">5</span>Regreso <span class="sl-date">Dom 6</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Extras</div>
+    <div class="sidebar-link" data-go="pg-pc"><span class="sl-num">✅</span>Checklist</div>
+    <div class="sidebar-link" data-go="pg-pf"><span class="sl-num">📷</span>Fotografía</div>
+    <div class="sidebar-link" data-go="pg-pa"><span class="sl-num">🌾</span>Sin trigo</div>
+  </div>
+</aside>
+<div class="desktop-main">
+<div class="ct">
+  <div class="dh" style="background:linear-gradient(135deg,#1B2A4A 0%,#2c3e6e 100%)">
+    <div class="dh-n">Día 5 · Domingo, 6 de Diciembre 2025</div>
+    <div class="dh-t">REGRESO A CASA ✈</div>
+    <div class="dh-s">Estrasburgo → Entzheim → Madrid · Mañana logística</div>
+    <div class="dh-chips"><span class="dh-chip">🚂 TER 08:30h</span><span class="dh-chip">✈ IB2243 · 10:45h</span><span class="dh-chip">⏱ 2h de margen</span></div>
+  </div>
+  <div class="ib danger"><div class="ibt">⚠ Checklist de salida — la noche anterior</div><ul>
+    <li>Check-out del hotel Estrasburgo.</li>
+    <li>Verificar el horario exacto del TER Estrasburgo → Entzheim para el domingo por la mañana.</li>
+    <li>Tener la tarjeta de embarque del IB2243 (10:45h) descargada offline.</li>
+    <li>Llegar al aeropuerto con 2 horas de margen: objetivo estar en Entzheim a las <strong>08:40h</strong>.</li>
+  </ul></div>
+
+  <div class="lbl">Ruta de regreso</div>
+  <div class="tc">
+    <div class="tr"><span class="tf">Desayuno en el hotel o cafetería cercana</span><span class="tt">07:30h</span><span class="tk">Huevos o yogur para la alergia</span></div>
+    <div class="tr"><span class="tf">TER Gare de Strasbourg → Aeropuerto Entzheim</span><span class="tt">~10 min</span><span class="tk">Salida ~08:30h</span></div>
+    <div class="tr"><span class="tf">Llegada al aeropuerto Entzheim</span><span class="tt">~08:40h</span><span class="tk">2h de margen</span></div>
+    <div class="tr"><span class="tf">Vuelo IB2243 — salida</span><span class="tt">10:45h</span><span class="tk">Confirmado</span></div>
+  </div>
+
+  <div class="lbl">Horario</div>
+  <div class="sc">
+    <div class="si br"><span class="st">07:30h</span><span class="si-i">🍳</span><span class="si-t">Desayuno en el hotel. Busca opciones sin trigo: huevos, yogur, fruta. Nada de croissants o tostadas (contienen trigo).</span></div>
+    <div class="si hi"><span class="st">08:30h</span><span class="si-i">🚂</span><span class="si-t"><strong>TER desde Gare de Strasbourg → Aeropuerto Entzheim (~10 min). No perder ese tren.</strong></span></div>
+    <div class="si"><span class="st">08:40h</span><span class="si-i">✈</span><span class="si-t">Llegada al aeropuerto. Check-in, seguridad, embarque tranquilos con 2 horas de margen.</span></div>
+    <div class="si hi"><span class="st">10:45h</span><span class="si-i">🏠</span><span class="si-t"><strong>Vuelo IB2243 — ¡Bon voyage! Hasta la próxima Alsacia.</strong></span></div>
+  </div>
+  <div class="pnrow"><button class="ab maps" data-go="pg-p4"><span class="ab-t">‹ Día 4</span></button><button class="ab maps" data-go="pg-ph"><span class="ab-i">⌂</span><span class="ab-t">Inicio</span></button></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════════ PÁGINA: CHECKLIST ══════════════ -->
+<div class="pg" id="pg-pc">
+<div class="tb"><button class="tbb" data-go="pg-ph">‹</button><span class="tbt">Checklist — antes de salir</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="desktop-layout">
+<aside class="desktop-sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Días del viaje</div>
+    <div class="sidebar-link" data-go="pg-ph"><span class="sl-num">🏠</span>Inicio</div>
+    <div class="sidebar-link" data-go="pg-p1"><span class="sl-num">1</span>Llegada · Colmar <span class="sl-date">Mié 2</span></div>
+    <div class="sidebar-link" data-go="pg-p2"><span class="sl-num">2</span>Eguisheim <span class="sl-date">Jue 3</span></div>
+    <div class="sidebar-link" data-go="pg-p3"><span class="sl-num">3</span>Kaysersberg <span class="sl-date">Vie 4</span></div>
+    <div class="sidebar-link" data-go="pg-p4"><span class="sl-num">4</span>Estrasburgo <span class="sl-date">Sáb 5</span></div>
+    <div class="sidebar-link" data-go="pg-p5"><span class="sl-num">5</span>Regreso <span class="sl-date">Dom 6</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Extras</div>
+    <div class="sidebar-link on" data-go="pg-pc"><span class="sl-num">✅</span>Checklist</div>
+    <div class="sidebar-link" data-go="pg-pf"><span class="sl-num">📷</span>Fotografía</div>
+    <div class="sidebar-link" data-go="pg-pa"><span class="sl-num">🌾</span>Sin trigo</div>
+  </div>
+</aside>
+<div class="desktop-main">
+<div class="ct">
+  <div class="chs"><h4>📄 Documentos y viaje</h4><ul>
+    <li>Vuelos IB2240 (2 dic, 17:35) e IB2243 (6 dic, 10:45) — tarjetas de embarque offline</li>
+    <li>DNI / pasaporte vigente (Francia es zona Schengen, DNI suficiente)</li>
+    <li>Confirmaciones de hotel Colmar y Estrasburgo guardadas offline</li>
+    <li>Tarjeta de crédito/débito (los TER tienen máquinas de venta con tarjeta)</li>
+    <li>Efectivo en euros: recomendable llevar ~€100 en efectivo para mercadillos y buses</li>
+  </ul></div>
+  <div class="chs"><h4>🌾 Alergia al trigo</h4><ul>
+    <li>Llevar listado de frases en francés impreso o guardado offline (ver sección "Sin trigo")</li>
+    <li>Aprenderse de memoria: <em>"Je suis allergique au blé. Sans blé, s'il vous plaît."</em></li>
+    <li>Consultar la lista de restaurantes por día antes de salir de excursión</li>
+    <li>En los mercadillos: evitar los puestos de galletas Bredeles y Pain d'épices (llevan trigo)</li>
+  </ul></div>
+  <div class="chs"><h4>🚂 Transporte</h4><ul>
+    <li>Revisar horarios Fluo Grand Est la tarde del Día 1 para el Día 2 (Eguisheim, jueves)</li>
+    <li>Revisar horarios de vuelta de los buses desde Eguisheim y Kaysersberg — último ~18:00-18:30h</li>
+    <li>Llevar suficiente efectivo para billetes al conductor en las Navettes de Noël</li>
+    <li>App/web: fluo.eu para buses regionales</li>
+  </ul></div>
+  <div class="chs"><h4>🧥 Ropa y equipaje</h4><ul>
+    <li>Ropa de abrigo para exteriores prolongados (subida al castillo de Kaysersberg, Barrage Vauban)</li>
+    <li>Calzado cómodo e impermeable — adoquines mojados en diciembre pueden resbalar</li>
+    <li>Guantes: imprescindibles para sacar el móvil o la cámara en el frío</li>
+    <li>Paraguas o chubasquero ligero para días con lluvia</li>
+    <li>Enchufes tipo E/F (estándar europeo, igual que España — no hace falta adaptador)</li>
+  </ul></div>
+  <div class="chs"><h4>📷 Fotografía — Canon R7</h4><ul>
+    <li>Canon R7 + objetivo 18–50mm (imprescindible para noches)</li>
+    <li>Objetivo 18–150mm (principal durante el día en los pueblos)</li>
+    <li>Objetivo 100–400mm (solo Días 3 y 4: Kaysersberg y Barrage Vauban Estrasburgo)</li>
+    <li>Baterías de repuesto mínimo ×2 (el frío reduce la autonomía un 30–40%)</li>
+    <li>Tarjetas de memoria suficientes</li>
+    <li>Trípode ligero para la hora azul y nocturnos de Colmar (muy recomendado)</li>
+  </ul></div>
+  <div class="chs"><h4>📱 Tecnología</h4><ul>
+    <li>Mapas offline de Alsacia (Colmar, Eguisheim, Kaysersberg, Estrasburgo)</li>
+    <li>Plan de datos o eSIM para Francia</li>
+    <li>Power bank para jornadas largas al exterior con frío</li>
+    <li>Cargador de batería de la Canon R7</li>
+  </ul></div>
+  <button class="ab maps" data-go="pg-ph"><span class="ab-i">⌂</span><span class="ab-t">Volver al inicio</span></button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════════ PÁGINA: FOTOGRAFÍA ══════════════ -->
+<div class="pg" id="pg-pf">
+<div class="tb"><button class="tbb" data-go="pg-ph">‹</button><span class="tbt">Resumen Fotográfico</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="desktop-layout">
+<aside class="desktop-sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Días del viaje</div>
+    <div class="sidebar-link" data-go="pg-ph"><span class="sl-num">🏠</span>Inicio</div>
+    <div class="sidebar-link" data-go="pg-p1"><span class="sl-num">1</span>Llegada · Colmar <span class="sl-date">Mié 2</span></div>
+    <div class="sidebar-link" data-go="pg-p2"><span class="sl-num">2</span>Eguisheim <span class="sl-date">Jue 3</span></div>
+    <div class="sidebar-link" data-go="pg-p3"><span class="sl-num">3</span>Kaysersberg <span class="sl-date">Vie 4</span></div>
+    <div class="sidebar-link" data-go="pg-p4"><span class="sl-num">4</span>Estrasburgo <span class="sl-date">Sáb 5</span></div>
+    <div class="sidebar-link" data-go="pg-p5"><span class="sl-num">5</span>Regreso <span class="sl-date">Dom 6</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Extras</div>
+    <div class="sidebar-link" data-go="pg-pc"><span class="sl-num">✅</span>Checklist</div>
+    <div class="sidebar-link on" data-go="pg-pf"><span class="sl-num">📷</span>Fotografía</div>
+    <div class="sidebar-link" data-go="pg-pa"><span class="sl-num">🌾</span>Sin trigo</div>
+  </div>
+</aside>
+<div class="desktop-main">
+<div class="ct">
+  <div class="ib info"><div class="ibt">💡 Canon R7 — recordatorio factor de recorte</div>Sensor APS-C, factor de recorte <strong>×1.6</strong>: tu 18mm = ~29mm en pleno formato. En callejuelas muy estrechas ese equivalente puede quedarse "largo". Recurrir a panorámicas de 2–3 fotos en vertical para edificios completos.<br><br><strong>Regla de equipo:</strong> 18-150mm durante el día · 100-400mm solo Días 3 y 4 · 18-50mm por la noche para ir ligero.</div>
+  <div class="pr"><div class="pro">📷 Día 1 · Llegada nocturna en Colmar</div><div class="prs">Solo el 18–50mm. Reflejos de luces navideñas en los canales de Petite Venise. Farolillos + adoquines mojados + canal = la postal perfecta. Sin trípode gracias a la apertura luminosa del 18-50mm.</div><div class="pra">ISO 1600–3200 · f/2–f/2.8 · 1/30s mínimo</div></div>
+  <div class="pr"><div class="pro">📷 Día 2 · Hora Azul EN Eguisheim</div><div class="prs">18–150mm todo el día. Le Pigeonnier a las 15:30h con luz lateral de tarde (mejor que mañana). A las 16:15h las guirnaldas se encienden en las calles circulares del pueblo — posicionarse ya. Hora azul (~16:30h) en Eguisheim: las calles estrechas con guirnaldas cruzadas y el cielo cobalto de fondo, una foto imposible en ciudad.</div><div class="pra">18–150mm · f/4 · ISO 1600 · Busca el Pigeonnier con luces encendidas</div></div>
+  <div class="pr"><div class="pro">📷 Día 3 · Kaysersberg — día del 100–400mm</div><div class="prs">Llevar los dos: 18–150mm para el pueblo y el puente, 100–400mm para las vistas comprimidas desde las ruinas del castillo (tejados, chimeneas humeantes, valle). Mañana en el pueblo, teleobjetivo desde el castillo antes de las 13h.</div><div class="pra">100–400mm desde el castillo · f/6.3 · TV 1/500s · ISO Auto</div></div>
+  <div class="pr"><div class="pro">📷 Día 4 · Estrasburgo — dos objetivos para dos momentos</div><div class="prs">18–50mm en la catedral por la mañana (callejuelas estrechas). 18-150mm o 100–400mm en el Barrage Vauban a las 16:00h para la foto de los Ponts Couverts con la catedral al fondo. Petite France: 18-150mm en la tarde.</div><div class="pra">Barrage Vauban 16:00h · Trípode muy recomendado · f/8 cielo aún con luz</div></div>
+  <div class="pr"><div class="pro">📷 Gestión de baterías en invierno</div><div class="prs">El frío reduce la autonomía de la batería un 30–40%. Llevar mínimo 2 baterías de repuesto. Guardar las baterías de respuesto en el bolsillo interior de la chaqueta para mantenerlas calientes.</div><div class="pra">Batería en bolsillo interior · Cargar todo cada noche</div></div>
+  <button class="ab maps" data-go="pg-ph"><span class="ab-i">⌂</span><span class="ab-t">Volver al inicio</span></button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════════ PÁGINA: GUÍA SIN TRIGO ══════════════ -->
+<div class="pg" id="pg-pa">
+<div class="tb"><button class="tbb" data-go="pg-ph">‹</button><span class="tbt">🌾 Guía sin trigo — Alergia al trigo</span><button class="tbb" data-go="pg-ph">⌂</button></div>
+<div class="desktop-layout">
+<aside class="desktop-sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Días del viaje</div>
+    <div class="sidebar-link" data-go="pg-ph"><span class="sl-num">🏠</span>Inicio</div>
+    <div class="sidebar-link" data-go="pg-p1"><span class="sl-num">1</span>Llegada · Colmar <span class="sl-date">Mié 2</span></div>
+    <div class="sidebar-link" data-go="pg-p2"><span class="sl-num">2</span>Eguisheim <span class="sl-date">Jue 3</span></div>
+    <div class="sidebar-link" data-go="pg-p3"><span class="sl-num">3</span>Kaysersberg <span class="sl-date">Vie 4</span></div>
+    <div class="sidebar-link" data-go="pg-p4"><span class="sl-num">4</span>Estrasburgo <span class="sl-date">Sáb 5</span></div>
+    <div class="sidebar-link" data-go="pg-p5"><span class="sl-num">5</span>Regreso <span class="sl-date">Dom 6</span></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Extras</div>
+    <div class="sidebar-link" data-go="pg-pc"><span class="sl-num">✅</span>Checklist</div>
+    <div class="sidebar-link" data-go="pg-pf"><span class="sl-num">📷</span>Fotografía</div>
+    <div class="sidebar-link on" data-go="pg-pa"><span class="sl-num">🌾</span>Sin trigo</div>
+  </div>
+</aside>
+<div class="desktop-main">
+<div class="ct">
+  <div class="ib danger"><div class="ibt">🌾 Frases clave en francés</div>
+    <strong>"Je suis allergique au blé."</strong> — Soy alérgico/a al trigo.<br>
+    <strong>"Sans blé, s'il vous plaît."</strong> — Sin trigo, por favor.<br>
+    <strong>"Sans gluten, s'il vous plaît."</strong> — Sin gluten (más fácil de reconocer para el personal).<br>
+    <strong>"Pas de farine dans la sauce, s'il vous plaît."</strong> — Sin harina en la salsa.<br><br>
+    Decir <em>"sans gluten"</em> en vez de <em>"sans blé"</em> suele funcionar mejor porque los restaurantes lo reconocen más rápidamente, aunque la alergia sea específicamente al trigo.
+  </div>
+
+  <div class="lbl">❌ Evitar en Alsacia — contienen trigo</div>
+  <div class="rc danger">
+    <div class="rct"><div class="rcs r">■ EVITAR — trigo siempre presente</div><div class="rcn">Tarte Flambée (Flammekueche)</div></div>
+    <div class="rcd">El plato más típico de Alsacia. La masa base está hecha de trigo. Aunque a veces ofrecen versiones "sin gluten", confirmar siempre.</div>
+  </div>
+  <div class="rc danger">
+    <div class="rct"><div class="rcs r">■ EVITAR — trigo siempre presente</div><div class="rcn">Pain d'épices · Bredeles · Spätzle</div></div>
+    <div class="rcd"><strong>Pain d'épices:</strong> el pan de especias navideño omnipresente en los mercadillos. <strong>Bredeles:</strong> las galletas navideñas típicas. <strong>Spätzle:</strong> la pasta alsaciana. Los tres llevan harina de trigo.</div>
+  </div>
+
+  <div class="lbl">✅ Opciones seguras en Alsacia</div>
+  <div class="cb"><strong>Roïgabrageldi</strong> — Patatas asadas tradicionales. 100% naturalmente sin trigo. Pedir en casi cualquier restaurante como acompañamiento.</div>
+  <div class="cb"><strong>Carnes asadas / a la parrilla</strong> — Pedir que no "liguen" la salsa con harina: <em>"Pas de farine dans la sauce, s'il vous plaît."</em> La carne en sí no lleva trigo.</div>
+  <div class="cb"><strong>Ensaladas con queso Munster</strong> — El queso Munster es el queso alsaciano por excelencia. Las ensaladas suelen ser seguras; confirmar que los picatostes (croutons) vengan aparte o no se pongan.</div>
+  <div class="cb"><strong>Fondue de queso</strong> — Con patatas o verduras para mojar en vez de pan. O llevar vuestro propio pan sin gluten si lo encontráis en supermercados locales.</div>
+  <div class="cb"><strong>Vin Chaud (vino caliente)</strong> — Normalmente seguro. En raras ocasiones añaden algún espesante. Preguntar si es necesario.</div>
+  <div class="cb"><strong>Choucroute</strong> — El chucrut en sí es fermentado y sin gluten. Las salchichas que lo acompañan suelen ser seguras, pero preguntar si llevan aglutinantes de trigo. Pedir confirmación.</div>
+  <div class="cb"><strong>Baeckeoffe</strong> — El guiso de carne y patatas tradicional. Confirmar que no se usa harina para sellar la olla (a veces sí se hace para la cocción lenta).</div>
+
+  <div class="lbl">Restaurantes por día</div>
+  <div class="rc res"><div class="rct"><div class="rcs g">■ Día 1 — Colmar (llegada)</div><div class="rcn">Palma Colmar</div></div><div class="rcd">Bowls adaptables. Sin complicaciones. Abierto para cenar pero cierra pronto.</div></div>
+  <div class="rc res"><div class="rct"><div class="rcs g">■ Día 1 — Colmar (alternativa)</div><div class="rcn">Le Petit Bidon</div></div><div class="rcd">Cocina francesa. Son muy profesionales adaptando salsas. Decir: "Je suis allergique au blé."</div></div>
+  <div class="rc pend"><div class="rct"><div class="rcs o">■ Día 2 — Eguisheim (confirmar)</div><div class="rcn">Caveau Heuhaus</div></div><div class="rcd">Pedir Baeckeoffe o carne con patatas. <strong>EVITAR la Tarte Flambée.</strong> Confirmar harina en el Baeckeoffe.</div></div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Día 2 — Colmar · Cena</div><div class="rcn">La Fleur de Sel</div></div><div class="rcd">Ensaladas y carnes. Pedir "Sans blé" al llegar.</div></div>
+  <div class="rc pend"><div class="rct"><div class="rcs o">■ Día 3 — Kaysersberg (confirmar)</div><div class="rcn">L'Alchemille</div></div><div class="rcd">Choucroute o ensalada de Munster. Confirmar salchichas sin aglutinantes. "Sans blé, s'il vous plaît."</div></div>
+  <div class="rc res"><div class="rct"><div class="rcs g">■ Día 3 — Colmar · Cena (muy recomendado)</div><div class="rcn">L'Arpège</div></div><div class="rcd">Orgánico y natural. Muy acostumbrados a adaptar platos para alergias. La mejor elección del viaje para cenar sin preocupaciones.</div></div>
+  <div class="rc res"><div class="rct"><div class="rcs g">■ Día 4 — Estrasburgo · Comida (mejor opción)</div><div class="rcn">Bistrot et Chocolat</div></div><div class="rcd">Vegetariano/vegano. Expertos en sin gluten / sin trigo. Completamente seguro.</div></div>
+  <div class="rc pend"><div class="rct"><div class="rcs o">■ Día 4 — Estrasburgo · Comida alternativa</div><div class="rcn">Muensterstuewel</div></div><div class="rcd">Platos tradicionales adaptables. Confirmar cada plato. Precio algo más alto.</div></div>
+  <div class="rc neu"><div class="rct"><div class="rcs b">■ Día 4 — Estrasburgo · Cena</div><div class="rcn">La Coccinelle</div></div><div class="rcd">Bistró casero. Adaptan carnes con verduras o patatas salteadas sin harinas. Confirmar al pedir.</div></div>
+  <button class="ab maps" data-go="pg-ph"><span class="ab-i">⌂</span><span class="ab-t">Volver al inicio</span></button>
+</div>
+</div>
+</div>
+</div>
+
+<nav class="bnav" id="main-bnav">
+  <button class="nb on" data-go="pg-ph"><span>🏠</span><span>Inicio</span></button>
+  <button class="nb" data-go="pg-p1"><span>1</span><span>Llegada</span></button>
+  <button class="nb" data-go="pg-p2"><span>2</span><span>Eguish.</span></button>
+  <button class="nb" data-go="pg-p4"><span>4</span><span>Strasb.</span></button>
+  <button class="nb" data-go="pg-pc"><span>✅</span><span>Lista</span></button>
+  <button class="nb" data-go="pg-pa"><span>🌾</span><span>Sin trigo</span></button>
+</nav>
+
 <script>
-    // Mostrar/ocultar botón flotante al hacer scroll
-    window.onscroll = function() {
-        const fab = document.getElementById("fabTop");
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            fab.classList.add("visible");
-        } else {
-            fab.classList.remove("visible");
-        }
-    };
+// ── Router ─────────────────────────────────────────────────
+var cur = 'pg-ph';
 
-    // Smooth scroll para los enlaces de la navegación en móviles para ajustar altura del menú fijo
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+function goPage(id) {
+  var from = document.getElementById(cur);
+  var to   = document.getElementById(id);
+  if (!to) return;
+  if (from) from.classList.remove('on');
+  to.classList.add('on');
+  cur = id;
+  window.scrollTo(0, 0);
+  // Bottom nav active state
+  document.querySelectorAll('.nb').forEach(function(nb){
+    nb.classList.toggle('on', nb.dataset.go === id);
+  });
+  // Sidebar active state (all sidebars)
+  document.querySelectorAll('.sidebar-link').forEach(function(sl){
+    sl.classList.toggle('on', sl.dataset.go === id);
+  });
+}
+
+// ── Tap detection ─────────────────────────────────────────
+var sx = 0, sy = 0, moved = false;
+
+document.addEventListener('touchstart', function(e) {
+  sx = e.touches[0].clientX;
+  sy = e.touches[0].clientY;
+  moved = false;
+}, {passive: true});
+
+document.addEventListener('touchmove', function() {
+  moved = true;
+}, {passive: true});
+
+document.addEventListener('touchend', function(e) {
+  if (moved) {
+    var dx = Math.abs(e.changedTouches[0].clientX - sx);
+    var dy = Math.abs(e.changedTouches[0].clientY - sy);
+    if (dx > 10 || dy > 10) return;
+  }
+  tap(e.target, e);
+}, {passive: false});
+
+document.addEventListener('click', function(e) {
+  tap(e.target, e);
+});
+
+function tap(el, e) {
+  for (var i = 0; i < 6; i++) {
+    if (!el || el === document.body) return;
+    if (el.dataset) {
+      if (el.dataset.go) {
+        e.preventDefault();
+        goPage(el.dataset.go);
+        return;
+      }
+      if (el.dataset.toggle) {
+        e.preventDefault();
+        var body = el.nextElementSibling;
+        var arr  = el.querySelector('.arr');
+        if (body) body.classList.toggle('open');
+        if (arr)  arr.classList.toggle('open');
+        return;
+      }
+    }
+    el = el.parentElement;
+  }
+}
 </script>
-
 </body>
 </html>
