@@ -249,6 +249,28 @@ a{color:inherit;text-decoration:none}
 .phrase .fr{font-size:17px;font-weight:700;color:var(--red);margin-bottom:4px;font-style:italic}
 .phrase .es{font-size:13px;color:var(--ink-soft)}
 
+/* ── SABER MÁS — acordeón ───────────────────────────── */
+.block.places{border-left:4px solid var(--brand)}
+.block.places h4{color:var(--brand)}
+.pl-acc{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:8px}
+.pl-acc:first-of-type{margin-top:2px}
+.pl-btn{width:100%;background:color-mix(in srgb,var(--brand) 6%,var(--card));border:none;
+  text-align:left;cursor:pointer;padding:10px 13px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:14px;font-weight:700;color:var(--ink);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.pl-btn *{pointer-events:none}
+.pl-btn .pl-arr{font-size:15px;color:var(--brand2);transition:transform .18s;
+  flex-shrink:0;margin-left:8px}
+.pl-btn.open .pl-arr{transform:rotate(180deg)}
+.pl-body{display:none;padding:10px 13px 13px;font-size:13.5px;
+  color:var(--ink-soft);line-height:1.7;
+  border-top:1px solid var(--line);background:var(--card)}
+.pl-body.open{display:block}
+.pl-body a{color:var(--brand2);font-weight:600;font-size:12px;
+  display:inline-block;margin-top:8px;background:var(--card);
+  border:1px solid var(--line);border-radius:20px;padding:4px 10px}
+
 /* ── BOTTOM NAV ──────────────────────────────────────── */
 .bnav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);
   background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
@@ -455,6 +477,21 @@ a{color:inherit;text-decoration:none}
         <div class="photo-item"><div class="obj">Ve ligero — únicamente el 18–50mm</div><div class="tip">Su luminosidad f/2 es ideal para nocturnas en los canales sin trípode. No cargues con el resto del equipo el día de llegada.</div></div>
         <div class="photo-item"><div class="obj">Reflejos en Petite Venise</div><div class="tip">Desde los puentes hacia abajo: farolillos + reflejo + adoquines mojados. ISO 1600–3200, f/2, 1/30s. El factor de recorte ×1.6 de la R7 hace tu 18mm ≈ 29mm — en callejuelas estrechas prueba panorámicas verticales de 2–3 fotos.</div></div>
       </div>
+      <div class="block places">
+        <h4>🔍 Saber más</h4>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">Colmar y los mercadillos alsacianos<span class="pl-arr">▾</span></button>
+          <div class="pl-body">Colmar alberga el mayor mercadillo navideño de Alsacia, con más de 300 puestos en cinco ubicaciones distintas del casco antiguo. La tradición documentada en la región arranca en el s. XV — los mercados de Navidad alsacianos son los más antiguos de Francia y están entre los primeros de Europa. En diciembre, Colmar recibe más visitantes que en cualquier otro mes del año.<br><a href="https://es.wikipedia.org/wiki/Colmar" target="_blank">Wikipedia — Colmar ↗</a></div>
+        </div>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">Petite Venise — los canales medievales<span class="pl-arr">▾</span></button>
+          <div class="pl-body">El apodo "Pequeña Venecia" viene del s. XIX, pero los canales son medievales. Fueron construidos para el transporte de mercancías: el barrio era el de los curtidores, pescadores y molineros que necesitaban agua corriente junto a sus talleres. Las casas de entramado de madera con sus colores saturados (terracota, mostaza, azul petróleo) son del s. XVI y XVII. El entramado no es decorativo — es la estructura portante real del edificio.<br><a href="https://es.wikipedia.org/wiki/Colmar" target="_blank">Wikipedia — Petite Venise ↗</a></div>
+        </div>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">La Alsacia disputada — por qué todo tiene dos nombres<span class="pl-arr">▾</span></button>
+          <div class="pl-body">Alsacia cambió de manos entre Francia y Alemania cuatro veces entre 1871 y 1945. Los letreros son en francés pero los nombres de los platos (Baeckeoffe, Flammekueche, Gugelhupf) y muchos topónimos son alemanes o alsacianos — un dialecto germánico propio. El resultado es una cocina, arquitectura y cultura de frontera sin equivalente en Europa: francesa en los papeles, renana en el alma.<br><a href="https://es.wikipedia.org/wiki/Alsacia" target="_blank">Wikipedia — Alsacia ↗</a></div>
+        </div>
+      </div>
     </div><!-- /anc-d1 -->
 
     <!-- DÍA 2 -->
@@ -503,6 +540,17 @@ a{color:inherit;text-decoration:none}
         <div class="photo-item"><div class="obj">Hora azul en Rue du Rempart · 16:15–16:45h</div><div class="tip">Las calles circulares estrechas con guirnaldas cruzadas entre fachadas + cielo cobalto. f/4, ISO 1600, 1/30s. Es la foto imposible en una ciudad grande.</div></div>
         <div class="photo-item"><div class="obj">Puestos del mercadillo iluminados · 16:00–17:30h</div><div class="tip">Expón para la luz del puesto, no para el cielo. ISO 800, f/2.8, 1/60s. El vapor del Vin Chaud con las luces de fondo es otro plano imperdible.</div></div>
       </div>
+      <div class="block places">
+        <h4>🔍 Saber más</h4>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">Los círculos concéntricos — planta carolingia del s. VIII<span class="pl-arr">▾</span></button>
+          <div class="pl-body">Eguisheim es uno de los pocos pueblos de Europa cuya planta urbana actual sigue exactamente la de un castillo carolingio del s. VIII. El castillo pertenecía a los condes de Eguisheim, familia de la que salió el papa León IX (1002–1054), el único papa nacido en Alsacia. Los tres anillos concéntricos de calles son las sucesivas ampliaciones del recinto amurallado entre los siglos XII y XIV — no un capricho urbanístico, sino la huella literal de la historia.<br><a href="https://es.wikipedia.org/wiki/Eguisheim" target="_blank">Wikipedia — Eguisheim ↗</a></div>
+        </div>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">El pueblo más bonito de Francia — y los Grand Cru<span class="pl-arr">▾</span></button>
+          <div class="pl-body">Eguisheim fue elegido "pueblo más bonito de Francia" en 2013 por votación popular. Con menos de 1.800 habitantes, produce vino en dos terroirs Grand Cru: Eichberg y Pfersigberg. El Gewurztraminer y el Pinot Gris de aquí son consistentemente de los más valorados de Alsacia. La viña rodea literalmente el pueblo — desde el bus ya se ve el cambio de paisaje entre el llano de Colmar y las laderas vitícolas.<br><a href="https://es.wikipedia.org/wiki/Eguisheim" target="_blank">Wikipedia — Eguisheim ↗</a></div>
+        </div>
+      </div>
     </div><!-- /anc-d2 -->
 
     <!-- DÍA 3 -->
@@ -542,6 +590,21 @@ a{color:inherit;text-decoration:none}
         <div class="pb-title">📷 Kaysersberg · Llevar 18–150mm + 100–400mm</div>
         <div class="photo-item"><div class="obj">Puente fortificado · 10:30–11:30h</div><div class="tip">18–150mm. Río en primer plano + puente medieval + casas de entramado al fondo. Luz de mañana frontal. f/5.6, ISO 200.</div></div>
         <div class="photo-item"><div class="obj">Desde el castillo · 11:30–12:30h · 100–400mm</div><div class="tip">El único día que el tele sale del hotel. Comprime perspectiva para aislar tejados y chimeneas humeantes del pueblo. TV priority, 1/500s mínimo si hay viento. ISO Auto.</div></div>
+      </div>
+      <div class="block places">
+        <h4>🔍 Saber más</h4>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">Villa libre imperial — solo respondía ante el Emperador<span class="pl-arr">▾</span></button>
+          <div class="pl-body">Kaysersberg —literalmente "montaña del Emperador"— obtuvo el estatuto de Reichsstadt (villa libre imperial) en 1293 bajo el Sacro Imperio Romano Germánico. Significaba que la ciudad no respondía ante ningún señor feudal, solo ante el Emperador directamente. En la práctica se gobernaba sola: sus propias leyes, impuestos y tribunales. Este estatuto explica la solidez de su muralla, su castillo y la riqueza visible en su arquitectura medieval.<br><a href="https://es.wikipedia.org/wiki/Kaysersberg" target="_blank">Wikipedia — Kaysersberg ↗</a></div>
+        </div>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">Albert Schweitzer — nació aquí en 1875<span class="pl-arr">▾</span></button>
+          <div class="pl-body">El Premio Nobel de la Paz de 1952 nació en Kaysersberg. Médico, teólogo luterano, filósofo y organista, Schweitzer construyó y financió de su propio bolsillo un hospital en Lambaréné (Gabón) donde trabajó hasta su muerte en 1965 con 90 años. Su casa natal en el centro del pueblo es hoy museo. Es uno de esos personajes que resultan inverosímiles: doctorado en filosofía, en teología y en medicina, además de ser considerado uno de los mejores intérpretes de Bach de su generación.<br><a href="https://es.wikipedia.org/wiki/Albert_Schweitzer" target="_blank">Wikipedia — Albert Schweitzer ↗</a></div>
+        </div>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">El castillo — destruido a propósito en el s. XVII<span class="pl-arr">▾</span></button>
+          <div class="pl-body">El castillo fue construido por los Habsburgo en el s. XIII para controlar la ruta del vino entre Colmar y los pasos de los Vosgos. Durante la Guerra de los Treinta Años (1618–1648), las tropas francesas lo destruyeron deliberadamente para impedir que fuera utilizado como fortaleza enemiga — práctica militar habitual de la época llamada "escarpe". Las ruinas que se suben hoy son el resultado de esa demolición, no del paso del tiempo.<br><a href="https://es.wikipedia.org/wiki/Kaysersberg" target="_blank">Wikipedia — Castillo ↗</a></div>
+        </div>
       </div>
     </div><!-- /anc-d3 -->
 
@@ -590,6 +653,21 @@ a{color:inherit;text-decoration:none}
         <div class="photo-item"><div class="obj">Catedral · 10:00h · 18–50mm</div><div class="tip">Callejuelas muy estrechas. El 18mm (≈29mm APS-C) se queda corto para la fachada completa — panorámicas de 2–3 fotos en vertical. Menos gente a primera hora.</div></div>
         <div class="photo-item"><div class="obj">Barrage Vauban · 16:00h · 18–150mm o 100–400mm</div><div class="tip">Con el 18–150mm capturas todo (Ponts Couverts + catedral). Con el 100–400mm aislas la catedral entre tejados. Lleva trípode — la luz ya es baja. f/8, ISO 800–1600.</div></div>
         <div class="photo-item"><div class="obj">Petite France · 15:00h · 18–150mm</div><div class="tip">Canales, tejados entramados y posible niebla baja. Muy cinematográfico. f/4, ISO 1600.</div></div>
+      </div>
+      <div class="block places">
+        <h4>🔍 Saber más</h4>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">El mercadillo más antiguo de Francia — desde 1570<span class="pl-arr">▾</span></button>
+          <div class="pl-body">El Christkindelsmärik (mercado del niño Jesús) está documentado desde 1570, lo que lo convierte en el más antiguo de Francia. El gran árbol de la Place Kléber se ilumina ininterrumpidamente desde 1605. En temporada navideña, la ciudad recibe entre 2 y 3 millones de visitantes en unas semanas. Los cierres de tráfico y controles de seguridad son habituales en diciembre — llegar a primera hora para disfrutarlo sin la masa de tarde del sábado.<br><a href="https://fr.wikipedia.org/wiki/March%C3%A9_de_No%C3%ABl_de_Strasbourg" target="_blank">Wikipedia — Marché de Noël ↗</a></div>
+        </div>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">La catedral — el edificio más alto del mundo durante 249 años<span class="pl-arr">▾</span></button>
+          <div class="pl-body">Construida en arenisca rosa de los Vosgos entre los siglos XII y XV, fue el edificio más alto del mundo desde 1625 (cuando se terminó la aguja norte, a 142m) hasta 1874, durante 249 años. El reloj astronómico del s. XVI es un ordenador mecánico: calcula fases de la luna, eclipses, posiciones planetarias y fecha de Pascua para los próximos siglos. Da las horas con desfile de figuras a mediodía — llegar 10 minutos antes si se quiere ver.<br><a href="https://es.wikipedia.org/wiki/Catedral_de_Nuestra_Se%C3%B1ora_de_Estrasburgo" target="_blank">Wikipedia — Catedral ↗</a></div>
+        </div>
+        <div class="pl-acc">
+          <button class="pl-btn" onclick="togglePlace(this)">Estrasburgo y Europa — la ciudad que cambió de bandera cuatro veces<span class="pl-arr">▾</span></button>
+          <div class="pl-body">Francesa hasta 1871 → alemana 1871–1918 → francesa 1918–1940 → alemana 1940–1944 → francesa desde 1944. Este vaivén convirtió a Estrasburgo en el símbolo viviente de la reconciliación europea. Sede del Parlamento Europeo desde 1952 y del Consejo de Europa desde 1949. Dato curioso: el Parlamento tiene su sede oficial aquí pero el trabajo diario se hace en Bruselas, lo que obliga a sus 720 eurodiputados a viajar doce veces al año entre las dos ciudades — a un coste estimado de 114 millones de euros anuales.<br><a href="https://es.wikipedia.org/wiki/Estrasburgo" target="_blank">Wikipedia — Estrasburgo ↗</a></div>
+        </div>
       </div>
     </div><!-- /anc-d4 -->
 
@@ -889,6 +967,12 @@ function updateThemeIcons(dark){
   const el2=document.getElementById('themeIcoSide');
   if(el1) el1.textContent=ico;
   if(el2) el2.textContent=ico;
+}
+
+/* ── SABER MÁS TOGGLE ───────────────────────────────── */
+function togglePlace(btn){
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
 }
 
 /* ── CHECKLIST ───────────────────────────────────────── */
