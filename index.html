@@ -120,7 +120,7 @@ details.ideas{border-style:dashed;border-color:var(--ac)}
 <script>
 /* ═══ DATOS · única fuente de verdad (privacidad: web pública, sin localizadores ni datos personales) ═══ */
 const TRIP={
-meta:{slug:'alsacia2612',title:'Alsacia en Navidad',lugares:['Colmar','Eguisheim','Kaysersberg','Estrasburgo'],start:'2026-12-02',end:'2026-12-06',glifo:'🎄',tz:'Europe/Paris',ver:'1.4',built:'2026-10-25',log:'v1.4 (25-oct-2026): motor 3.3.0 y datos al modelo nuevo (lugares, títulos «Día - lugares», est en comidas, desc en restaurantes, ideas por día, tiempo con place, checklist con id, sin desayunos). v1.3 (25-oct-2026): motor 3.2.0 (aspecto nuevo: iconos, degradados, tarjeta de sol) y glifo 🎄; datos sin cambios. v1.2 (25-oct-2026): motor de la plantilla 3.1.1 (sin botón Actualizar: la web se actualiza sola con conexión); datos sin cambios. v1.1 (25-oct-2026): motor 3.1 (offline, hora azul calculada); Navettes, TER del domingo, catedral y terraza Vauban verificados; restaurantes revisados; 3 actividades propuestas. v1.0: web original.'},
+meta:{slug:'alsacia2612',title:'Alsacia en Navidad',lugares:['Colmar','Eguisheim','Kaysersberg','Estrasburgo'],start:'2026-12-02',end:'2026-12-06',glifo:'🎄',tz:'Europe/Paris',ver:'1.5',built:'2026-10-25',log:'v1.5 (25-oct-2026): pendientes como checklist de solo lectura, sin fechas y en orden cronológico (ajuste local del motor). v1.4 (25-oct-2026): motor 3.3.0 y datos al modelo nuevo (lugares, títulos «Día - lugares», est en comidas, desc en restaurantes, ideas por día, tiempo con place, checklist con id, sin desayunos). v1.3 (25-oct-2026): motor 3.2.0 (aspecto nuevo: iconos, degradados, tarjeta de sol) y glifo 🎄; datos sin cambios. v1.2 (25-oct-2026): motor de la plantilla 3.1.1 (sin botón Actualizar: la web se actualiza sola con conexión); datos sin cambios. v1.1 (25-oct-2026): motor 3.1 (offline, hora azul calculada); Navettes, TER del domingo, catedral y terraza Vauban verificados; restaurantes revisados; 3 actividades propuestas. v1.0: web original.'},
 modules:{coche:false,dieta:true,supermercado:true,conversores:false,actividades:true,fauna:false,astro:false},
 /* lat/lng de ciudades y monumentos (±200 m); locales sin lat/lng → mapa por nombre; tel ausente = pendiente de verificar */
 places:{
@@ -281,7 +281,7 @@ todos:[
 {id:'ter1',t:'Verificar TER Entzheim → Estrasburgo → Colmar del miércoles por la tarde',due:'2026-12-01',day:'mie'},
 {id:'fluo',t:'Confirmar el horario 2026 de las Navettes 1-3 (vuelta 18:55 de Eguisheim y 20:20 de Kaysersberg en 2024); alternativa Fluo 68R030',due:'2026-12-02',day:'jue'},
 {id:'reloj',t:'Comprar la entrada del reloj astronómico (2 €; película 12:00, desfile 12:30)',due:'2026-12-05',day:'sab'},
-{id:'ter5',t:'Verificar TER Estrasburgo → Entzheim del domingo (~08:30)',due:'2026-12-05',day:'dom'}],
+{id:'ter5',t:'Verificar TER Estrasburgo → Entzheim del domingo (08:06; alternativa 08:00)',due:'2026-12-05',day:'dom'}],
 check:{
 'Documentos y dinero':[{id:'doc-dni',t:'DNI o pasaporte vigente (Schengen: basta el DNI)'},{id:'doc-tse',t:'Tarjeta Sanitaria Europea'},{id:'doc-dinero',t:'Tarjeta de crédito/débito y ~100 € en efectivo para mercadillos y buses'},{id:'doc-offline',t:'Billetes y reservas accesibles sin conexión (correo/Wallet)'},{id:'ext-roaming',t:'Roaming UE incluido en la tarifa (comprobar)'}],
 'Electrónica':[{id:'elec-movil',t:'Móvil y cargador'},{id:'elec-bateria',t:'Batería externa'},{id:'elec-cables',t:'Cables y auriculares'},{id:'elec-enchufe',t:'Enchufes tipo E: los de España valen, sin adaptador'}],
@@ -356,8 +356,9 @@ const act=d=>T.alerts.filter(a=>a.until>=d);
 const LV={info:'Info',atencion:'Atención',critico:'Crítico'};
 const al=a=>{const d=T.days.find(x=>x.id===a.day);return '<div class="alert '+a.lvl+'"><b>'+LV[a.lvl]+':</b> '+md(d?tk(a.msg,d.date,d.base):a.msg)+'<small>Fuente: '+(a.url?'<a href="'+a.url+'" target="_blank" rel="noopener">'+a.src+'</a>':a.src)+' · '+(a.verified?'verificado '+a.verified:'sin verificar')+' · vigente hasta '+fd(a.until)+'</small></div>'};
 /* Pendientes: solo lectura. Se cierran en el chat del viaje (todo.hecho:true). */
-const openT=()=>T.todos.filter(t=>!t.hecho).sort((a,b)=>a.due<b.due?-1:1);
-const pend=(t,d)=>'<div class="pd"><span class="chip '+(d!=null&&d<0?'c-bad':d!=null&&d<=3?'c-warn':'')+'">'+(d!=null&&d<0?'vencido el ':'antes del ')+fd(t.due)+'</span> '+t.t+'</div>';
+const openT=()=>T.todos.filter(t=>!t.hecho).map((t,i)=>[t,i]).sort((a,b)=>a[0].due<b[0].due?-1:a[0].due>b[0].due?1:a[1]-b[1]).map(x=>x[0]);
+/* AJUSTE ALSACIA: pendientes como checklist de solo lectura, sin fecha visible (orden cronológico por due) */
+const pend=(t,d)=>'<label class="todo"><input type="checkbox" disabled aria-label="Pendiente (se cierra en el chat)"><span>'+t.t+'</span></label>';
 /* Checklist de maleta: casillas por dispositivo, con identificador estable (no depende de la versión de la web) */
 const hs=s=>{let h=5381;for(const c of String(s).toLowerCase().replace(/\s+/g,' ').trim())h=(h*33^c.charCodeAt(0))>>>0;return h.toString(36)};
 const RK={seguro:'c-ok',confirmar:'c-warn',evitar:'c-bad'};
