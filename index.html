@@ -30,14 +30,14 @@ a{color:var(--ac)}
 .mu{color:var(--mu);font-size:.95rem}
 .card{background:var(--sf);border:1px solid var(--ln);border-radius:16px;padding:14px 16px;margin:12px 0;box-shadow:0 2px 8px color-mix(in srgb,var(--ink) 9%,transparent)}
 .card h3{margin-top:0;display:flex;align-items:center;gap:8px}
-.card.k-next{border-left:6px solid var(--ac)}.card.k-night{border-left:6px solid var(--dusk2)}
+.card.k-next{border-left:6px solid var(--ac)}
 .hero{background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 72%,var(--ink)));color:var(--on);border-radius:20px;padding:22px 20px;margin:8px 0 14px;box-shadow:0 6px 18px color-mix(in srgb,var(--ac) 28%,transparent);position:relative;overflow:hidden}
 .hero:after{content:attr(data-g);position:absolute;right:12px;top:4px;font-size:5rem;line-height:1;opacity:.22;pointer-events:none}
 .hero b{font:700 2.6rem/1 Georgia,serif;display:block}
 .stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .stats span{background:color-mix(in srgb,var(--on) 18%,transparent);border-radius:999px;padding:4px 12px;font-size:.95rem;font-weight:600}
 nav.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--sf);border-top:1px solid var(--ln);box-shadow:0 -4px 14px color-mix(in srgb,var(--ink) 8%,transparent);padding-bottom:env(safe-area-inset-bottom,0px);z-index:9}
-nav.tabs button{flex:1;min-height:60px;border:0;background:none;color:var(--mu);font:600 .85rem system-ui,sans-serif;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+nav.tabs button{flex:1;min-height:60px;border:0;background:none;color:var(--mu);font:600 .9rem system-ui,sans-serif;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 nav.tabs .ic{font-size:1.35rem;line-height:1;filter:grayscale(1);opacity:.7}
 nav.tabs button[aria-selected=true]{color:var(--ac)}
 nav.tabs button[aria-selected=true] .ic{filter:none;opacity:1}
@@ -68,7 +68,7 @@ ol.tl>li.star>.it{border-color:var(--oil)}
 .daynav{position:sticky;top:0;z-index:5;background:var(--bg);padding:calc(6px + env(safe-area-inset-top,0px)) 0 6px;border-bottom:1px solid var(--ln)}
 h2[id^=d-]{scroll-margin-top:76px;background:linear-gradient(90deg,color-mix(in srgb,var(--ac) 22%,var(--bg)),var(--bg));border-left:6px solid var(--ac);border-radius:0 14px 14px 0;padding:10px 14px;margin:26px 0 8px}
 .sun{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:6px;background:linear-gradient(135deg,var(--dusk1),var(--dusk2));color:var(--dusktx);border-radius:16px;padding:12px 14px;margin:12px 0;box-shadow:0 4px 14px color-mix(in srgb,var(--dusk1) 30%,transparent)}
-.sun div{text-align:center}.sun small{display:block;font-size:.85rem;opacity:.9}.sun b{font:700 1.05rem/1.3 system-ui,sans-serif;font-variant-numeric:tabular-nums}.sun em{grid-column:1/-1;text-align:center;font-style:normal;font-size:.9rem;opacity:.9}
+.sun div{text-align:center}.sun small{display:block;font-size:.9rem;opacity:.9}.sun b{font:700 1.05rem/1.3 system-ui,sans-serif;font-variant-numeric:tabular-nums}.sun em{grid-column:1/-1;text-align:center;font-style:normal;font-size:.9rem;opacity:.9}
 details.learn{margin:8px 0 0;border:1px solid var(--ln);border-radius:10px;background:var(--sf)}
 details.learn summary{min-height:44px;display:flex;align-items:center;gap:8px;padding:0 12px;font-weight:600;color:var(--ac);cursor:pointer;list-style:none}
 details.learn summary::-webkit-details-marker{display:none}
@@ -91,6 +91,18 @@ th,td{text-align:left;padding:8px 6px 8px 0;border-bottom:1px solid var(--ln);ve
 th{color:var(--mu)}
 .sec{display:none}.sec.on{display:block}
 footer{margin-top:28px;color:var(--mu);font-size:.9rem}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.ibtn{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--ln);background:var(--sf);font-size:1.25rem;line-height:1;cursor:pointer;box-shadow:0 2px 6px color-mix(in srgb,var(--ink) 8%,transparent)}
+.btn.sm{gap:6px;min-height:36px;padding:0 12px;border-radius:999px;font-size:.9rem;background:color-mix(in srgb,var(--ac) 10%,var(--sf));border-color:color-mix(in srgb,var(--ac) 35%,var(--ln));position:relative}
+.btn.sm:after{content:"";position:absolute;inset:-4px}
+.pd{padding:8px 0;border-bottom:1px solid var(--ln)}
+.est{margin:8px 0 0}
+.idea{padding:10px 0;border-top:1px solid var(--ln)}.idea:first-child{border-top:0;padding-top:2px}
+details.ideas{border-style:dashed;border-color:var(--ac)}
+.itin{list-style:none;padding:0;margin:4px 0}.itin li{margin:8px 0}
+.daynav a[aria-current]{background:color-mix(in srgb,var(--ac) 16%,var(--sf));border-width:2px}
+.alert a{font-weight:600}
+
 </style>
 </head>
 <body>
@@ -103,12 +115,12 @@ footer{margin-top:28px;color:var(--mu);font-size:.9rem}
 <footer id="foot"></footer>
 </main>
 <nav class="tabs" role="tablist" aria-label="Secciones">
-<button role="tab" data-t="inicio"><span class="ic">🏠</span><span class="pill">Hoy</span></button><button role="tab" data-t="dias"><span class="ic">🗓️</span><span class="pill">Días</span></button><button role="tab" data-t="comer"><span class="ic">🍽️</span><span class="pill">Comer</span></button><button role="tab" data-t="reservas"><span class="ic">🎫</span><span class="pill">Reservas</span></button><button role="tab" data-t="info"><span class="ic">ℹ️</span><span class="pill">Info</span></button>
+<button role="tab" data-t="inicio"><span class="ic">🏠</span><span class="pill">Inicio</span></button><button role="tab" data-t="dias"><span class="ic">🗓️</span><span class="pill">Días</span></button><button role="tab" data-t="comer"><span class="ic">🍽️</span><span class="pill">Comer</span></button><button role="tab" data-t="reservas"><span class="ic">🎫</span><span class="pill">Reservas</span></button><button role="tab" data-t="info"><span class="ic">ℹ️</span><span class="pill">Info</span></button>
 </nav>
 <script>
 /* ═══ DATOS · única fuente de verdad (privacidad: web pública, sin localizadores ni datos personales) ═══ */
 const TRIP={
-meta:{slug:'alsacia2612',title:'Alsacia en Navidad',sub:'Colmar · Eguisheim · Kaysersberg · Estrasburgo · 2-6 dic 2026',start:'2026-12-02',end:'2026-12-06',glifo:'🎄',tz:'Europe/Paris',ver:'1.3',built:'2026-10-25',log:'v1.3 (25-oct-2026): motor 3.2.0 (aspecto nuevo: iconos, degradados, tarjeta de sol) y glifo 🎄; datos sin cambios. v1.2 (25-oct-2026): motor de la plantilla 3.1.1 (sin botón Actualizar: la web se actualiza sola con conexión); datos sin cambios. v1.1 (25-oct-2026): motor 3.1 (offline, hora azul calculada); Navettes, TER del domingo, catedral y terraza Vauban verificados; restaurantes revisados; 3 actividades propuestas. v1.0: web original.'},
+meta:{slug:'alsacia2612',title:'Alsacia en Navidad',lugares:['Colmar','Eguisheim','Kaysersberg','Estrasburgo'],start:'2026-12-02',end:'2026-12-06',glifo:'🎄',tz:'Europe/Paris',ver:'1.4',built:'2026-10-25',log:'v1.4 (25-oct-2026): motor 3.3.0 y datos al modelo nuevo (lugares, títulos «Día - lugares», est en comidas, desc en restaurantes, ideas por día, tiempo con place, checklist con id, sin desayunos). v1.3 (25-oct-2026): motor 3.2.0 (aspecto nuevo: iconos, degradados, tarjeta de sol) y glifo 🎄; datos sin cambios. v1.2 (25-oct-2026): motor de la plantilla 3.1.1 (sin botón Actualizar: la web se actualiza sola con conexión); datos sin cambios. v1.1 (25-oct-2026): motor 3.1 (offline, hora azul calculada); Navettes, TER del domingo, catedral y terraza Vauban verificados; restaurantes revisados; 3 actividades propuestas. v1.0: web original.'},
 modules:{coche:false,dieta:true,supermercado:true,conversores:false,actividades:true,fauna:false,astro:false},
 /* lat/lng de ciudades y monumentos (±200 m); locales sin lat/lng → mapa por nombre; tel ausente = pendiente de verificar */
 places:{
@@ -126,7 +138,7 @@ vauban:{n:'Barrage Vauban',city:'Estrasburgo',lat:48.5788,lng:7.7387,url:'https:
 turenne:{n:'Hôtel Maison Turenne',city:'Colmar',lat:48.0739,lng:7.3565,q:'Hôtel Maison Turenne, 10 Route de Bâle, Colmar'}
 },
 days:[
-{id:'mie',date:'2026-12-02',base:'col',title:'Miércoles 2',note:'Llegada y magia nocturna: Petite Venise iluminada.',tiempo:['colmar'],
+{id:'mie',date:'2026-12-02',base:'col',title:'Miércoles 2 - Llegada y Colmar',note:'Llegada y magia nocturna: Petite Venise iluminada.',tiempo:['colmar'],
 lens:'Solo Sigma 18-50 f/2.8: ir ligero el día de llegada',
 photo:'Reflejos en los canales desde los puentes (farolillos, reflejo, adoquines mojados): ISO 1600–3200, f/2.8, 1/30 s sin trípode. A 18 mm ≈ 29 mm equivalente: en callejuelas, panorámicas verticales de 2–3 fotos.',
 planB:'Si el TER se retrasa y se pasa de las 21:00, cena en el hotel o algo ligero cerca; Palma cierra pronto.',
@@ -135,38 +147,36 @@ items:[
 {t:'~17:50',what:'TER Entzheim → Estrasburgo (~10 min) y transbordo a Colmar (~30 min). Billetes en máquina, sin reserva',dur:40,place:'str',todo:'ter1'},
 {t:'~19:30',what:'Check-in en Maison Turenne',in:1,place:'turenne',note:'Unos 900 m llanos (12 min) desde la estación; con maleta grande, taxi.'},
 {t:'~19:50',what:'Petite Venise y Place de l’Ancienne Douane con las luces ya encendidas',star:1,place:'col',learn:'petitevenise',learn2:'alsacia'},
-{t:'20:45',what:'Cena',meal:'cena',opts:['bidon','palma'],res:'Pendiente',todo:'bidon'}]},
-{id:'jue',date:'2026-12-03',base:'egu',title:'Jueves 3',note:'Mañana libre en Colmar; tarde y hora azul en Eguisheim.',tiempo:['colmar','egu'],
+{t:'20:45',what:'Cena',meal:'cena',opts:['bidon','palma'],est:'pendiente',todo:'bidon'}]},
+{id:'jue',date:'2026-12-03',base:'egu',title:'Jueves 3 - Colmar y Eguisheim',note:'Mañana libre en Colmar; tarde y hora azul en Eguisheim.',tiempo:['colmar','egu'],
 lens:'RF 18-150 de día; Sigma 18-50 f/2.8 para la hora azul y los puestos',
 photo:'Le Pigeonnier hacia las 15:00–16:00: luz lateral de tarde; retrocede desde la bifurcación hasta encuadrar simétrico, f/5.6, ISO 400. Hora azul en Rue du Rempart: f/4, ISO 1600, 1/30 s. Puestos iluminados: expón por la luz del puesto, ISO 800, f/2.8, 1/60 s.',
 planB:'Si la Navette 2026 cambia o va llena: bus Fluo 68R030 o taxi; o volver en la de 16:55 y hacer la hora azul en Petite Venise (Colmar).',
 last:{x:'Último regreso Eguisheim → Colmar (Navette 3, horario 2024; confirmar el 2026)',t:'18:55',v:'2026-10-25'},
 items:[
-{t:'09:30',what:'Desayuno en el hotel; confirma el horario 2026 de la Navette 3',todo:'fluo'},
 {t:'10:00',what:'Mañana libre en Colmar: mercados de la Place des Dominicains y del Koïfhus',place:'col',learn:'colmar',learn2:'maisondetetes'},
 {t:'12:30',what:'Navette de Noël línea 3, estación de Colmar → Eguisheim (Mairie); alternativa: bus Fluo 68R030',dur:25,place:'colst',todo:'nav-egu',note:'Horario 2024 de lun-jue: cada 2 h, salidas de Colmar 12:30–18:30 y vueltas de Eguisheim 12:55–18:55. 8 € (lun-jue).'},
-{t:'13:00',what:'Comida en Eguisheim (el mercado abre a las 12:00)',meal:'comida',opts:['heuhaus']},
+{t:'13:00',what:'Comida en Eguisheim (el mercado abre a las 12:00)',meal:'comida',opts:['heuhaus'],est:'pendiente'},
 {t:'14:30',what:'Rue du Rempart (calle circular exterior), Le Pigeonnier y la plaza central',star:1,place:'egu',learn:'eguisheim',learn2:'grandcru'},
 {t:'15:30',what:'Los puestos encienden las luces: el ambiente cambia por completo',place:'egu'},
 {blue:'egu',what:'Hora azul en Eguisheim: guirnaldas y cielo cobalto en las calles circulares',star:1,place:'egu',note:'Posiciónate en Rue du Rempart o frente al Pigeonnier antes de la puesta ({set}).'},
-{t:'17:30',what:'Mercado iluminado y vin chaud hasta la Navette (el mercado cierra a las 19:00)',place:'egu'},
-{t:'18:55',what:'Navette línea 3 de vuelta Eguisheim (Mairie) → Colmar (horario 2024; la de 16:55 sale antes de la hora azul)',dur:25,place:'egu'},
+{t:'17:30',what:'Mercado iluminado y vin chaud hasta la Navette (el mercado cierra a las 19:00)',place:'egu',k:'🎄'},
+{t:'18:55',what:'Navette línea 3 de vuelta Eguisheim (Mairie) → Colmar (horario 2024; la de 16:55 sale antes de la hora azul)',dur:25,place:'egu',todo:'fluo'},
 {t:'~19:25',what:'Vuelta al hotel y descanso',place:'turenne'},
-{t:'20:00',what:'Cena en Colmar (Petite Venise)',meal:'cena',opts:['fleur']}]},
-{id:'vie',date:'2026-12-04',base:'kay',title:'Viernes 4',note:'Kaysersberg por la mañana: puente fortificado, castillo y mercado; tarde libre en Colmar.',tiempo:['kay','colmar'],
+{t:'20:00',what:'Cena en Colmar (Petite Venise)',meal:'cena',opts:['fleur'],est:'pendiente'}]},
+{id:'vie',date:'2026-12-04',base:'kay',title:'Viernes 4 - Kaysersberg y Colmar',note:'Kaysersberg por la mañana: puente fortificado, castillo y mercado; tarde libre en Colmar.',tiempo:['kay','colmar'],
 lens:'RF 18-150 · RF 100-400 (solo desde el castillo)',
 photo:'Puente fortificado 10:30–11:30: río en primer plano, puente y casas de entramado, 18-150, f/5.6, ISO 200. Desde el castillo: 100-400 para comprimir tejados y chimeneas, Tv 1/500 s mínimo si hay viento, ISO auto.',
 planB:'Si no hay Navette o va llena: bus Fluo de línea regular o taxi.',
 last:{x:'Último regreso Kaysersberg → Colmar (Navette 2, horario 2024 de viernes; confirmar el 2026)',t:'20:20',v:'2026-10-25'},
 items:[
-{t:'09:30',what:'Desayuno en el hotel; revisa el horario de vuelta de la Navette'},
 {t:'~09:40',what:'Navette de Noël línea 1, estación de Colmar → Kaysersberg (~35 min)',dur:35,place:'colst',todo:'nav-kay',note:'Horario 2024 de viernes: la línea 1 pasa por Kaysersberg cada hora desde las 10:10; la 2 vuelve a Colmar cada hora de 11:20 a 20:20. Billete de día 17 € (vie-dom).'},
 {t:'10:30',what:'Puente fortificado y casco histórico',star:1,place:'kay',learn:'kaysersberg',learn2:'schweitzer'},
 {t:'11:30',what:'Subida a las ruinas del castillo (corta pero empinada, ~15-20 min): vistas de los tejados',place:'kaycas',learn:'castillokay'},
-{t:'13:30',what:'Comida en Kaysersberg',meal:'comida',opts:['alchem']},
+{t:'13:30',what:'Comida en Kaysersberg',meal:'comida',opts:['alchem'],est:'pendiente'},
 {t:'15:20',what:'Navette línea 2 de vuelta a Colmar (horario 2024); tarde libre: recuerdos, vin chaud y descanso',place:'kay'},
-{t:'20:00',what:'Cena en Colmar',meal:'cena',opts:['arpege']}]},
-{id:'sab',date:'2026-12-05',base:'vauban',title:'Sábado 5',note:'Estrasburgo, capital de la Navidad: catedral, Place Kléber, Petite France y Barrage Vauban.',tiempo:['str'],
+{t:'20:00',what:'Cena en Colmar',meal:'cena',opts:['arpege'],est:'pendiente'}]},
+{id:'sab',date:'2026-12-05',base:'vauban',title:'Sábado 5 - Estrasburgo',note:'Estrasburgo, capital de la Navidad: catedral, Place Kléber, Petite France y Barrage Vauban.',tiempo:['str'],
 lens:'Sigma 18-50 f/2.8 (catedral) · RF 18-150 o RF 100-400 (Vauban)',
 photo:'Catedral a primera hora con el 18-50: la fachada no cabe, panorámicas verticales de 2–3 fotos. Vauban: con el 18-150 entra todo (Ponts Couverts + catedral); con el 100-400 aíslas la catedral entre tejados. Trípode, f/8, ISO 800–1600. Petite France: f/4, ISO 1600.',
 planB:'Si llueve o hay niebla: catedral y museos por la tarde; Vauban solo si despeja (el domingo no hay margen por el vuelo).',
@@ -177,32 +187,31 @@ items:[
 {t:'10:00',what:'Catedral (nave) y Casa Kammerzell; compra por la mañana la entrada del reloj',star:1,place:'cat',learn:'catedral'},
 {t:'11:30',what:'Place Kléber: gran abeto y mercado',place:'kleber',learn:'christkindel'},
 {t:'12:00',what:'Reloj astronómico: película a las 12:00 y desfile de las figuras a las 12:30 (2 €)',opt:1,place:'cat',todo:'reloj'},
-{t:'13:00',what:'Comida',meal:'comida',opts:['bistrot','muens']},
+{t:'13:00',what:'Comida',meal:'comida',opts:['bistrot','muens'],est:'pendiente'},
 {t:'14:45',what:'Terraza del Barrage Vauban: la foto del viaje, Ponts Couverts con la catedral al fondo',star:1,place:'vauban',learn:'ponts',note:'En invierno la terraza cierra a las 16:00, antes de la puesta ({set}): sube con tiempo.'},
-{t:'15:45',what:'Petite France: canales y tejados de entramado, el barrio más cinematográfico',place:'pfrance',learn:'europa'},
+{t:'15:45',what:'Petite France: canales y tejados de entramado, el barrio más cinematográfico',place:'pfrance',learn:'europa',k:'🏘️'},
 {blue:'vauban',what:'Hora azul en los Ponts Couverts desde los muelles (la terraza ya está cerrada)',star:1,place:'vauban'},
 {t:'~17:30',what:'Paseo nocturno por los mercados y las luces',place:'kleber'},
-{t:'20:00',what:'Cena',meal:'cena',opts:['cocci']}]},
-{id:'dom',date:'2026-12-06',base:'str',title:'Domingo 6',note:'Regreso a casa.',tiempo:['str'],
+{t:'20:00',what:'Cena',meal:'cena',opts:['cocci'],est:'pendiente'}]},
+{id:'dom',date:'2026-12-06',base:'str',title:'Domingo 6 - Regreso',note:'Regreso a casa.',tiempo:['str'],
 lens:'—',photo:'Sin fotografía planificada: día de logística, solo el móvil.',
 planB:'Si falla el TER: taxi desde la estación (confirma precio y tiempo antes).',
 items:[
-{t:'07:00',what:'Desayuno sin trigo: huevos, yogur y fruta; nada de croissant ni tostada'},
 {t:'07:30',what:'Check-out del hotel de Estrasburgo y a la estación',out:1},
 {t:'08:06',what:'TER Estrasburgo → Entzheim, llega 08:13 (alternativa: 08:00 → 08:07). No perder este tren',dur:7,star:1,place:'str',todo:'ter5'},
 {t:'08:15',what:'Aeropuerto: facturación y seguridad (2 h 30 de margen)',place:'ent'},
 {t:'10:45',what:'Despega IB2243. ¡Hasta la próxima, Alsacia!',place:'ent'}]}
 ],
 alerts:[
-{day:'mie',lvl:'atencion',msg:'TER Entzheim → Estrasburgo cada ~20 min en día laborable (8 min); el enlace Estrasburgo → Colmar del miércoles por la tarde está sin verificar. Llegada estimada al hotel 19:15–19:45.',src:'TER Grand Est',verified:'2026-10-25',until:'2026-12-01'},
-{day:'mie',lvl:'atencion',msg:'Le Petit Bidon: en el mismo local (14 Rue Étroite) un directorio muestra «Matoine Bistrot» y sin cena los miércoles. Llama antes de reservar; si no cena el miércoles, alternativa: Palma o L’Arpège (confirmar horario).',src:'Wanderlog · Atly',verified:'2026-10-25',until:'2026-12-02'},
-{day:'jue',lvl:'atencion',msg:'Navette de Noël línea 3 Colmar ↔ Eguisheim: 27 nov–20 dic 2026, todos los días, 8 € de lunes a jueves; billetes solo online desde el 12 nov a las 12:00, plazas limitadas. Horas del web según el horario de 2024 (lun-jue cada 2 h): confirmar el de 2026.',src:'Journal des Sports (jds.fr) · Office de tourisme de Colmar (guía 2024)',verified:'2026-10-25',until:'2026-12-03'},
-{day:'jue',lvl:'info',msg:'Mercado de Eguisheim: del 27 nov al 30 dic, abierto también entre semana; lunes a jueves de 12:00 a 19:00.',src:'Journal des Sports (jds.fr), actualizado 20-oct-2026',verified:'2026-10-25',until:'2026-12-03'},
-{day:'jue',lvl:'atencion',msg:'La Fleur de Sel: un directorio solo le da servicio de mediodía (sin cenas el jueves). Llama para confirmar; si no hay cena, busca alternativa en Petite Venise.',src:'Wanderlog',verified:'2026-10-25',until:'2026-12-03'},
-{day:'vie',lvl:'atencion',msg:'Navettes 1 y 2 a Kaysersberg: viernes a domingo (el viernes 4 sí hay), billete de día 17 €, venta online desde el 12 nov. Horas del web según el horario de 2024: confirmar el de 2026.',src:'Journal des Sports (jds.fr) · Office de tourisme de Colmar (guía 2024)',verified:'2026-10-25',until:'2026-12-04'},
-{day:'sab',lvl:'atencion',msg:'Terraza del Barrage Vauban: de noviembre a febrero abre de 8:30 a 16:00, así que cierra antes de la puesta ({set}). Sube a primera hora de la tarde; la hora azul ({b1}–{b2}), desde los muelles.',src:'Ville de Strasbourg (strasbourg.eu)',verified:'2026-10-25',until:'2026-12-05'},
-{day:'sab',lvl:'info',msg:'Catedral (nave): lun-sáb 8:30-11:15 y 12:45-17:45, entrada libre. Reloj astronómico: película 12:00 y desfile 12:30, 2 €. Plataforma: oct-mar 10:00-18:00, última subida 17:30. Sábado con mucha gente: mañana mejor. Falta confirmar el hotel de esta noche.',src:'Ville de Strasbourg (strasbourg.eu)',verified:'2026-10-25',until:'2026-12-05'},
-{day:'dom',lvl:'atencion',msg:'TER del domingo Estrasburgo → Entzheim: salidas 07:00, 07:20, 08:00, 08:06, 08:48… (7-11 min). No hay tren a las 08:30. Reverificar a 7 días de la salida.',src:'Kombo (horario de domingo, consultado 25-oct-2026)',verified:'2026-10-25',until:'2026-12-05'}],
+{day:'mie',lvl:'atencion',msg:'TER Entzheim → Estrasburgo cada ~20 min en día laborable (8 min, [TER Grand Est](https://www.ter.sncf.com/grand-est/trajet-Strasbourg-entzheim-aeroport)); el enlace Estrasburgo → Colmar del miércoles por la tarde está sin verificar. Llegada estimada al hotel 19:15–19:45.',src:'TER Grand Est',url:'https://www.ter.sncf.com/grand-est/trajet-Strasbourg-entzheim-aeroport',verified:'2026-10-25',until:'2026-12-01'},
+{day:'mie',lvl:'atencion',msg:'Le Petit Bidon: en el mismo local (14 Rue Étroite) [Wanderlog](https://wanderlog.com/place/details/1068437) muestra «Matoine Bistrot» y sin cena los miércoles. Llama antes de reservar; si no cena el miércoles, alternativa: Palma o L’Arpège (confirmar horario).',src:'Wanderlog · Atly',url:'https://wanderlog.com/place/details/1068437',verified:'2026-10-25',until:'2026-12-02'},
+{day:'jue',lvl:'atencion',msg:'Navette de Noël línea 3 Colmar ↔ Eguisheim: 27 nov–20 dic 2026, todos los días, 8 € de lunes a jueves; billetes solo online desde el 12 nov a las 12:00, plazas limitadas ([Journal des Sports](https://www.jds.fr/haut-rhin/actu/colmar-et-environs-quand-ouvrira-la-billetterie-des-navettes-de-noel-2026-1677143_A)). Horas del web según el [horario de 2024](https://reservation.tourisme-colmar.com/medias/documents/documentation/documentation-https://www.jds.fr/haut-rhin/actu/colmar-et-environs-quand-ouvrira-la-billetterie-des-navettes-de-noel-2026-1677143_AETTE24-FR.pdf) (lun-jue cada 2 h): confirmar el de 2026.',src:'Journal des Sports (jds.fr) · Office de tourisme de Colmar (guía 2024)',url:'https://www.jds.fr/haut-rhin/actu/colmar-et-environs-quand-ouvrira-la-billetterie-des-navettes-de-noel-2026-1677143_A',verified:'2026-10-25',until:'2026-12-03'},
+{day:'jue',lvl:'info',msg:'Mercado de Eguisheim: del 27 nov al 30 dic, abierto también entre semana; lunes a jueves de 12:00 a 19:00 ([Journal des Sports](https://www.jds.fr/colmar/manifestations/marche-de-noel/noel-a-eguisheim-animations-et-marche-de-noel-128630_A)).',src:'Journal des Sports (jds.fr), actualizado 20-oct-2026',url:'https://www.jds.fr/colmar/manifestations/marche-de-noel/noel-a-eguisheim-animations-et-marche-de-noel-128630_A',verified:'2026-10-25',until:'2026-12-03'},
+{day:'jue',lvl:'atencion',msg:'La Fleur de Sel: [Wanderlog](https://wanderlog.com/place/details/1068448/la-fleur-de-sel) solo le da servicio de mediodía (sin cenas el jueves). Llama para confirmar; si no hay cena, busca alternativa en Petite Venise.',src:'Wanderlog',url:'https://wanderlog.com/place/details/1068448/la-fleur-de-sel',verified:'2026-10-25',until:'2026-12-03'},
+{day:'vie',lvl:'atencion',msg:'Navettes 1 y 2 a Kaysersberg: viernes a domingo (el viernes 4 sí hay), billete de día 17 €, venta online desde el 12 nov ([Journal des Sports](https://www.jds.fr/haut-rhin/actu/colmar-et-environs-quand-ouvrira-la-billetterie-des-navettes-de-noel-2026-1677143_A)). Horas del web según el [horario de 2024](https://reservation.tourisme-colmar.com/medias/documents/documentation/documentation-https://www.jds.fr/haut-rhin/actu/colmar-et-environs-quand-ouvrira-la-billetterie-des-navettes-de-noel-2026-1677143_AETTE24-FR.pdf): confirmar el de 2026.',src:'Journal des Sports (jds.fr) · Office de tourisme de Colmar (guía 2024)',url:'https://www.jds.fr/haut-rhin/actu/colmar-et-environs-quand-ouvrira-la-billetterie-des-navettes-de-noel-2026-1677143_A',verified:'2026-10-25',until:'2026-12-04'},
+{day:'sab',lvl:'atencion',msg:'Terraza del Barrage Vauban: de noviembre a febrero abre de 8:30 a 16:00 ([Ville de Strasbourg](https://www.strasbourg.eu/lieu/-/entity/sig/956_CUL_107/grande-ecluse-de-fortification-barrage-vauban)), así que cierra antes de la puesta ({set}). Sube a primera hora de la tarde; la hora azul ({b1}–{b2}), desde los muelles.',src:'Ville de Strasbourg (strasbourg.eu)',url:'https://www.strasbourg.eu/lieu/-/entity/sig/956_CUL_107/grande-ecluse-de-fortification-barrage-vauban',verified:'2026-10-25',until:'2026-12-05'},
+{day:'sab',lvl:'info',msg:'Catedral (nave): lun-sáb 8:30-11:15 y 12:45-17:45, entrada libre. Reloj astronómico: película 12:00 y desfile 12:30, 2 €. Plataforma: oct-mar 10:00-18:00, última subida 17:30 ([Ville de Strasbourg](https://www.strasbourg.eu/lieu/-/entity/id/686020/la-cathedrale-notre-dame)). Sábado con mucha gente: mañana mejor. Falta confirmar el hotel de esta noche.',src:'Ville de Strasbourg (strasbourg.eu)',url:'https://www.strasbourg.eu/lieu/-/entity/id/686020/la-cathedrale-notre-dame',verified:'2026-10-25',until:'2026-12-05'},
+{day:'dom',lvl:'atencion',msg:'TER del domingo Estrasburgo → Entzheim: salidas 07:00, 07:20, 08:00, 08:06, 08:48… (7-11 min, [Kombo](https://www.kombo.co/fr/horaires-train-Strasbourg-Entzheim)). No hay tren a las 08:30. Reverificar a 7 días de la salida.',src:'Kombo (horario de domingo, consultado 25-oct-2026)',url:'https://www.kombo.co/fr/horaires-train-Strasbourg-Entzheim',verified:'2026-10-25',until:'2026-12-05'}],
 bookings:[
 {id:'ib2240',tipo:'Vuelo',n:'IB2240 Madrid → Entzheim',st:'ok',when:'mié 2 dic · llega 17:35',dir:'Aeropuerto de Entzheim (EGP)',cancel:'ver correo/Wallet',place:'ent'},
 {id:'ib2243',tipo:'Vuelo',n:'IB2243 Entzheim → Madrid',st:'ok',when:'dom 6 dic · sale 10:45',dir:'Aeropuerto de Entzheim (EGP)',cancel:'ver correo/Wallet',place:'ent'},
@@ -223,15 +232,15 @@ tipicos:[
 {n:'Kougelhopf',d:'Brioche en forma de corona con pasas y almendras, horneado en molde de cerámica.',dieta:'evitar',src:'Hotel B&B · Ouigo',url:'https://www.hotel-bb.com/fr/guide/specialites-alsaciennes'},
 {n:'Pain d’épices y bredele',d:'Pan de especias con canela y galletas navideñas, omnipresentes en los mercadillos.',dieta:'evitar',src:'Hotel B&B',url:'https://www.hotel-bb.com/fr/guide/specialites-alsaciennes'}],
 rest:[
-{id:'bidon',n:'Le Petit Bidon',d:'Colmar',q:'14 Rue Étroite, Colmar',tel:'+33389249793',risk:'confirmar',note:'Atly: personal con buen conocimiento del sin gluten. Ojo: un directorio muestra «Matoine Bistrot» en la misma dirección y sin cena los miércoles; confirmar nombre y horario al llamar.',v:'2026-10-25'},
-{id:'palma',n:'Palma Colmar',d:'Colmar',q:'Palma, Colmar',risk:'confirmar',note:'Bowls muy adaptables; cierra pronto (solo si llegáis antes de las 21:00). Sin datos verificados.',v:null},
-{id:'heuhaus',n:'Caveau Heuhaus',d:'Eguisheim',q:'7 rue Monseigneur Stumpf, Eguisheim',tel:'+33389418572',risk:'confirmar',note:'Jueves abierto 11:00-22:00 (directorio, jun-2025). Baeckeoffe o carne con patatas; confirmar que no sellan la olla con masa de trigo. Evitar la tarte flambée.',v:'2026-10-25'},
-{id:'fleur',n:'La Fleur de Sel',d:'Colmar',q:'9 Quai de la Poissonnerie, Colmar',tel:'+33389410932',risk:'confirmar',note:'Petite Venise. Un directorio solo da horario de mediodía: confirmar que hay cena el jueves. Pedir «sans blé».',v:'2026-10-25'},
-{id:'alchem',n:'L’Alchemille',d:'Kaysersberg',q:'L’Alchemille, Kaysersberg',risk:'confirmar',note:'Choucroute (confirmar que las salchichas no llevan aglutinantes de trigo) o ensalada de Munster. Teléfono y horario sin verificar.',v:null},
-{id:'arpege',n:'L’Arpège',d:'Colmar',q:'1 Rue Saint-Martin, Colmar',tel:'+33389242964',risk:'seguro',note:'Atly lo marca «Accommodating» (sin gluten, servicio informado). Viernes 19:00-21:00; cierra domingo y lunes. Reserva aconsejada.',v:'2026-10-25'},
-{id:'bistrot',n:'Bistrot et Chocolat',d:'Estrasburgo',q:'8 rue de la Râpe, Strasbourg',risk:'seguro',note:'A 100 m de la catedral; platos vegetarianos, veganos y sin gluten. Sábado 10:00-21:00. Sin teléfono publicado (contacto por correo).',v:'2026-10-25'},
-{id:'muens',n:'Muensterstuewel',d:'Estrasburgo',q:'Muensterstuewel, Strasbourg',risk:'confirmar',note:'Alternativa con carne cerca de la catedral; platos tradicionales adaptables; algo más caro. Sin verificar.',v:null},
-{id:'cocci',n:'La Coccinelle',d:'Estrasburgo',q:'La Coccinelle, Strasbourg',risk:'confirmar',note:'Bistró casero; adaptan carnes con verduras o patatas sin harina. No he encontrado su ficha en Estrasburgo: confirmar que existe y su teléfono.',v:null}]},
+{id:'bidon',n:'Le Petit Bidon',d:'Colmar',risk:'confirmar',desc:'Cocina francesa de carnes y pescados en un local pequeño y familiar del casco antiguo; adaptan salsas y el personal conoce el sin gluten (Atly). Ojo: un directorio muestra otro nombre en la misma dirección y sin cena los miércoles.',v:'2026-10-25'},
+{id:'palma',n:'Palma Colmar',d:'Colmar',risk:'confirmar',desc:'Bowls y cocina sencilla y adaptable, ambiente informal; cierra pronto (solo si llegáis antes de las 21:00). Sin datos verificados.',v:null},
+{id:'heuhaus',n:'Caveau Heuhaus',d:'Eguisheim',risk:'confirmar',desc:'Cocina alsaciana tradicional (baeckeoffe, carnes con patatas) en una bodega rústica del pueblo; confirmar que no sellan la olla con masa de trigo y evitar la tarte flambée.',v:'2026-10-25'},
+{id:'fleur',n:'La Fleur de Sel',d:'Colmar',risk:'confirmar',desc:'Cocina alsaciana junto al canal en Petite Venise, ambiente romántico; ensaladas y carnes. Un directorio solo le da servicio de mediodía: confirmar que hay cena el jueves.',v:'2026-10-25'},
+{id:'alchem',n:'L’Alchemille',d:'Kaysersberg',risk:'confirmar',desc:'Brasserie de cocina regional (choucroute, ensalada de Munster), ambiente de pueblo; confirmar que las salchichas no llevan aglutinantes de trigo. Sin verificar.',v:null},
+{id:'arpege',n:'L’Arpège',d:'Colmar',risk:'seguro',desc:'Cocina natural y de temporada con terraza y patio; Atly lo marca como adaptado al sin gluten, con servicio informado. Reserva aconsejada.',v:'2026-10-25'},
+{id:'bistrot',n:'Bistrot et Chocolat',d:'Estrasburgo',risk:'seguro',desc:'Bistró vegetariano y vegano a 100 m de la catedral, ambiente acogedor; platos sin gluten en la carta.',v:'2026-10-25'},
+{id:'muens',n:'Muensterstuewel',d:'Estrasburgo',risk:'confirmar',desc:'Cocina alsaciana tradicional con carne, cerca de la catedral, ambiente clásico y algo más caro. Sin verificar.',v:null},
+{id:'cocci',n:'La Coccinelle',d:'Estrasburgo',risk:'confirmar',desc:'Bistró casero de precios razonables; adaptan carnes con verduras o patatas sin harina. No he encontrado su ficha en Estrasburgo: confirmar que existe.',v:null}]},
 diet:{lang:'fr',
 tarjeta:{loc:'Je suis allergique au blé (froment). Sans gluten, s’il vous plaît. Pas de blé ni de farine de blé : ni dans la sauce, ni en panure, ni dans la pâte. Les traces ne sont pas un problème.',es:'Alergia al trigo. Sin trigo ni harina de trigo (salsa, empanado, masa). Las trazas no son problema.'},
 frases:[{loc:'Sans gluten, s’il vous plaît.',es:'Sin gluten, por favor (la más reconocible: úsala primero).'},{loc:'Je suis allergique au blé.',es:'Soy alérgico/a al trigo.'},{loc:'Sans blé, s’il vous plaît.',es:'Sin trigo, por favor.'},{loc:'Pas de farine dans la sauce, s’il vous plaît.',es:'Sin harina en la salsa, por favor.'}],
@@ -240,10 +249,10 @@ seguro:['Carnes y pescados asados o a la plancha, sin harina en la salsa','Ensal
 nota:'Platos de la lista «Seguro» o «Confirmar» siguen requiriendo una pregunta al camarero.',
 super:'Productos con espiga tachada o «sans gluten» son aptos. Nombres de supermercados de Colmar y Estrasburgo: por verificar.'},
 tiempo:{
-colmar:{n:'Colmar',url:'https://meteofrance.com/previsions-meteo-france/colmar/68000'},
-egu:{n:'Eguisheim',url:'https://meteofrance.com/previsions-meteo-france/eguisheim/68420'},
-kay:{n:'Kaysersberg',url:'https://meteofrance.com/previsions-meteo-france/kaysersberg/68240'},
-str:{n:'Estrasburgo',url:'https://meteofrance.com/previsions-meteo-france/strasbourg/67000'}},
+colmar:{n:'Colmar',place:'col',url:'https://meteofrance.com/previsions-meteo-france/colmar/68000'},
+egu:{n:'Eguisheim',place:'egu',url:'https://meteofrance.com/previsions-meteo-france/eguisheim/68420'},
+kay:{n:'Kaysersberg',place:'kay',url:'https://meteofrance.com/previsions-meteo-france/kaysersberg/68240'},
+str:{n:'Estrasburgo',place:'str',url:'https://meteofrance.com/previsions-meteo-france/strasbourg/67000'}},
 learn:{
 petitevenise:{t:'Petite Venise',sum:'Antiguo barrio de curtidores, pescadores y bateleros junto al río Lauch, que necesitaban agua corriente junto a sus talleres. Una guía lo describe como el decorado más fotografiado de Alsacia en diciembre.',cur:['Las casas de entramado de madera no son decoración: el entramado es la estructura que sostiene el edificio.','En invierno todavía se pueden hacer paseos en barca.'],src:'RYO (guía) · Wikipedia',url:'https://ryo.co/fr/articles/france/strasbourg/marches-noel-alsace/',ver:'2026-10-25'},
 alsacia:{t:'Por qué todo tiene dos nombres',sum:'Alsacia cambió de manos entre Francia y Alemania cuatro veces entre 1871 y 1945. Los letreros están en francés, pero muchos platos (Baeckeoffe, Flammekueche, Kougelhopf) y topónimos son alemanes o alsacianos, un dialecto germánico propio.',cur:['El resultado es una cocina, arquitectura y cultura de frontera: francesa en los papeles, renana en el alma.'],src:'Wikipedia',url:'https://es.wikipedia.org/wiki/Alsacia',ver:'2026-10-25'},
@@ -274,16 +283,16 @@ todos:[
 {id:'reloj',t:'Comprar la entrada del reloj astronómico (2 €; película 12:00, desfile 12:30)',due:'2026-12-05',day:'sab'},
 {id:'ter5',t:'Verificar TER Estrasburgo → Entzheim del domingo (~08:30)',due:'2026-12-05',day:'dom'}],
 check:{
-'Documentos y dinero':['DNI o pasaporte vigente (Schengen: basta el DNI)','Tarjeta Sanitaria Europea','Tarjeta de crédito/débito y ~100 € en efectivo para mercadillos y buses','Billetes y reservas accesibles sin conexión (correo/Wallet)','Roaming UE incluido en la tarifa (comprobar)'],
-'Electrónica':['Móvil y cargador','Batería externa','Cables y auriculares','Enchufes tipo E: los de España valen, sin adaptador'],
-'Salud y aseo':['Medicación personal y botiquín básico','Gafas o lentillas y repuesto','Protector de labios (frío)','Neceser'],
-'Ropa (diciembre, frío y humedad)':['Capas de abrigo para exteriores largos (castillo, Vauban, hora azul)','Calzado cómodo e impermeable (adoquines mojados)','Guantes finos para usar la cámara, gorro','Paraguas o chubasquero ligero'],
-'Foto':['Canon R7','2–3 baterías (en el bolsillo interior: el frío las descarga) y cargador','Tarjetas SD vacías','Sigma 18-50 f/2.8 (noches)','RF 18-150 (día)','RF 100-400 (solo castillo de Kaysersberg y Vauban)','Trípode ligero (hora azul)','Paño de limpieza y bolsa antilluvia'],
-'Alergia al trigo':['Tarjeta del camarero y frases guardadas offline o impresas','Lista de restaurantes por día guardada offline','Snacks sin gluten para el viaje']},
+'Documentos y dinero':[{id:'doc-dni',t:'DNI o pasaporte vigente (Schengen: basta el DNI)'},{id:'doc-tse',t:'Tarjeta Sanitaria Europea'},{id:'doc-dinero',t:'Tarjeta de crédito/débito y ~100 € en efectivo para mercadillos y buses'},{id:'doc-offline',t:'Billetes y reservas accesibles sin conexión (correo/Wallet)'},{id:'ext-roaming',t:'Roaming UE incluido en la tarifa (comprobar)'}],
+'Electrónica':[{id:'elec-movil',t:'Móvil y cargador'},{id:'elec-bateria',t:'Batería externa'},{id:'elec-cables',t:'Cables y auriculares'},{id:'elec-enchufe',t:'Enchufes tipo E: los de España valen, sin adaptador'}],
+'Salud y aseo':[{id:'salud-botiquin',t:'Medicación personal y botiquín básico'},{id:'salud-gafas',t:'Gafas o lentillas y repuesto'},{id:'salud-labios',t:'Protector de labios (frío)'},{id:'salud-neceser',t:'Neceser'}],
+'Ropa (diciembre, frío y humedad)':[{id:'ropa-capas',t:'Capas de abrigo para exteriores largos (castillo, Vauban, hora azul)'},{id:'ropa-calzado',t:'Calzado cómodo e impermeable (adoquines mojados)'},{id:'ropa-guantes',t:'Guantes finos para usar la cámara, gorro'},{id:'ropa-lluvia',t:'Paraguas o chubasquero ligero'}],
+'Foto':[{id:'foto-r7',t:'Canon R7'},{id:'foto-baterias',t:'2–3 baterías (en el bolsillo interior: el frío las descarga) y cargador'},{id:'foto-sd',t:'Tarjetas SD vacías'},{id:'foto-sigma',t:'Sigma 18-50 f/2.8 (noches)'},{id:'foto-18150',t:'RF 18-150 (día)'},{id:'foto-100400',t:'RF 100-400 (solo castillo de Kaysersberg y Vauban)'},{id:'foto-tripode',t:'Trípode ligero (hora azul)'},{id:'foto-limpieza',t:'Paño de limpieza y bolsa antilluvia'}],
+'Alergia al trigo':[{id:'dieta-tarjeta',t:'Tarjeta del camarero y frases guardadas offline o impresas'},{id:'dieta-restaurantes',t:'Lista de restaurantes por día guardada offline'},{id:'dieta-snacks',t:'Snacks sin gluten para el viaje'}]},
 actividades:[
-{id:'barca',n:'Barca por los canales de Petite Venise (Sweet Narcisse)',why:'Ver Colmar desde el agua, bajo los puentes y las casas de entramado; encaja en la tarde libre del viernes.',coste:'9 € por adulto (2025)',tiempo:'~25 min',reserva:'Aconsejada por teléfono (+33 3 89 41 01 94); horario reducido en diciembre',dificultad:'Muy baja',estado:'propuesta',src:'Office de tourisme de Colmar',url:'https://www.tourisme-colmar.com/en/whats-on/events/event-calendar/F235007698_sweet-narcisse-boats-trips-',ver:'2026-10-25'},
-{id:'plataforma',n:'Subir a la plataforma de la catedral de Estrasburgo',why:'Mirador a 66 m sobre los tejados y los mercados; 330 escalones, un pequeño reto. Encaja el sábado por la mañana.',coste:'Precio en la web oficial (no verificado)',tiempo:'45–60 min',reserva:'No; oct-mar 10:00-18:00, última subida 17:30',dificultad:'Media (escaleras)',estado:'propuesta',src:'Ville de Strasbourg',url:'https://www.strasbourg.eu/lieu/-/entity/id/686020/la-cathedrale-notre-dame',ver:'2026-10-25'},
-{id:'batorama',n:'Crucero Batorama por el Ill (Estrasburgo)',why:'Vuelta en barco por la Grande Île y la Petite France, cubierto y con calefacción: útil si llueve el sábado.',coste:'Por verificar',tiempo:'~1 h (por verificar)',reserva:'Por verificar en batorama.com',dificultad:'Muy baja',estado:'propuesta',src:'Ville de Strasbourg (embarcadero Place du Marché aux Poissons)',url:'https://noel.strasbourg.eu',ver:'2026-10-25'}],
+{id:'barca',n:'Barca por los canales de Petite Venise (Sweet Narcisse)',why:'Ver Colmar desde el agua, bajo los puentes y las casas de entramado; encaja en la tarde libre del viernes.',coste:'9 € por adulto (2025)',tiempo:'~25 min',reserva:'Aconsejada por teléfono (+33 3 89 41 01 94); horario reducido en diciembre',dificultad:'Muy baja',estado:'propuesta',dia:'vie',src:'Office de tourisme de Colmar',url:'https://www.tourisme-colmar.com/en/whats-on/events/event-calendar/F235007698_sweet-narcisse-boats-trips-',ver:'2026-10-25'},
+{id:'plataforma',n:'Subir a la plataforma de la catedral de Estrasburgo',why:'Mirador a 66 m sobre los tejados y los mercados; 330 escalones, un pequeño reto. Encaja el sábado por la mañana.',coste:'Precio en la web oficial (no verificado)',tiempo:'45–60 min',reserva:'No; oct-mar 10:00-18:00, última subida 17:30',dificultad:'Media (escaleras)',estado:'propuesta',dia:'sab',src:'Ville de Strasbourg',url:'https://www.strasbourg.eu/lieu/-/entity/id/686020/la-cathedrale-notre-dame',ver:'2026-10-25'},
+{id:'batorama',n:'Crucero Batorama por el Ill (Estrasburgo)',why:'Vuelta en barco por la Grande Île y la Petite France, cubierto y con calefacción: útil si llueve el sábado.',coste:'Por verificar',tiempo:'~1 h (por verificar)',reserva:'Por verificar en batorama.com',dificultad:'Muy baja',estado:'propuesta',dia:'sab',src:'Ville de Strasbourg (embarcadero Place du Marché aux Poissons)',url:'https://noel.strasbourg.eu',ver:'2026-10-25'}],
 links:[
 {n:'Navettes de Noël de Colmar (oficina de turismo)',u:'https://www.tourisme-colmar.com'},
 {n:'Bus Fluo Grand Est',u:'https://www.fluo.eu'},
@@ -294,25 +303,40 @@ links:[
 sos:[{n:'Emergencias UE',tel:'112'},{n:'SAMU (médica)',tel:'15'},{n:'Policía',tel:'17'},{n:'Bomberos',tel:'18'}]
 };
 
-/* ═══ MOTOR v3.2 (no tocar salvo mejora de plantilla) ═══ */
+
+/* ═══ MOTOR v3.3 (no tocar salvo mejora de plantilla) ═══ */
 (function(){
-const TPL='3.2.0';
+const TPL='3.3.0';
 const T=TRIP,M=T.meta,MOD=T.modules||{},TZ=M.tz||'Europe/Madrid',$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-T.alerts=T.alerts||[];T.todos=T.todos||[];T.bookings=T.bookings||[];T.links=T.links||[];T.sos=T.sos||[];T.learn=T.learn||{};T.tiempo=T.tiempo||{};
+T.alerts=T.alerts||[];T.todos=T.todos||[];T.bookings=T.bookings||[];T.links=T.links||[];T.sos=T.sos||[];T.learn=T.learn||{};T.tiempo=T.tiempo||{};T.actividades=T.actividades||[];
 const ls={g(k){try{return localStorage.getItem(M.slug+':'+k)}catch(e){return null}},s(k,v){try{localStorage.setItem(M.slug+':'+k,v)}catch(e){}}};
 const Q=new URLSearchParams(location.search);
 function now(){const s=Q.get('sim');if(s)return{d:s.slice(0,10),t:s.slice(11,16)||'12:00'};const x=new Intl.DateTimeFormat('sv-SE',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()).split(' ');return{d:x[0],t:x[1]}}
 const hm=ms=>new Intl.DateTimeFormat('sv-SE',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(ms);
 const diff=(a,b)=>Math.round((Date.parse(b)-Date.parse(a))/864e5);
 const fd=d=>new Date(d+'T12:00:00Z').toLocaleDateString('es-ES',{timeZone:'UTC',weekday:'short',day:'numeric',month:'short'});
+const MES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const rango=(a,b)=>{const [y1,m1,d1]=a.split('-').map(Number),[y2,m2,d2]=b.split('-').map(Number);if(a===b)return d1+' '+MES[m1-1]+' '+y1;if(y1===y2&&m1===m2)return d1+'-'+d2+' '+MES[m1-1]+' '+y1;if(y1===y2)return d1+' '+MES[m1-1].slice(0,3)+'-'+d2+' '+MES[m2-1].slice(0,3)+' '+y1;return d1+' '+MES[m1-1].slice(0,3)+' '+y1+'-'+d2+' '+MES[m2-1].slice(0,3)+' '+y2};
+const sub=()=>(M.lugares&&M.lugares.length?M.lugares.join(', ')+' · '+rango(M.start,M.end):M.sub||rango(M.start,M.end));
 const PL=id=>T.places[id];
 const rest=id=>((T.food||{}).rest||[]).find(r=>r.id===id);
 const pq=p=>p.q||(p.lat!=null?p.lat+','+p.lng:p.n+' '+(p.city||p.d||''));
 const maps=p=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(pq(p));
-const dirU=ids=>'https://www.google.com/maps/dir/'+ids.map(id=>encodeURIComponent(pq(PL(id)))).join('/');
 const A=(h,t,c)=>'<a class="btn'+(c?' '+c:'')+'" href="'+h+'" target="_blank" rel="noopener">'+t+'</a>';
-const lnk=p=>A(maps(p),'Mapa')+(p.tel?'<a class="btn" href="tel:'+p.tel+'">Llamar</a>':'')+(p.url?A(p.url,'Horarios'):'');
-const tq=ks=>'<div class="row">'+ks.map(k=>A(T.tiempo[k].horas||T.tiempo[k].url,'Tiempo '+T.tiempo[k].n)).join('')+'</div>';
+/* botones compactos: mapa, llamar y horarios solo en Reservas (o en una parada con mapa:true) */
+const lnk=p=>'<div class="row">'+A(maps(p),'📍 Mapa','sm')+(p.tel?'<a class="btn sm" href="tel:'+p.tel+'">📞 Llamar</a>':'')+(p.url?A(p.url,'🕒 Horarios','sm'):'')+'</div>';
+const md=s=>String(s).replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+const dshort=d=>d.title.split(' - ')[0];
+/* ── Tiempo: icono según previsión (Open-Meteo, ~16 días; sin dato: ⛅) ── */
+const WX={};
+try{Object.keys(T.tiempo).forEach(k=>{const c=ls.g('wx:'+k);if(c)WX[k]=JSON.parse(c)})}catch(e){}
+const wico=c=>c==null?'⛅':c===0?'☀️':c<=2?'🌤️':c===3?'☁️':c<=48?'🌫️':c<=57?'🌦️':c<=67?'🌧️':c<=77?'❄️':c<=82?'🌦️':c<=86?'🌨️':'⛈️';
+const wplace=k=>{const t=T.tiempo[k];if(!t)return null;if(t.place&&PL(t.place))return PL(t.place);return Object.values(T.places).find(p=>(p.city||p.n)===t.n)||null};
+const wicon=(k,date)=>{const w=WX[k],i=w&&w.time?w.time.indexOf(date):-1;return wico(i<0?null:w.code[i])};
+const tq=(ks,date)=>'<div class="row">'+ks.filter(k=>T.tiempo[k]).map(k=>A(T.tiempo[k].horas||T.tiempo[k].url,'<span data-wx="'+k+'|'+date+'">'+wicon(k,date)+'</span> '+T.tiempo[k].n,'sm')).join('')+'</div>';
+let wxP=null;
+function wxLoad(){if(wxP)return wxP;wxP=Promise.all(Object.keys(T.tiempo).map(async k=>{const p=wplace(k);if(!p||p.lat==null)return;try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+p.lat+'&longitude='+p.lng+'&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone='+encodeURIComponent(TZ)+'&forecast_days=16');const o=await r.json();if(o&&o.daily){WX[k]={time:o.daily.time,code:o.daily.weather_code,tmax:o.daily.temperature_2m_max,tmin:o.daily.temperature_2m_min,pop:o.daily.precipitation_probability_max,ts:new Date().toISOString()};ls.s('wx:'+k,JSON.stringify(WX[k]))}}catch(e){}})).then(wxPaint);return wxP}
+function wxPaint(){$$('[data-wx]').forEach(s=>{const [k,d]=s.dataset.wx.split('|');s.textContent=wicon(k,d)});$$('[data-wxnow]').forEach(s=>{const [k,d]=s.dataset.wxnow.split('|'),w=WX[k],i=w&&w.time?w.time.indexOf(d):-1;s.textContent=i<0?'Sin previsión guardada para hoy.':wico(w.code[i])+' '+Math.round(w.tmin[i])+'° / '+Math.round(w.tmax[i])+'° · lluvia '+w.pop[i]+' % (Open-Meteo, '+new Date(w.ts).toLocaleString('es-ES',{timeZone:TZ,day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+')'})}
 /* ── Sol offline (NOAA simplificado): puesta −0,833°, hora azul −4° a −8° ── */
 const RAD=Math.PI/180;
 function sunAlt(ms,la,lo){const d=ms/864e5+2440587.5-2451545,g=(357.529+0.98560028*d)*RAD,q=280.459+0.98564736*d;const L=(q+1.915*Math.sin(g)+0.020*Math.sin(2*g))*RAD,e=(23.439-3.6e-7*d)*RAD;const ra=Math.atan2(Math.cos(e)*Math.sin(L),Math.cos(L)),de=Math.asin(Math.sin(e)*Math.sin(L));const H=(18.697374558+24.06570982441908*d)*15*RAD+lo*RAD-ra;return Math.asin(Math.sin(la*RAD)*Math.sin(de)+Math.cos(la*RAD)*Math.cos(de)*Math.cos(H))/RAD}
@@ -322,108 +346,129 @@ p=sunAlt(n0,la,lo);for(let i=1;i<=720;i++){const t=n0-i*6e4,a=sunAlt(t,la,lo);if
 const SUN={};
 function sun(date,id){const k=date+'|'+id;if(k in SUN)return SUN[k];const p=id&&PL(id);let r=null;if(p&&p.lat!=null){const e=sunEv(date,p.lat,p.lng);if(e.set&&e.b1&&e.b2)r={rise:e.rise?hm(e.rise):'—',set:hm(e.set),b1:hm(e.b1),b2:hm(e.b2),lugar:p.city||p.n}}return SUN[k]=r}
 const tk=(s,date,id)=>{const u=sun(date,id);return u?String(s).replace(/\{(rise|set|b1|b2)\}/g,(m,k)=>u[k]):s};
-const sunB=u=>u?'<div class="sun"><div><small>🌅 Amanecer</small><b>'+u.rise+'</b></div><div><small>🌇 Puesta</small><b>'+u.set+'</b></div><div><small>🔵 Hora azul</small><b>'+u.b1+'–'+u.b2+'</b></div><em>'+u.lugar+'</em></div>':'';
+const sunB=u=>u?'<div class="sun"><div><small>🌅 Amanecer</small><b>'+u.rise+'</b></div><div><small>🌇 Puesta</small><b>'+u.set+'</b></div><div><small>🔵 Hora azul</small><b>'+u.b1+'–'+u.b2+'</b></div></div>':'';
 const G=d=>M.glifo||d;
 const ico=i=>i.k?i.k:i.in?'🏨':i.out?'🧳':i.meal?(i.meal==='cena'?'🍷':'🍽️'):i.blue?'📸':/vuelo|aterriza|despega|\bIB\d|\bVY\d/i.test(i.what)?'✈️':/\bTER\b|tren|autob|bus\b|navette|tranv|tram|metro|taxi|coche|caminar|a pie/i.test(i.what)?'🚆':i.act?'🎈':i.star?'⭐':'📍';
-const sunH=u=>u?'☀ Puesta <b>'+u.set+'</b> · Hora azul <b>'+u.b1+'–'+u.b2+'</b> · Amanecer '+u.rise+' ('+u.lugar+')':'';
+const sunH=u=>u?'☀ Puesta <b>'+u.set+'</b> · Hora azul <b>'+u.b1+'–'+u.b2+'</b> · Amanecer '+u.rise:'';
 /* ── Estado ── */
-const done=id=>ls.g('t:'+id)==='1';
 const km=T.days.reduce((s,d)=>s+d.items.reduce((a,i)=>a+(i.km||0),0),0);
 const act=d=>T.alerts.filter(a=>a.until>=d);
 const LV={info:'Info',atencion:'Atención',critico:'Crítico'};
-const al=a=>{const d=T.days.find(x=>x.id===a.day);return '<div class="alert '+a.lvl+'"><b>'+LV[a.lvl]+':</b> '+(d?tk(a.msg,d.date,d.base):a.msg)+'<small>Fuente: '+a.src+' · '+(a.verified?'verificado '+a.verified:'sin verificar')+' · vigente hasta '+fd(a.until)+'</small></div>'};
-const toggles=el=>el.querySelectorAll('input[data-id]').forEach(i=>i.onchange=()=>{ls.s('t:'+i.dataset.id,i.checked?'1':'0');render()});
-const chk=(t,d)=>'<label class="todo"><input type="checkbox" data-id="'+t.id+'" '+(done(t.id)?'checked':'')+'><span>'+t.t+'<br><span class="chip '+(d!=null&&d<0&&!done(t.id)?'c-bad':d!=null&&d<=3&&!done(t.id)?'c-warn':'')+'">antes del '+fd(t.due)+(d!=null&&d<0&&!done(t.id)?' · vencido':'')+'</span></span></label>';
+const al=a=>{const d=T.days.find(x=>x.id===a.day);return '<div class="alert '+a.lvl+'"><b>'+LV[a.lvl]+':</b> '+md(d?tk(a.msg,d.date,d.base):a.msg)+'<small>Fuente: '+(a.url?'<a href="'+a.url+'" target="_blank" rel="noopener">'+a.src+'</a>':a.src)+' · '+(a.verified?'verificado '+a.verified:'sin verificar')+' · vigente hasta '+fd(a.until)+'</small></div>'};
+/* Pendientes: solo lectura. Se cierran en el chat del viaje (todo.hecho:true). */
+const openT=()=>T.todos.filter(t=>!t.hecho).sort((a,b)=>a.due<b.due?-1:1);
+const pend=(t,d)=>'<div class="pd"><span class="chip '+(d!=null&&d<0?'c-bad':d!=null&&d<=3?'c-warn':'')+'">'+(d!=null&&d<0?'vencido el ':'antes del ')+fd(t.due)+'</span> '+t.t+'</div>';
+/* Checklist de maleta: casillas por dispositivo, con identificador estable (no depende de la versión de la web) */
+const hs=s=>{let h=5381;for(const c of String(s).toLowerCase().replace(/\s+/g,' ').trim())h=(h*33^c.charCodeAt(0))>>>0;return h.toString(36)};
 const RK={seguro:'c-ok',confirmar:'c-warn',evitar:'c-bad'};
 const rk=r=>MOD.dieta&&r.risk?' <span class="chip '+RK[r.risk]+'">'+r.risk[0].toUpperCase()+r.risk.slice(1)+'</span>':'';
 const ST={ok:['Reservado','c-ok'],ver:['Ver correo/Wallet','c-warn'],pend:['Pendiente','c-warn'],none:['Sin reserva','']};
+const EST={reservado:['Reservado','c-ok'],pendiente:['Reserva pendiente','c-warn'],flexible:['Flexible','']};
+const todoOf=i=>i.todo&&T.todos.find(t=>t.id===i.todo);
+function estOf(i){if(i.est&&EST[i.est])return EST[i.est];const td=todoOf(i);if(td&&td.hecho)return EST.reservado;if(i.meal||i.res)return EST.pendiente;if(td)return['Pendiente','c-warn'];return null}
+const VEH={tesla:{n:'Tesla Model 3 Standard (eléctrico)',carga:'imprescindible'},bmw:{n:'BMW X3 (híbrido enchufable)',carga:'opcional'},otro:{n:'Otro vehículo o alquiler',carga:'por confirmar'}};
+const veh=()=>MOD.coche&&T.coche&&VEH[T.coche.vehiculo];
+function cargaChip(b){const v=veh();if(!v||b.tipo!=='Hotel')return '';const c=b.cargador;if(c==='si')return ' <span class="chip c-ok">⚡ Cargador: sí</span>';if(c==='no')return ' <span class="chip '+(T.coche.vehiculo==='tesla'?'c-bad':'')+'">⚡ Sin cargador</span>';return ' <span class="chip '+(T.coche.vehiculo==='tesla'?'c-warn':'')+'">⚡ Cargador: por confirmar'+(T.coche.vehiculo==='bmw'?' (opcional)':'')+'</span>'}
 function hotelOn(d){return T.bookings.find(b=>b.tipo==='Hotel'&&b.in&&b.in<=d&&d<b.out)}
-/* ── Hoy ── */
-function inicio(){const n=now(),c=diff(n.d,M.start),el=$('#inicio');
-const open=T.todos.filter(t=>!done(t.id)).sort((a,b)=>a.due<b.due?-1:1);
-let h='<h1>'+M.title+'</h1><p class="mu">'+M.sub+'</p>';
+/* ── Inicio ── */
+function hd(){return '<div class="hd"><div><h1>'+M.title+'</h1><p class="mu">'+sub()+'</p></div><button class="ibtn" id="thm" aria-label="Cambiar entre tema claro y oscuro">'+(eff()==='dark'?'☀️':'🌙')+'</button></div>'}
+function inicio(){const n=now(),c=diff(n.d,M.start),el=$('#inicio'),op=openT();
 const okb=T.bookings.filter(b=>b.st==='ok').length;
-const stats='<div class="stats"><span>'+T.days.length+' días</span>'+(km?'<span>'+km+' km</span>':'')+'<span>'+okb+'/'+T.bookings.length+' reservas</span><span>'+open.length+' pendientes</span></div>';
-const day=T.days.find(d=>d.date===n.d);
-if(c>0){h+='<div class="hero" data-g="'+G('🧳')+'"><b>'+c+'</b>días para el viaje'+stats+'</div>'+(Object.keys(T.tiempo).length?'<div class="card"><h3>Tiempo</h3><p class="mu">Consulta la previsión unos días antes de salir.</p>'+tq(Object.keys(T.tiempo))+'</div>':'')+act(n.d).filter(a=>a.lvl!=='info').map(al).join('')+'<h2>Pendientes por fecha límite</h2>'+(open.length?open.map(t=>chk(t,diff(n.d,t.due))).join(''):'<p class="mu">Todo hecho.</p>')}
-else if(day){const nx=day.items.find(i=>{const m=/(\d\d:\d\d)/.exec(itemT(day,i));return m&&m[1]>=n.t});const ce=day.items.find(i=>i.meal==='cena'),ho=hotelOn(n.d),u=sun(day.date,day.base);
-h+='<div class="hero" data-g="'+G('☀️')+'"><b>'+day.title+'</b>'+day.note+stats+'</div>'+sunB(u);
-h+='<div class="card k-next"><h3>⏭️ Siguiente paso</h3>'+(nx?'<p><span class="t">'+itemT(day,nx)+'</span> <b>'+nx.what+'</b></p>'+(nx.note?'<p class="mu">'+tk(nx.note,day.date,nx.blue||day.base)+'</p>':'')+(nx.place?'<div class="row">'+lnk(PL(nx.place))+'</div>':''):'<p>Día completado.</p>')+'</div>';
-if(ce||ho)h+='<div class="card k-night"><h3>🌙 Esta noche</h3>'+(ce?'<p><b>'+ce.what+'</b>'+(ce.res?' · Reserva: '+(done(ce.todo)?'hecha':ce.res):'')+'</p>':'')+(ho?'<p class="mu">Alojamiento: '+ho.n+'</p>':'')+'</div>';
-h+='<div class="card" id="wx"><h3>Tiempo</h3><p class="mu">Cargando…</p></div>'+(day.tiempo&&day.tiempo.length?'<div class="card"><h3>Previsión oficial</h3>'+tq(day.tiempo)+'</div>':'')+act(n.d).filter(a=>a.day===day.id).map(al).join('')}
-else h+='<div class="hero" data-g="'+G('🎉')+'"><b>Fin</b>Viaje terminado: convierte esta web en diario y retira los datos personales.'+stats+'</div>';
-el.innerHTML=h;toggles(el);if(day&&c<=0)wx(day)}
-async function wx(day){const box=$('#wx'),p=PL(day.base);if(!box||!p)return;let o=null;
-try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+p.lat+'&longitude='+p.lng+'&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone='+encodeURIComponent(TZ)+'&forecast_days=7');o=await r.json();o.ts=new Date().toISOString();ls.s('wx',JSON.stringify(o))}catch(e){try{o=JSON.parse(ls.g('wx'))}catch(x){}}
-if(!o||!o.daily){box.innerHTML='<h3>Tiempo</h3><p class="mu">Sin datos (sin red y sin lectura guardada).</p>';return}
-const i=o.daily.time.indexOf(day.date);box.innerHTML='<h3>Tiempo</h3>'+(i<0?'<p class="mu">Sin previsión para hoy en la última lectura.</p>':'<p><b>'+Math.round(o.daily.temperature_2m_min[i])+'° / '+Math.round(o.daily.temperature_2m_max[i])+'°</b> · lluvia '+o.daily.precipitation_probability_max[i]+' %</p>')+'<p class="mu">Última lectura: '+new Date(o.ts).toLocaleString('es-ES',{timeZone:TZ})+' (Open-Meteo)</p>'}
+const stats='<div class="stats"><span>'+T.days.length+' días</span>'+(km?'<span>'+km+' km</span>':'')+'<span>'+okb+'/'+T.bookings.length+' reservas</span><span>'+op.length+' pendientes</span></div>';
+const day=T.days.find(d=>d.date===n.d),ended=n.d>M.end;
+let h=hd();
+if(c>0)h+='<div class="hero" data-g="'+G('🧳')+'"><b>'+c+'</b>días para el viaje'+stats+'</div>';
+else if(ended)h+='<div class="hero" data-g="'+G('🎉')+'"><b>Fin</b>Viaje terminado: convierte esta web en diario y retira los datos personales.'+stats+'</div>';
+else{const k=T.days.findIndex(d=>d.date===n.d)+1;h+='<div class="hero" data-g="'+G('☀️')+'"><b>'+(k?'Día '+k+' de '+T.days.length:'En viaje')+'</b>'+(day?day.title:'')+stats+'</div>'}
+if(day&&c<=0&&!ended){const nx=day.items.find(i=>{const m=/(\d\d:\d\d)/.exec(itemT(day,i));return m&&m[1]>=n.t}),ce=day.items.find(i=>i.meal==='cena'),ho=hotelOn(n.d),k0=(day.tiempo||[])[0];
+h+='<div class="card k-next"><h3>⏭️ Ahora</h3>'+(nx?'<p><span class="t">'+itemT(day,nx)+'</span> <b>'+nx.what+'</b></p>'+(nx.note?'<p class="mu">'+tk(nx.note,day.date,nx.blue||day.base)+'</p>':''):'<p>Día completado.</p>')+(ce?'<p class="mu">🌙 '+ce.what+(estOf(ce)?' · '+estOf(ce)[0]:'')+'</p>':'')+(ho?'<p class="mu">🏨 '+ho.n+'</p>':'')+(k0?'<p class="mu" data-wxnow="'+k0+'|'+day.date+'">Cargando tiempo…</p>':'')+'</div>'}
+h+='<div class="card"><h3>🧭 Itinerario</h3><ul class="l itin">'+T.days.map(d=>'<li><a href="#d-'+d.id+'"'+(d.date===n.d?' aria-current="date"':'')+'>'+d.title+'</a></li>').join('')+'</ul></div>';
+const tk0=Object.keys(T.tiempo);if(tk0.length){const ref=(c>0?M.start:day?day.date:M.start);h+='<div class="card"><h3>Tiempo</h3>'+tq(tk0,ref)+'</div>'}
+const al0=act(n.d).filter(a=>a.lvl!=='info');if(al0.length)h+='<h2>Atención</h2>'+al0.map(al).join('');
+h+='<h2>Pendientes</h2>'+(op.length?op.map(t=>pend(t,diff(n.d,t.due))).join(''):'<p class="mu">Nada pendiente.</p>');
+el.innerHTML=h;wireTheme();wxLoad()}
 /* ── Días ── */
 function itemT(d,i){if(i.t)return i.t;const u=i.blue&&sun(d.date,i.blue);return u?u.b1:'—'}
-function dias(){const n=now();let h='<h1>Días</h1><div class="chips daynav">'+T.days.map(d=>'<a class="btn" href="#d-'+d.id+'">'+d.title+'</a>').join('')+'</div>';
-T.days.forEach(d=>{const u=sun(d.date,d.base);h+='<h2 id="d-'+d.id+'">'+d.title+'</h2><p class="mu">'+d.note+'</p>'+sunB(u)+'<div class="card"><p class="mu">📷 '+d.lens+'</p>'+(d.photo?'<p class="mu">'+d.photo+'</p>':'')+(d.tiempo&&d.tiempo.length?tq(d.tiempo):'')+'</div>'+act(n.d).filter(a=>a.day===d.id).map(al).join('');
+const dayActs=d=>MOD.actividades===false?[]:T.actividades.filter(a=>[].concat(a.dia||[]).includes(d.id));
+function dias(){const n=now();let h='<h1>Días</h1><div class="chips daynav">'+T.days.map(d=>'<a class="btn" href="#d-'+d.id+'"'+(d.date===n.d?' aria-current="date"':'')+'>'+dshort(d)+'</a>').join('')+'</div>';
+T.days.forEach(d=>{const u=sun(d.date,d.base),ac=dayActs(d);h+='<h2 id="d-'+d.id+'">'+d.title+'</h2><p class="mu">'+d.note+'</p>'+sunB(u);
+if(ac.length)h+='<details class="learn ideas"><summary>🎈 Ideas del día · '+ac.length+'</summary><div class="lb">'+ac.map(a=>'<div class="idea"><b>'+a.n+'</b> <span class="chip '+(a.estado==='elegida'?'c-ok':'')+'">'+(a.estado==='elegida'?'elegida':'sugerencia')+'</span><p>'+a.why+'</p><p class="mu">Coste: '+a.coste+' · Tiempo: '+a.tiempo+' · Reserva: '+a.reserva+' · Dificultad: '+a.dificultad+'</p><small>Fuente: <a href="'+a.url+'" target="_blank" rel="noopener">'+a.src+'</a> · verificado '+a.ver+'</small></div>').join('')+'</div></details>';
+h+='<div class="card"><p class="mu">📷 '+d.lens+'</p>'+(d.photo?'<p class="mu">'+d.photo+'</p>':'')+(d.tiempo&&d.tiempo.length?tq(d.tiempo,d.date):'')+'</div>'+act(n.d).filter(a=>a.day===d.id).map(al).join('');
 h+='<ol class="tl">'+d.items.map(i=>{const sid=i.blue||d.base;let x='<li class="'+(i.star?'star':'')+'" data-i="'+ico(i)+'"><div class="it"><span class="t">'+itemT(d,i)+'</span> <span class="what">'+(i.star?'⭐ ':'')+i.what+'</span>'+(i.opt?' <span class="opt">(opcional)</span>':'')+(i.km?' <span class="chip">'+i.km+' km</span>':'')+(i.dur?' <span class="chip">'+i.dur+' min</span>':'');
 if(i.note)x+='<p class="mu">'+tk(i.note,d.date,sid)+'</p>';
 if(i.blue){const b=sun(d.date,i.blue);if(b)x+='<p class="mu">'+sunH(b)+'</p>'}
-if(i.meal&&i.opts)x+='<p class="mu">'+i.opts.map(id=>{const r=rest(id);return r.n+rk(r)}).join(' · ')+'</p>';
-if(i.todo){const dn=done(i.todo);x+='<p><span class="chip '+(dn?'c-ok':'c-warn')+'">'+(i.res?'Reserva: '+(dn?'hecha':i.res):(dn?'Hecho':'Pendiente'))+'</span></p>'}
-if(i.place)x+='<div class="row">'+lnk(PL(i.place))+'</div>';
+if(i.meal&&i.opts&&i.opts.length)x+='<p class="mu">'+i.opts.map(id=>{const r=rest(id);return r?r.n+rk(r):id}).join(' · ')+'</p>';
+if(i.mapa&&i.place)x+=lnk(PL(i.place));
 [i.learn,i.learn2].filter(Boolean).forEach(k=>{const L=T.learn[k];x+='<details class="learn"><summary>Saber más · '+L.t+'</summary><div class="lb"><p>'+L.sum+'</p><ul>'+L.cur.map(c=>'<li>'+c+'</li>').join('')+'</ul><small>Fuente: <a href="'+L.url+'" target="_blank" rel="noopener">'+L.src+'</a> · verificado '+L.ver+'</small></div></details>'});
+const es=estOf(i);if(es)x+='<p class="est"><span class="chip '+es[1]+'">'+es[0]+'</span></p>';
 return x+'</div></li>'}).join('')+'</ol>';
 if(d.last)h+='<div class="card"><b>'+d.last.x+':</b> '+(d.last.t?d.last.t+' <span class="mu">(verificado '+d.last.v+')</span>':'<span class="chip c-warn">por verificar</span>')+'</div>';
 h+='<div class="card"><b>Plan B:</b> '+d.planB+'</div>'});
-if(MOD.actividades&&(T.actividades||[]).length){h+='<h2>Planes divertidos y curiosos</h2><p class="mu">Elige 1–2; los elegidos entran en el horario del día.</p>'+T.actividades.map(a=>'<div class="card"><b>'+a.n+'</b> <span class="chip '+(a.estado==='elegida'?'c-ok':'')+'">'+(a.estado||'propuesta')+'</span><p>'+a.why+'</p><p class="mu">Coste: '+a.coste+' · Tiempo: '+a.tiempo+' · Reserva: '+a.reserva+' · Dificultad: '+a.dificultad+'</p><small class="mu">Fuente: <a href="'+a.url+'" target="_blank" rel="noopener">'+a.src+'</a> · verificado '+a.ver+'</small></div>').join('')}
 $('#dias').innerHTML=h}
 /* ── Comer ── */
 let flt='todos';
 function comer(){const F=T.food||{},D=T.diet,cs=['todos'].concat([...new Set((F.rest||[]).map(r=>r.d))]);let h='<h1>Comer</h1>';
 if(MOD.dieta&&D){h+='<h2>Enséñasela al camarero</h2><div class="wait" lang="'+D.lang+'">'+D.tarjeta.loc+'<small>'+D.tarjeta.es+'</small></div><h3>Frases</h3>'+D.frases.map(f=>'<div class="card"><b lang="'+D.lang+'">'+f.loc+'</b><p class="mu">'+f.es+'</p></div>').join('')+'<h3>Evitar</h3><ul class="l">'+D.evitar.map(x=>'<li>'+x+'</li>').join('')+'</ul><h3>Seguro</h3><ul class="l">'+D.seguro.map(x=>'<li>'+x+'</li>').join('')+'</ul><p class="mu">Alergia al trigo; la contaminación cruzada no es problema. '+(D.nota||'')+'</p>'}
 h+='<h2>Platos típicos</h2><p class="mu">Lo más habitual de la zona. Verificado '+F.ver+'.</p>'+(F.tipicos||[]).map(p=>'<div class="card"><b>'+p.n+'</b>'+(MOD.dieta&&p.dieta?' <span class="chip '+RK[p.dieta]+'">'+p.dieta[0].toUpperCase()+p.dieta.slice(1)+'</span>':'')+'<p>'+p.d+'</p><small class="mu">Fuente: <a href="'+p.url+'" target="_blank" rel="noopener">'+p.src+'</a></small></div>').join('');
-h+='<h2>Restaurantes</h2><p class="mu">'+(MOD.dieta?'Etiqueta y fecha de verificación en cada ficha; lo no verificado, confírmalo por teléfono.':'Horarios y menús sin verificar: llama antes de ir.')+'</p><div class="chips">'+cs.map(d=>'<button class="btn" aria-pressed="'+(flt===d)+'" data-f="'+d+'">'+d[0].toUpperCase()+d.slice(1)+'</button>').join('')+'</div>';
-h+=(F.rest||[]).filter(r=>flt==='todos'||r.d===flt).map(r=>'<div class="card"><b>'+r.n+'</b> <span class="chip">'+r.d+'</span>'+rk(r)+(r.note?'<p>'+r.note+'</p>':'')+'<p class="mu">'+(MOD.dieta?'Verificado: '+(r.v||'pendiente')+' · ':'')+(r.tel?'':'teléfono pendiente')+'</p><div class="row">'+A(maps(r),'Mapa')+(r.tel?'<a class="btn" href="tel:'+r.tel+'">Llamar</a>':'')+'</div></div>').join('');
+h+='<h2>Restaurantes</h2><p class="mu">'+(MOD.dieta?'Etiqueta y fecha de verificación en cada ficha; lo no verificado, confírmalo con el local.':'Horarios y menús sin verificar: confírmalos antes de ir.')+'</p><div class="chips">'+cs.map(d=>'<button class="btn" aria-pressed="'+(flt===d)+'" data-f="'+d+'">'+d[0].toUpperCase()+d.slice(1)+'</button>').join('')+'</div>';
+h+=(F.rest||[]).filter(r=>flt==='todos'||r.d===flt).map(r=>'<div class="card"><b>'+r.n+'</b> <span class="chip">'+r.d+'</span>'+rk(r)+'<p>'+(r.desc||r.note||'')+'</p>'+(MOD.dieta?'<p class="mu">Verificado: '+(r.v||'pendiente')+'</p>':'')+'</div>').join('');
 if(MOD.supermercado&&D&&D.super)h+='<h2>Supermercado</h2><div class="card"><p>'+D.super+'</p></div>';
 const el=$('#comer');el.innerHTML=h;el.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{flt=b.dataset.f;comer()})}
-/* ── Reservas ── */
-function reservas(){let h='<h1>Reservas</h1>'+T.bookings.map(b=>{const s=ST[b.st],p=b.place&&PL(b.place);return '<div class="card"><b>'+b.n+'</b> <span class="chip '+s[1]+'">'+s[0]+'</span><p class="mu">'+b.tipo+' · '+b.when+'</p>'+(b.dir?'<p>'+b.dir+'</p>':'')+(b.check?'<p class="mu">'+b.check+'</p>':'')+'<p class="mu">Cancelación: '+b.cancel+(b.tipo==='Hotel'&&!(p&&p.tel)?' · teléfono pendiente':'')+'</p>'+(p?'<div class="row">'+lnk(p)+'</div>':'')+'</div>'}).join('');
-if(MOD.coche&&T.coche)h+='<h2>Coche</h2><div class="card"><b>'+T.coche.n+'</b><p>'+T.coche.txt+'</p><div class="row">'+lnk(PL(T.coche.place))+'</div></div>';
+/* ── Reservas (único sitio con mapa, llamar y horarios) ── */
+function reservas(){let h='<h1>Reservas</h1>'+T.bookings.map(b=>{const s=ST[b.st],p=b.place&&PL(b.place);return '<div class="card"><b>'+b.n+'</b> <span class="chip '+s[1]+'">'+s[0]+'</span>'+cargaChip(b)+'<p class="mu">'+b.tipo+' · '+b.when+'</p>'+(b.dir?'<p>'+b.dir+'</p>':'')+(b.check?'<p class="mu">'+b.check+'</p>':'')+'<p class="mu">Cancelación: '+b.cancel+(b.tipo==='Hotel'&&!(p&&p.tel)?' · teléfono pendiente':'')+'</p>'+(p?lnk(p):'')+'</div>'}).join('');
+const v=veh();if(v)h+='<h2>Coche</h2><div class="card"><b>'+v.n+'</b> <span class="chip '+(T.coche.vehiculo==='tesla'?'c-warn':'')+'">⚡ Carga: '+v.carga+'</span><p>'+T.coche.txt+'</p>'+(T.coche.place&&PL(T.coche.place)?lnk(PL(T.coche.place)):'')+'</div>';
+else if(MOD.coche&&T.coche)h+='<h2>Coche</h2><div class="card"><b>'+T.coche.n+'</b><p>'+T.coche.txt+'</p>'+(T.coche.place&&PL(T.coche.place)?lnk(PL(T.coche.place)):'')+'</div>';
 h+='<p class="mu">Localizadores y datos personales: en tu correo o Wallet (esta web es pública).</p>';$('#reservas').innerHTML=h}
 /* ── Info ── */
 function audit(){const o=[],D=T.days,wk=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'],lead=/(hora azul|puesta)[^.]{0,24}\d\d:\d\d/i;
 if(D[0].date!==M.start)o.push('El primer día no coincide con el inicio del viaje');
 if(D[D.length-1].date!==M.end)o.push('El último día no coincide con el fin del viaje');
+if(!(M.lugares&&M.lugares.length))o.push('Falta meta.lugares (subtítulo de Inicio)');
 D.forEach(d=>{if(d.date<M.start||d.date>M.end)o.push(d.title+': fecha fuera del viaje');
-const w=d.title.toLowerCase().split(/\s/)[0],wi=new Date(d.date+'T12:00:00Z').getUTCDay();if(wk.includes(w)&&wk[wi]!==w)o.push(d.title+': no es '+w+' el '+d.date);
+const w=d.title.toLowerCase().split(/[\s]/)[0],wi=new Date(d.date+'T12:00:00Z').getUTCDay();if(wk.includes(w)&&wk[wi]!==w)o.push(d.title+': no es '+w+' el '+d.date);
+if(d.title.indexOf(' - ')<0)o.push(d.title+': el título debe ser «Día n - lugares o actividades»');
 if(!PL(d.base)||PL(d.base).lat==null)o.push(d.title+': falta lugar base con lat/lng (hora azul)');
 d.items.forEach(i=>{['place','blue'].forEach(k=>{if(i[k]&&!PL(i[k]))o.push(d.title+': lugar inexistente «'+i[k]+'»')});
 [i.learn,i.learn2].filter(Boolean).forEach(k=>{const L=T.learn[k];if(!L)o.push(d.title+': Saber más inexistente «'+k+'»');else if(!L.src||!L.url||!L.ver)o.push('Saber más «'+k+'» sin fuente o fecha')});
 (i.opts||[]).forEach(id=>{if(!rest(id))o.push(d.title+': restaurante inexistente «'+id+'»')});
+if(i.est&&!EST[i.est])o.push(d.title+': estado de comida no válido «'+i.est+'»');
 if(i.todo&&!T.todos.find(t=>t.id===i.todo))o.push(d.title+': pendiente inexistente «'+i.todo+'»');
-if(i.act&&!(T.actividades||[]).find(a=>a.id===i.act))o.push(d.title+': actividad inexistente «'+i.act+'»');
+if(i.act&&!T.actividades.find(a=>a.id===i.act))o.push(d.title+': actividad inexistente «'+i.act+'»');
 const tx=(i.what||'')+' '+(i.note||'');if(lead.test(tx))o.push(d.title+': hora azul/puesta escrita a mano en «'+i.what+'»');
 if(/\{(rise|set|b1|b2)\}/.test(tx)&&!sun(d.date,i.blue||d.base))o.push(d.title+': hora azul sin coordenadas en «'+i.what+'»')});
 if(d.last&&!d.last.t)o.push(d.title+': último transporte sin verificar');
 if(d.last&&d.last.t){const u=sun(d.date,d.base);if(u&&u.b2>d.last.t)o.push(d.title+': el último transporte ('+d.last.t+') sale antes del fin de la hora azul ('+u.b2+'): revisa')}});
-T.todos.forEach(t=>{if(!t.due)o.push('Pendiente sin fecha límite: '+t.id);if(t.day){const d=D.find(x=>x.id===t.day);if(!d||!d.items.some(i=>i.todo===t.id))o.push('Pendiente que no está en el horario: '+t.id)}});
+T.todos.forEach(t=>{if(!t.due)o.push('Pendiente sin fecha límite: '+t.id);if(t.day&&!t.hecho){const d=D.find(x=>x.id===t.day);if(!d||!d.items.some(i=>i.todo===t.id))o.push('Pendiente que no está en el horario: '+t.id)}});
 T.alerts.forEach(a=>{if(lead.test(a.msg))o.push('Aviso con hora azul/puesta escrita a mano: '+a.msg.slice(0,40)+'…');if(!a.until)o.push('Aviso sin fecha de fin: '+a.msg.slice(0,40)+'…');if(!a.verified)o.push('Aviso sin verificar: '+a.msg.slice(0,48)+'…')});
+if(MOD.coche&&T.coche&&!VEH[T.coche.vehiculo])o.push('Coche: falta coche.vehiculo (tesla, bmw u otro)');
 T.bookings.filter(b=>b.tipo==='Hotel'&&b.in).forEach(b=>{if(b.st!=='ok'&&b.st!=='ver')o.push('Hotel sin confirmar: '+b.n);if(/no verificado|por verificar/i.test(b.check||''))o.push('Check-in/out sin verificar: '+b.n);
+if(MOD.coche&&T.coche&&T.coche.vehiculo==='tesla'&&b.cargador!=='si')o.push('Tesla: hotel sin cargador confirmado: '+b.n);
 const di=D.find(d=>d.date===b.in),dout=D.find(d=>d.date===b.out);if(!di||!di.items.some(i=>i.in))o.push('Falta el check-in en el horario: '+b.n);if(!dout||!dout.items.some(i=>i.out))o.push('Falta el check-out en el horario: '+b.n)});
-if(MOD.dieta)((T.food||{}).rest||[]).forEach(r=>{if(!r.v)o.push('Restaurante sin verificar: '+r.n)});
-(T.actividades||[]).filter(a=>a.estado==='elegida').forEach(a=>{if(!D.some(d=>d.items.some(i=>i.act===a.id)))o.push('Actividad elegida que no está en el horario: '+a.n)});
+((T.food||{}).rest||[]).forEach(r=>{if(!r.desc)o.push('Restaurante sin descripción (comida y ambiente): '+r.n);if(MOD.dieta&&!r.v)o.push('Restaurante sin verificar: '+r.n)});
+T.actividades.forEach(a=>{if(!a.dia)o.push('Actividad sin día asignado: '+a.n);else if(a.estado==='elegida'&&!D.some(d=>d.items.some(i=>i.act===a.id)))o.push('Actividad elegida que no está en el horario: '+a.n)});
 return o}
-function info(){let h='<h1>Info</h1><h2>Pendientes y checklist</h2>'+T.todos.slice().sort((a,b)=>a.due<b.due?-1:1).map(t=>chk(t)).join('');
-Object.entries(T.check||{}).forEach(([g,a])=>{h+='<h3>'+g+'</h3>'+a.map((x,i)=>'<label class="todo"><input type="checkbox" data-id="k'+g+i+'" '+(done('k'+g+i)?'checked':'')+'><span>'+x+'</span></label>').join('')});
-h+='<h2>Fotos y rutas</h2><div class="scroll"><table><tr><th>Día</th><th>Puesta</th><th>Hora azul</th></tr>'+T.days.map(d=>{const s=sun(d.date,d.base);return '<tr><td>'+d.title+(s?' ('+s.lugar+')':'')+'</td><td>'+(s?s.set:'—')+'</td><td>'+(s?s.b1+'–'+s.b2:'—')+'</td></tr>'}).join('')+'</table></div><p class="mu">Calculado en el móvil por coordenadas y fecha (hora local de '+TZ+'): puesta a −0,833°, hora azul entre −4° y −8°.</p><div class="row">'+T.days.map(d=>{const ids=[...new Set(d.items.map(i=>i.place).filter(Boolean))];return ids.length>1?A(dirU(ids),'Ruta '+d.title):''}).join('')+'</div>';
+const cid=(g,x,i)=>typeof x==='object'?x.id:'h'+hs(x);
+const ctx=x=>typeof x==='object'?x.t:x;
+const cdone=(g,x,i)=>ls.g('c:'+cid(g,x,i))==='1'||(typeof x!=='object'&&ls.g('t:k'+g+i)==='1');
+function info(){let h='<h1>Info</h1><h2>Pendientes</h2><p class="mu">Se cierran en el chat del viaje, no aquí.</p>'+(openT().length?openT().map(t=>pend(t,diff(now().d,t.due))).join(''):'<p class="mu">Nada pendiente.</p>');
+h+='<h2>Checklist</h2><p class="mu">Se guarda en este dispositivo y se conserva al actualizar la web.</p>';
+Object.entries(T.check||{}).forEach(([g,a])=>{h+='<h3>'+g+'</h3>'+a.map((x,i)=>'<label class="todo"><input type="checkbox" data-c="'+cid(g,x,i)+'" '+(cdone(g,x,i)?'checked':'')+'><span>'+ctx(x)+'</span></label>').join('')});
+h+='<h2>Fotos</h2><div class="scroll"><table><tr><th>Día</th><th>Puesta</th><th>Hora azul</th></tr>'+T.days.map(d=>{const s=sun(d.date,d.base);return '<tr><td>'+dshort(d)+'</td><td>'+(s?s.set:'—')+'</td><td>'+(s?s.b1+'–'+s.b2:'—')+'</td></tr>'}).join('')+'</table></div><p class="mu">Calculado en el móvil por coordenadas y fecha (hora local de '+TZ+'): puesta a −0,833°, hora azul entre −4° y −8°.</p>';
 h+='<h2>Utilidades</h2>'+(Object.keys(T.tiempo).length?'<h3>Tiempo (servicio oficial)</h3>'+Object.keys(T.tiempo).map(k=>{const c=T.tiempo[k];return '<p><b>'+c.n+'</b> · <a href="'+c.url+'" target="_blank" rel="noopener">previsión</a>'+(c.horas?' · <a href="'+c.horas+'" target="_blank" rel="noopener">por horas</a>':'')+'</p>'}).join(''):'')+'<h3>Enlaces</h3>'+T.links.map(l=>'<p><a href="'+l.u+'" target="_blank" rel="noopener">'+l.n+'</a></p>').join('')+'<h3>SOS (funciona sin red)</h3><div class="row">'+T.sos.map(s=>'<a class="btn fill" href="tel:'+s.tel+'">'+s.n+' '+s.tel+'</a>').join('')+'</div>';
 const au=audit();h+='<h3>Comprobaciones automáticas</h3>'+(au.length?'<ul class="l">'+au.map(x=>'<li>'+x+'</li>').join('')+'</ul>':'<p class="mu">Sin incidencias.</p>');
-const el=$('#info');el.innerHTML=h;toggles(el)}
+const el=$('#info');el.innerHTML=h;el.querySelectorAll('input[data-c]').forEach(i=>i.onchange=()=>ls.s('c:'+i.dataset.c,i.checked?'1':'0'))}
 /* ── Pie, tema, arranque ── */
 const R=document.documentElement,eff=()=>R.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
 {const t=ls.g('theme');if(t)R.dataset.theme=t}
-function foot(){$('#foot').innerHTML='<p>'+M.title+' · v'+M.ver+' · '+M.built+' · motor '+TPL+'</p><p>'+M.log+'</p><div class="row"><button class="btn" id="thm">Tema claro/oscuro</button></div>';
-$('#thm').onclick=()=>{const n=eff()==='dark'?'light':'dark';R.dataset.theme=n;ls.s('theme',n)}}
-function render(){inicio();dias();comer();reservas();info()}
-function show(){const t=(location.hash||'#inicio').slice(1);const id=['inicio','dias','comer','reservas','info'].includes(t)?t:(t.startsWith('d-')?'dias':'inicio');$$('.sec').forEach(s=>s.classList.toggle('on',s.id===id));$$('nav.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===id));if(t.startsWith('d-')){const e=document.getElementById(t);if(e)e.scrollIntoView()}else window.scrollTo(0,0)}
-$$('nav.tabs button').forEach(b=>b.onclick=()=>{location.hash='#'+b.dataset.t});
-document.addEventListener('toggle',e=>{if(e.target.matches&&e.target.matches('details.learn')&&e.target.open)$$('details.learn[open]').forEach(d=>{if(d!==e.target)d.open=false})},true);
+function wireTheme(){const b=$('#thm');if(b)b.onclick=()=>{const n=eff()==='dark'?'light':'dark';R.dataset.theme=n;ls.s('theme',n);b.textContent=n==='dark'?'☀️':'🌙'}}
+function foot(){$('#foot').innerHTML='<p>'+M.title+' · v'+M.ver+' · '+M.built+' · motor '+TPL+'</p>'}
+function render(){inicio();dias();comer();reservas();info();wxPaint()}
+function show(){const t=(location.hash||'#inicio').slice(1);const id=['inicio','dias','comer','reservas','info'].includes(t)?t:(t.startsWith('d-')?'dias':'inicio');$$('.sec').forEach(s=>s.classList.toggle('on',s.id===id));$$('nav.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===id));
+if(t.startsWith('d-')){const e=document.getElementById(t);if(e)e.scrollIntoView()}
+else if(id==='dias'){const n=now(),cur=T.days.find(d=>d.date===n.d),e=cur&&document.getElementById('d-'+cur.id);if(e)e.scrollIntoView();else window.scrollTo(0,0)}
+else window.scrollTo(0,0)}
+$$('nav.tabs button').forEach(b=>b.onclick=()=>{if(location.hash==='#'+b.dataset.t)show();else location.hash='#'+b.dataset.t});
+document.addEventListener('toggle',e=>{if(e.target.matches&&e.target.matches('details.learn')&&e.target.open)$$('details.learn[open]').forEach(d=>{if(d!==e.target&&d.parentNode===e.target.parentNode)d.open=false})},true);
 addEventListener('hashchange',show);render();foot();show();
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js?v='+encodeURIComponent(M.ver)+'&s='+encodeURIComponent(M.slug)).catch(()=>{}));
 })();
