@@ -96,7 +96,7 @@ footer{margin-top:28px;color:var(--mu);font-size:.9rem}
 <script>
 /* ═══ DATOS · única fuente de verdad (privacidad: web pública, sin localizadores ni datos personales) ═══ */
 const TRIP={
-meta:{slug:'alsacia2612',title:'Alsacia en Navidad',sub:'Colmar · Eguisheim · Kaysersberg · Estrasburgo · 2-6 dic 2026',start:'2026-12-02',end:'2026-12-06',tz:'Europe/Paris',ver:'1.1',built:'2026-10-25',log:'v1.1 (25-oct-2026): motor 3.1 (offline, hora azul calculada); Navettes, TER del domingo, catedral y terraza Vauban verificados; restaurantes revisados; 3 actividades propuestas. v1.0: web original.'},
+meta:{slug:'alsacia2612',title:'Alsacia en Navidad',sub:'Colmar · Eguisheim · Kaysersberg · Estrasburgo · 2-6 dic 2026',start:'2026-12-02',end:'2026-12-06',tz:'Europe/Paris',ver:'1.2',built:'2026-10-25',log:'v1.2 (25-oct-2026): motor de la plantilla 3.1.1 (sin botón Actualizar: la web se actualiza sola con conexión); datos sin cambios. v1.1 (25-oct-2026): motor 3.1 (offline, hora azul calculada); Navettes, TER del domingo, catedral y terraza Vauban verificados; restaurantes revisados; 3 actividades propuestas. v1.0: web original.'},
 modules:{coche:false,dieta:true,supermercado:true,conversores:false,actividades:true,fauna:false,astro:false},
 /* lat/lng de ciudades y monumentos (±200 m); locales sin lat/lng → mapa por nombre; tel ausente = pendiente de verificar */
 places:{
@@ -284,7 +284,7 @@ sos:[{n:'Emergencias UE',tel:'112'},{n:'SAMU (médica)',tel:'15'},{n:'Policía',
 
 /* ═══ MOTOR v3.1 (no tocar salvo mejora de plantilla) ═══ */
 (function(){
-const TPL='3.1';
+const TPL='3.1.1';
 const T=TRIP,M=T.meta,MOD=T.modules||{},TZ=M.tz||'Europe/Madrid',$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 T.alerts=T.alerts||[];T.todos=T.todos||[];T.bookings=T.bookings||[];T.links=T.links||[];T.sos=T.sos||[];T.learn=T.learn||{};T.tiempo=T.tiempo||{};
 const ls={g(k){try{return localStorage.getItem(M.slug+':'+k)}catch(e){return null}},s(k,v){try{localStorage.setItem(M.slug+':'+k,v)}catch(e){}}};
@@ -403,8 +403,7 @@ const el=$('#info');el.innerHTML=h;toggles(el)}
 /* ── Pie, tema, arranque ── */
 const R=document.documentElement,eff=()=>R.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
 {const t=ls.g('theme');if(t)R.dataset.theme=t}
-function foot(){$('#foot').innerHTML='<p>'+M.title+' · v'+M.ver+' · '+M.built+' · motor '+TPL+'</p><p>'+M.log+'</p><div class="row"><button class="btn" id="upd">Actualizar</button><button class="btn" id="thm">Tema claro/oscuro</button></div>';
-$('#upd').onclick=async()=>{try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.unregister();const k=await caches.keys();await Promise.all(k.filter(x=>x.startsWith(M.slug+'-')).map(x=>caches.delete(x)))}catch(e){}location.reload()};
+function foot(){$('#foot').innerHTML='<p>'+M.title+' · v'+M.ver+' · '+M.built+' · motor '+TPL+'</p><p>'+M.log+'</p><div class="row"><button class="btn" id="thm">Tema claro/oscuro</button></div>';
 $('#thm').onclick=()=>{const n=eff()==='dark'?'light':'dark';R.dataset.theme=n;ls.s('theme',n)}}
 function render(){inicio();dias();comer();reservas();info()}
 function show(){const t=(location.hash||'#inicio').slice(1);const id=['inicio','dias','comer','reservas','info'].includes(t)?t:(t.startsWith('d-')?'dias':'inicio');$$('.sec').forEach(s=>s.classList.toggle('on',s.id===id));$$('nav.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===id));if(t.startsWith('d-')){const e=document.getElementById(t);if(e)e.scrollIntoView()}else window.scrollTo(0,0)}
