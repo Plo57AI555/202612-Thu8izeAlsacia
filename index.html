@@ -121,7 +121,7 @@ details.ideas{border-style:dashed;border-color:var(--ac)}
 <script>
 /* ═══ DATOS · única fuente de verdad (privacidad: web pública, sin localizadores ni datos personales) ═══ */
 const TRIP={
-meta:{slug:'alsacia2612',title:'Alsacia en Navidad',lugares:['Colmar','Eguisheim','Kaysersberg','Estrasburgo'],start:'2026-12-02',end:'2026-12-06',glifo:'🎄',tz:'Europe/Paris',ver:'1.7',built:'2026-10-25',log:'v1.7 (25-oct-2026): motor de la plantilla 3.3.5 (sin el desplegable de previsión en Inicio). v1.6 (25-oct-2026): motor de la plantilla 3.3.4 (itinerario en tarjetas con tiempo, banner compacto, pendientes de solo lectura de la plantilla; sin el ajuste local). v1.5 (25-oct-2026): pendientes como checklist de solo lectura, sin fechas y en orden cronológico (ajuste local del motor). v1.4 (25-oct-2026): motor 3.3.0 y datos al modelo nuevo (lugares, títulos «Día - lugares», est en comidas, desc en restaurantes, ideas por día, tiempo con place, checklist con id, sin desayunos). v1.3 (25-oct-2026): motor 3.2.0 (aspecto nuevo: iconos, degradados, tarjeta de sol) y glifo 🎄; datos sin cambios. v1.2 (25-oct-2026): motor de la plantilla 3.1.1 (sin botón Actualizar: la web se actualiza sola con conexión); datos sin cambios. v1.1 (25-oct-2026): motor 3.1 (offline, hora azul calculada); Navettes, TER del domingo, catedral y terraza Vauban verificados; restaurantes revisados; 3 actividades propuestas. v1.0: web original.'},
+meta:{slug:'alsacia2612',title:'Alsacia en Navidad',lugares:['Colmar','Eguisheim','Kaysersberg','Estrasburgo'],start:'2026-12-02',end:'2026-12-06',glifo:'🎄',tz:'Europe/Paris',ver:'1.8',built:'2026-11-01',log:'v1.8 (1-nov-2026): hotel de Estrasburgo decidido (Jean-Sébastien Bach), con taxi y consigna; plazos de cancelación de hoteles (30 nov–2 dic) y pendientes de hotel a 29 nov. v1.7 (25-oct-2026): motor de la plantilla 3.3.5 (sin el desplegable de previsión en Inicio). v1.6 (25-oct-2026): motor de la plantilla 3.3.4 (itinerario en tarjetas con tiempo, banner compacto, pendientes de solo lectura de la plantilla; sin el ajuste local). v1.5 (25-oct-2026): pendientes como checklist de solo lectura, sin fechas y en orden cronológico (ajuste local del motor). v1.4 (25-oct-2026): motor 3.3.0 y datos al modelo nuevo (lugares, títulos «Día - lugares», est en comidas, desc en restaurantes, ideas por día, tiempo con place, checklist con id, sin desayunos). v1.3 (25-oct-2026): motor 3.2.0 (aspecto nuevo: iconos, degradados, tarjeta de sol) y glifo 🎄; datos sin cambios. v1.2 (25-oct-2026): motor de la plantilla 3.1.1 (sin botón Actualizar: la web se actualiza sola con conexión); datos sin cambios. v1.1 (25-oct-2026): motor 3.1 (offline, hora azul calculada); Navettes, TER del domingo, catedral y terraza Vauban verificados; restaurantes revisados; 3 actividades propuestas. v1.0: web original.'},
 modules:{coche:false,dieta:true,supermercado:true,conversores:false,actividades:true,fauna:false,astro:false},
 /* lat/lng de ciudades y monumentos (±200 m); locales sin lat/lng → mapa por nombre; tel ausente = pendiente de verificar */
 places:{
@@ -184,8 +184,8 @@ planB:'Si llueve o hay niebla: catedral y museos por la tarde; Vauban solo si de
 items:[
 {t:'08:30',what:'Check-out en Maison Turenne',out:1,place:'turenne'},
 {t:'09:00',what:'TER Colmar → Estrasburgo (~30 min). Salida temprana para evitar las masas',dur:30,place:'colst'},
-{t:'09:45',what:'Check-in o consigna en el hotel de Estrasburgo',in:1,todo:'hotelstr'},
-{t:'10:00',what:'Catedral (nave) y Casa Kammerzell; compra por la mañana la entrada del reloj',star:1,place:'cat',learn:'catedral'},
+{t:'09:45',what:'Taxi de la estación al hotel Jean-Sébastien Bach (Orangerie) para dejar las maletas; vuelta al centro en tranvía o taxi',in:1,todo:'hotelstr'},
+{t:'10:30',what:'Catedral (nave) y Casa Kammerzell; compra por la mañana la entrada del reloj',star:1,place:'cat',learn:'catedral'},
 {t:'11:30',what:'Place Kléber: gran abeto y mercado',place:'kleber',learn:'christkindel'},
 {t:'12:00',what:'Reloj astronómico: película a las 12:00 y desfile de las figuras a las 12:30 (2 €)',opt:1,place:'cat',todo:'reloj'},
 {t:'13:00',what:'Comida',meal:'comida',opts:['bistrot','muens'],est:'pendiente'},
@@ -193,12 +193,13 @@ items:[
 {t:'15:45',what:'Petite France: canales y tejados de entramado, el barrio más cinematográfico',place:'pfrance',learn:'europa',k:'🏘️'},
 {blue:'vauban',what:'Hora azul en los Ponts Couverts desde los muelles (la terraza ya está cerrada)',star:1,place:'vauban'},
 {t:'~17:30',what:'Paseo nocturno por los mercados y las luces',place:'kleber'},
-{t:'20:00',what:'Cena',meal:'cena',opts:['cocci'],est:'pendiente'}]},
+{t:'20:00',what:'Cena',meal:'cena',opts:['cocci'],est:'pendiente'},
+{t:'~22:00',what:'De vuelta al hotel: pedir en recepción el taxi de las 07:30 del domingo',todo:'taxi'}]},
 {id:'dom',date:'2026-12-06',base:'str',title:'Domingo 6 - Regreso',note:'Regreso a casa.',tiempo:['str'],
 lens:'—',photo:'Sin fotografía planificada: día de logística, solo el móvil.',
-planB:'Si falla el TER: taxi desde la estación (confirma precio y tiempo antes).',
+planB:'Si el taxi se retrasa o se pierde el TER de las 08:06: TER de las 08:48, aún con casi 2 h de margen antes del vuelo. Si falla el TER: taxi desde la estación (confirma precio y tiempo antes).',
 items:[
-{t:'07:30',what:'Check-out del hotel de Estrasburgo y a la estación',out:1},
+{t:'07:30',what:'Check-out del hotel Jean-Sébastien Bach y taxi a la estación (pedido la noche anterior)',out:1},
 {t:'08:06',what:'TER Estrasburgo → Entzheim, llega 08:13 (alternativa: 08:00 → 08:07). No perder este tren',dur:7,star:1,place:'str',todo:'ter5'},
 {t:'08:15',what:'Aeropuerto: facturación y seguridad (2 h 30 de margen)',place:'ent'},
 {t:'10:45',what:'Despega IB2243. ¡Hasta la próxima, Alsacia!',place:'ent'}]}
@@ -216,9 +217,9 @@ alerts:[
 bookings:[
 {id:'ib2240',tipo:'Vuelo',n:'IB2240 Madrid → Entzheim',st:'ok',when:'mié 2 dic · llega 17:35',dir:'Aeropuerto de Entzheim (EGP)',cancel:'ver correo/Wallet',place:'ent'},
 {id:'ib2243',tipo:'Vuelo',n:'IB2243 Entzheim → Madrid',st:'ok',when:'dom 6 dic · sale 10:45',dir:'Aeropuerto de Entzheim (EGP)',cancel:'ver correo/Wallet',place:'ent'},
-{id:'turenne',tipo:'Hotel',n:'Hôtel Maison Turenne (4★, a pasos de Petite Venise)',st:'ok',when:'mié 2 → sáb 5 dic · 3 noches',in:'2026-12-02',out:'2026-12-05',dir:'10 Route de Bâle, Colmar',cancel:'Cancelación gratuita (plazo: ver correo/Wallet)',place:'turenne'},
-{id:'greet',tipo:'Hotel',n:'Greet Hotel Colmar: reserva duplicada, CANCELAR',st:'pend',when:'Descartado por ubicación (1,6 km del centro)',dir:'83 Route de Bâle, Colmar',cancel:'Cancelación gratuita: ver plazo en el correo'},
-{id:'hotelstr',tipo:'Hotel',n:'Hotel de Estrasburgo (sin decidir)',st:'pend',when:'sáb 5 → dom 6 dic · 1 noche',in:'2026-12-05',out:'2026-12-06',dir:'Reservado Jean-Sébastien Bach (barrio Orangerie, ~3,3 km del centro). Alternativas en el casco histórico: Les Haras o Diana Dauphine',cancel:'ver correo/Wallet'},
+{id:'turenne',tipo:'Hotel',n:'Hôtel Maison Turenne (4★, a pasos de Petite Venise)',st:'ok',when:'mié 2 → sáb 5 dic · 3 noches',in:'2026-12-02',out:'2026-12-05',dir:'10 Route de Bâle, Colmar',cancel:'Gratuita hasta finales de noviembre (plazo exacto en el correo)',place:'turenne'},
+{id:'greet',tipo:'Hotel',n:'Greet Hotel Colmar: reserva duplicada, CANCELAR',st:'pend',when:'Descartado por ubicación (1,6 km del centro)',dir:'83 Route de Bâle, Colmar',cancel:'Gratuita hasta finales de noviembre (plazo exacto en el correo): CANCELAR'},
+{id:'hotelstr',tipo:'Hotel',n:'Hôtel Jean-Sébastien Bach (barrio Orangerie, ~3 km del centro)',st:'ok',when:'sáb 5 → dom 6 dic · 1 noche',in:'2026-12-05',out:'2026-12-06',dir:'Barrio de la Orangerie, Estrasburgo. Al centro y a la estación, en taxi o tranvía',cancel:'Gratuita hasta finales de noviembre o principios de diciembre (plazo exacto en el correo)'},
 {id:'ter',tipo:'Transporte',n:'TER Entzheim ↔ Estrasburgo ↔ Colmar',st:'none',when:'Billete en máquina, sin reserva',cancel:'—'},
 {id:'navettes',tipo:'Transporte',n:'Navettes de Noël (Eguisheim jue 3 · Kaysersberg vie 4)',st:'pend',when:'Venta online desde el jue 12 nov, 12:00',cancel:'—'}],
 food:{
@@ -270,8 +271,9 @@ europa:{t:'Estrasburgo y Europa',sum:'Francesa hasta 1871, alemana hasta 1918, f
 ponts:{t:'Ponts Couverts y Barrage Vauban',sum:'Restos de las murallas que garantizaban la independencia de la antigua República de Estrasburgo; la presa de Vauban se levantó tras la anexión francesa de 1681.',cur:['Los puentes perdieron sus tejados en el siglo XVIII pero conservaron el nombre de «cubiertos».','La terraza del Barrage ofrece la vista clásica de los Ponts Couverts con la catedral al fondo.'],src:'Visit Alsace',url:'https://www.visit.alsace/en/223007617-the-covered-bridges/',ver:'2026-10-25'}
 },
 todos:[
-{id:'greet',t:'Cancelar la reserva de Greet Hotel Colmar (cancelación gratuita; mira el plazo en el correo)',due:'2026-11-01'},
-{id:'hotelstr',t:'Decidir hotel de Estrasburgo (Bach reservado vs. Les Haras / Diana Dauphine) y cancelar lo que sobre',due:'2026-11-10',day:'sab'},
+{id:'greet',t:'Cancelar la reserva de Greet Hotel Colmar (cancelación gratuita hasta su plazo, entre el 30 nov y el 2 dic: ver correo)',due:'2026-11-29'},
+{id:'hotelstr',t:'Confirmar con el hotel Jean-Sébastien Bach si guarda las maletas el sábado por la mañana',due:'2026-11-29',day:'sab'},
+{id:'taxi',t:'Pedir en recepción el taxi del domingo a las 07:30',due:'2026-12-05',day:'sab'},
 {id:'nav-egu',t:'Comprar billetes de la Navette a Eguisheim (jueves 3): venta online el 12 nov a las 12:00',due:'2026-11-12',day:'jue'},
 {id:'nav-kay',t:'Comprar billetes de la Navette a Kaysersberg (viernes 4): venta online el 12 nov a las 12:00',due:'2026-11-12',day:'vie'},
 {id:'bidon',t:'Llamar a Le Petit Bidon: confirmar que abre el miércoles por la noche y reservar 20:30–21:00',due:'2026-11-20',day:'mie'},
